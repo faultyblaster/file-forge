@@ -1,7 +1,14 @@
 import * as vscode from 'vscode';
+import { Logger } from './Logger/logger';
+
+const logger = new Logger();
 
 export function activate(context: vscode.ExtensionContext) {
-    console.log('Congratulations, your extension "templator" is now active!');
+    logger.initializeChannel();
+
+    logger.logInfo('This is a info message');
+    logger.logWarning('This is a warning message');
+    logger.logError('This is a error message');
 
     const disposable = vscode.commands.registerCommand(
         'templator.helloWorld',
