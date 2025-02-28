@@ -1,7 +1,6 @@
 import * as vscode from 'vscode';
 import { Logger } from './Logger/logger';
 import { Language, Root, Templates } from './templates/interface';
-import { error, log } from 'console';
 import path from 'path';
 
 const logger = new Logger();

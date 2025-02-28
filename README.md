@@ -1,71 +1,48 @@
-# templator README
+# Templator
 
-This is the README for your extension "templator". After writing up a brief description, we recommend including the following sections.
+Create files from templates with a couple clicks or with commands!
 
-## Features
+<!-- TODO: Add Gifts -->
 
-Describe specific features of your extension including screenshots of your extension in action. Image paths are relative to this README file.
+The following programming languages are shipped by default:
 
-For example if there is an image subfolder under your extension project workspace:
+- C#
+- Python
+- C++
 
-\!\[feature X\]\(images/feature-x.png\)
+## How to
 
-> Tip: Many popular extensions utilize animations. This is an excellent way to show off your extension! We recommend short, focused animations that are easy to follow.
+Just right click on a folder on the explorer, select the template you want, and that's it, you can also run the command: `Create new file` and select the template you want, and that's it.
 
 ## Requirements
 
-If you have any requirements or dependencies, add a section describing those and how to install and configure them.
+No requirements to install, but the use of the extension for x languages assumes that x language is properly installed in the current system.
 
-## Extension Settings
+<!-- ## You can create your own templates
 
-Include if your extension adds any VS Code settings through the `contributes.configuration` extension point.
-
-For example:
-
-This extension contributes the following settings:
-
-* `myExtension.enable`: Enable/disable this extension.
-* `myExtension.thing`: Set to `blah` to do something.
+Simply add as many languages as you want 
+ -->
 
 ## Known Issues
 
-Calling out known issues can help limit users opening duplicate issues against your extension.
+Bugs and errors will be publicly available on [this extension's github page](https://github.com/faultyblaster/Templator), bugs, specifically, will be available (for tracking and reporting) at [the issue tab](https://github.com/faultyblaster/Templator/issues) on the same repo.
 
 ## Release Notes
 
-Users appreciate release notes as you update your extension.
+Only big updates and new features will be listed here, for detailed information and version tracking please read the [changelog](/CHANGELOG.md) file.
 
-### 1.0.0
+### 0.0.1
 
-Initial release of ...
+[2025-02-21]  
+Started this project
 
-### 1.0.1
+## License
 
-Fixed issue #.
+The code is under the [MIT license](/LICENSE), however, some of the art may be copyrighted or given exclusive permission, such cases will be explicitly communicated on those files locations.
 
-### 1.1.0
+## Special notes
 
-Added features X, Y, and Z.
-
----
-
-## Following extension guidelines
-
-Ensure that you've read through the extensions guidelines and follow the best practices for creating your extension.
-
-* [Extension Guidelines](https://code.visualstudio.com/api/references/extension-guidelines)
-
-## Working with Markdown
-
-You can author your README using Visual Studio Code. Here are some useful editor keyboard shortcuts:
-
-* Split the editor (`Cmd+\` on macOS or `Ctrl+\` on Windows and Linux).
-* Toggle preview (`Shift+Cmd+V` on macOS or `Shift+Ctrl+V` on Windows and Linux).
-* Press `Ctrl+Space` (Windows, Linux, macOS) to see a list of Markdown snippets.
-
-## For more information
-
-* [Visual Studio Code's Markdown Support](http://code.visualstudio.com/docs/languages/markdown)
-* [Markdown Syntax Reference](https://help.github.com/articles/markdown-basics/)
+Thanks for using this extension!  
+Feedback is welcome! If you have suggestions, bug reports, typo reports, or any other comment that can make the extension improve, please, don't hesitate on creating a issue on the github [issue tab](https://github.com/faultyblaster/Templator/issues).
 
 **Enjoy!**
