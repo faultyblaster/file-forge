@@ -8,7 +8,7 @@ export interface Language {
     alias: string;
     id: string;
     extension: string;
-    requireNamespace: boolean;
+    requireNamespace?: boolean;
     templates: Template[];
 }
 
@@ -20,4 +20,3 @@ export interface Template {
     extensionOverride?: string;
     snippet: string[];
 }
-
