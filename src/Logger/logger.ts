@@ -1,5 +1,6 @@
 import * as vscode from 'vscode';
-import { extensionData } from '../definitions';
+import { extensionData } from '../extension';
+
 /**
  * Logger class
  */
@@ -34,4 +35,9 @@ export class Logger {
             `[${date.toLocaleString()}] [ ERROR   ]: ${message}`
         );
     }
+}
+
+export enum ErrorsMessages {
+    badWorkspace = 'No workspace is open! Please open a folder or workspace first',
+    cancelledByUser = 'Process cancelled by the user',
 }

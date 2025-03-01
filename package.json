@@ -7,8 +7,10 @@
         "vscode": "^1.97.0"
     },
     "categories": [
-        "Other"
+        "Snippets",
+        "Programming Languages"
     ],
+    "publisher": "faultyblaster",
     "activationEvents": [
         "onStartupFinished"
     ],
@@ -16,10 +18,20 @@
     "contributes": {
         "commands": [
             {
-                "command": "templator.helloWorld",
-                "title": "Hello World"
+                "command": "templator.newFile",
+                "title": "Create new file",
+                "category": "Templator"
             }
-        ]
+        ],
+        "menus": {
+            "explorer/context": [
+                {
+                    "command": "templator.newFile",
+                    "when": "explorerResourceIsFolder",
+                    "group": "_templ"
+                }
+            ]
+        }
     },
     "scripts": {
         "vscode:prepublish": "npm run package",

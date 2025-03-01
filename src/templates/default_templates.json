@@ -1,1 +1,90 @@
-{}
+{
+    "$schema": "./schema.json",
+    "languages": [
+        {
+            "alias": "C#",
+            "id": "csharp",
+            "extension": "cs",
+            "requireNamespace": true,
+            "templates": [
+                {
+                    "alias": "Global Usings",
+                    "description": "All your global usings must be placed here",
+                    "fileName": "GlobalUsings",
+                    "snippet": [
+                        "// GlobalUsings.cs",
+                        "",
+                        "// Microsoft.Extensions",
+                        "// global using Microsoft.Extensions.DependencyInjection;",
+                        "// global using Microsoft.Extensions.Logging;",
+                        "// global using Microsoft.Extensions.Options;",
+                        "",
+                        "// Entity Framework Core (if using EF Core)",
+                        "// global using Microsoft.EntityFrameworkCore;",
+                        "// global using Microsoft.EntityFrameworkCore.Metadata.Builders;",
+                        "",
+                        "// JSON & Serialization",
+                        "// global using System.Text.Json;",
+                        "// global using System.Text.Json.Serialization;",
+                        "",
+                        "// Reflection (if using reflection heavily)",
+                        "// global using System.Reflection;",
+                        "",
+                        "// Custom Project-Specific Usings",
+                        "global using MyProject.Common;",
+                        "global using MyProject.Services;",
+                        "",
+                        "// Testing",
+                        "",
+                        "// global using Xunit; // For xUnit tests",
+                        "// global using NUnit.Framework; // For NUnit tests (if using NUnit)",
+                        "// global using Microsoft.VisualStudio.TestTools.UnitTesting; // For MSTest",
+                        "// global using Moq; // For mocking dependencies",
+                        "// global using FluentAssertions; // For more readable assertions",
+                        "",
+                        "// Databases",
+                        "",
+                        "// global using Microsoft.EntityFrameworkCore; // EF Core main namespace",
+                        "// global using Microsoft.EntityFrameworkCore.Metadata.Builders; // For configuring entity models",
+                        "// global using Microsoft.EntityFrameworkCore.Infrastructure; // For accessing EF Core internals",
+                        "// ",
+                        "// global using System.Data; // General ADO.NET database support",
+                        "// global using System.Data.SqlClient; // For SQL Server (if using System.Data.SqlClient)",
+                        "// global using Microsoft.Data.SqlClient; // For SQL Server (recommended over System.Data.SqlClient)",
+                        "// global using Npgsql; // For PostgreSQL",
+                        "// global using MySql.Data.MySqlClient; // For MySQL",
+                        "// global using MongoDB.Driver; // For MongoDB"
+                    ]
+                },
+                {
+                    "alias": "Class",
+                    "description": "A simple class file",
+                    "fileName": "Class",
+                    "snippet": [
+                        "namespace $RELATIVE_FILEPATH",
+                        "",
+                        "public class $TM_FILENAME_BASE",
+                        "{",
+                        "   $0",
+                        "}",
+                        ""
+                    ]
+                }
+            ]
+        },
+        {
+            "alias": "TypeScript",
+            "extension": "ts",
+            "id": "ts",
+            "requireNamespace": false,
+            "templates": [
+                {
+                    "alias": "class",
+                    "description": "A simple Class",
+                    "fileName": "class",
+                    "snippet": ["class $TM_FILENAME_BASE {", "\t$0", "}"]
+                }
+            ]
+        }
+    ]
+}

@@ -9,14 +9,15 @@ export interface Language {
     id: string;
     extension: string;
     requireNamespace: boolean;
-    templates: Templates[];
+    templates: Template[];
 }
 
 // Individual templates
-export interface Templates {
+export interface Template {
     alias: string;
     description: string;
     fileName: string;
     extensionOverride?: string;
     snippet: string[];
 }
+
