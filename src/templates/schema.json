@@ -8,7 +8,6 @@
                 "type": "object",
                 "properties": {
                     "alias": { "type": "string" },
-                    "id": { "type": "string" },
                     "extension": { "type": "string" },
                     "requireNamespace": { "type": "boolean" },
                     "templates": {
@@ -36,7 +35,6 @@
                 },
                 "required": [
                     "alias",
-                    "id",
                     "extension",
                     "requireNamespace",
                     "templates"

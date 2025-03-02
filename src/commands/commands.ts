@@ -21,10 +21,10 @@ export function registerCommands(context: vscode.ExtensionContext) {
                 logger.logInfo(
                     `File requested initially at: ${destinyInitialPath.fsPath}`
                 );
-                let selectedTemplate: usrSelection = await selectTemplate();
+                let selectedTemplate: usrSelection = await selectTemplate(
+                    context
+                );
                 await createFileHere(destinyInitialPath, selectedTemplate);
-
-                //
             } catch (error) {
                 if (error instanceof Error) {
                     logger.logError(error.message);
@@ -41,11 +41,29 @@ async function createFileHere(filePath: vscode.Uri, template: usrSelection) {
     logger.logInfo(
         `Creating file at ${filePath.fsPath} with ${template[0].alias}`
     );
-    let filename = template[1].extensionOverride
-        ? `${template[1].fileName}.${template[1].extensionOverride}`
-        : `${template[1].fileName}.${template[0].extension}`;
+    let basePath = filePath.fsPath;
+    let filename = template[1].fileName;
+    let fileExtension = template[1].extensionOverride
+        ? template[1].extensionOverride
+        : template[0].extension;
 
-    let fullDir = path.join(filePath.fsPath, filename);
+    let confirmedDir = await vscode.window.showInputBox({
+        ignoreFocusOut: true,
+        placeHolder: 'Enter your file name, and confirm the directory',
+        title: 'Enter your file name',
+        value: path.join(basePath, filename + '.' + fileExtension),
+        valueSelection: [
+            basePath.length + 1,
+            basePath.length + 1 + filename.length,
+        ],
+    });
+
+    if (confirmedDir === undefined) {
+        logger.logWarning(`Process cancelled by user`);
+        throw new Error(ErrorsMessages.cancelledByUser);
+    }
+    let fullDir = path.join(confirmedDir);
+
     // TODO: Ask the user for dir changes
     fullDir = path.normalize(fullDir);
     let fileDirectory = vscode.Uri.file(fullDir);
@@ -56,8 +74,10 @@ async function createFileHere(filePath: vscode.Uri, template: usrSelection) {
     try {
         await vscode.workspace.fs.writeFile(fileDirectory, new Uint8Array());
         const doc = await vscode.workspace.openTextDocument(fileDirectory);
-        const editor = await vscode.window.showTextDocument(fileDirectory);
-        await editor.insertSnippet(snippet);
+        await vscode.window.showTextDocument(fileDirectory).then((editor) => {
+            editor.insertSnippet(snippet);
+        });
+        doc.save();
     } catch (error) {
         if (error instanceof Error) {
             logger.logError(error.message);
@@ -77,12 +97,13 @@ function createSnippet(text: string[]): vscode.SnippetString {
  * Ask the user to select a template from the templates file
  * @returns the language and the template as two different objects
  */
-async function selectTemplate(): Promise<usrSelection> {
+async function selectTemplate(
+    ctx: vscode.ExtensionContext
+): Promise<usrSelection> {
     let selectedLang: Language | undefined;
     let selectedTemplate: Template | undefined;
-    // let s
     const options: vscode.QuickPickOptions = {
-        placeHolder: 'Choose a language',
+        placeHolder: 'Choose a language or template',
         canPickMany: false,
         ignoreFocusOut: true,
         matchOnDescription: true,
@@ -91,10 +112,17 @@ async function selectTemplate(): Promise<usrSelection> {
 
     // Language selection:
     const tempLanguage = await vscode.window.showQuickPick(
-        all_languages.map((item) => {
+        all_languages.map((item): vscode.QuickPickItem => {
+            const iconUri = vscode.Uri.file(
+                path.join(
+                    ctx.extensionPath,
+                    `/src/icons/langs/${item.extension}.svg`
+                )
+            );
             return {
                 label: item.alias,
-                details: item.extension,
+                description: item.extension,
+                iconPath: iconUri,
             };
         }),
         options
@@ -110,7 +138,23 @@ async function selectTemplate(): Promise<usrSelection> {
     }
 
     const temTemplate = await vscode.window.showQuickPick(
-        selectedLang.templates.map((item) => {
+        selectedLang.templates.map((item): vscode.QuickPickItem => {
+            let iconUri: vscode.Uri;
+            if (item.extensionOverride) {
+                iconUri = vscode.Uri.file(
+                    path.join(
+                        ctx.extensionPath,
+                        `/src/icons/langs/${item.extensionOverride}.svg`
+                    )
+                );
+            } else {
+                iconUri = vscode.Uri.file(
+                    path.join(
+                        ctx.extensionPath,
+                        `/src/icons/langs/${selectedLang.extension}.svg`
+                    )
+                );
+            }
             let filename: string;
             if (item.extensionOverride) {
                 filename = item.fileName + '.' + item.extensionOverride;
@@ -119,8 +163,9 @@ async function selectTemplate(): Promise<usrSelection> {
             }
             return {
                 label: item.alias,
-                detail: item.description,
+                // detail: item.description,
                 description: filename,
+                iconPath: iconUri,
             };
         }),
         options

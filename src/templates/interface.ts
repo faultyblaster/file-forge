@@ -6,7 +6,6 @@ export interface Root {
 // Individual langues
 export interface Language {
     alias: string;
-    id: string;
     extension: string;
     requireNamespace?: boolean;
     templates: Template[];

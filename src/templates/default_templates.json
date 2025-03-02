@@ -3,59 +3,9 @@
     "languages": [
         {
             "alias": "C#",
-            "id": "csharp",
             "extension": "cs",
             "requireNamespace": true,
             "templates": [
-                {
-                    "alias": "Global Usings",
-                    "description": "All your global usings must be placed here",
-                    "fileName": "GlobalUsings",
-                    "snippet": [
-                        "// GlobalUsings.cs",
-                        "",
-
-                        "// Microsoft Extensions",
-                        "global using Microsoft.Extensions.DependencyInjection;",
-                        "global using Microsoft.Extensions.Logging;",
-                        "global using Microsoft.Extensions.Options;",
-                        "",
-
-                        "// Entity Framework Core (if using EF Core)",
-                        "global using Microsoft.EntityFrameworkCore;",
-                        "global using Microsoft.EntityFrameworkCore.Metadata.Builders;",
-                        "",
-
-                        "// JSON & Serialization",
-                        "global using System.Text.Json;",
-                        "global using System.Text.Json.Serialization;",
-                        "",
-
-                        "// Reflection (if needed)",
-                        "global using System.Reflection;",
-                        "",
-
-                        "// Custom Project-Specific Usings",
-                        "global using MyProject.Common;",
-                        "global using MyProject.Services;",
-                        "",
-
-                        "// Testing (Uncomment as needed)",
-                        "// global using Xunit;",
-                        "// global using NUnit.Framework;",
-                        "// global using Microsoft.VisualStudio.TestTools.UnitTesting;",
-                        "// global using Moq;",
-                        "// global using FluentAssertions;",
-                        "",
-
-                        "// Database Access (Uncomment based on usage)",
-                        "// global using Microsoft.Data.SqlClient; // Recommended for SQL Server",
-                        "// global using System.Data; // General ADO.NET",
-                        "// global using Npgsql; // PostgreSQL",
-                        "// global using MySql.Data.MySqlClient; // MySQL",
-                        "// global using MongoDB.Driver; // MongoDB"
-                    ]
-                },
                 {
                     "alias": "Class",
                     "description": "A simple class file",
@@ -144,27 +94,78 @@
                         "   }",
                         "}"
                     ]
+                },
+                {
+                    "alias": "Global Usings",
+                    "description": "All your global usings must be placed here",
+                    "fileName": "GlobalUsings",
+                    "snippet": [
+                        "// GlobalUsings.cs",
+                        "",
+
+                        "// Microsoft Extensions",
+                        "global using Microsoft.Extensions.DependencyInjection;",
+                        "global using Microsoft.Extensions.Logging;",
+                        "global using Microsoft.Extensions.Options;",
+                        "",
+
+                        "// Entity Framework Core (if using EF Core)",
+                        "global using Microsoft.EntityFrameworkCore;",
+                        "global using Microsoft.EntityFrameworkCore.Metadata.Builders;",
+                        "",
+
+                        "// JSON & Serialization",
+                        "global using System.Text.Json;",
+                        "global using System.Text.Json.Serialization;",
+                        "",
+
+                        "// Reflection (if needed)",
+                        "global using System.Reflection;",
+                        "",
+
+                        "// Custom Project-Specific Usings",
+                        "global using MyProject.Common;",
+                        "global using MyProject.Services;",
+                        "",
+
+                        "// Testing (Uncomment as needed)",
+                        "// global using Xunit;",
+                        "// global using NUnit.Framework;",
+                        "// global using Microsoft.VisualStudio.TestTools.UnitTesting;",
+                        "// global using Moq;",
+                        "// global using FluentAssertions;",
+                        "",
+
+                        "// Database Access (Uncomment based on usage)",
+                        "// global using Microsoft.Data.SqlClient; // Recommended for SQL Server",
+                        "// global using System.Data; // General ADO.NET",
+                        "// global using Npgsql; // PostgreSQL",
+                        "// global using MySql.Data.MySqlClient; // MySQL",
+                        "// global using MongoDB.Driver; // MongoDB"
+                    ]
                 }
             ]
         },
         {
             "alias": "TypeScript",
             "extension": "ts",
-            "id": "ts",
             "requireNamespace": false,
             "templates": [
                 {
                     "alias": "class",
                     "description": "A simple Class",
                     "fileName": "class",
-                    "snippet": ["class $TM_FILENAME_BASE {", "\t$0", "}"]
+                    "snippet": [
+                        "class ${TM_FILENAME_BASE/^(.)(.*)/${1:/upcase}${2}/} {",
+                        "\t$0",
+                        "}"
+                    ]
                 }
             ]
         },
         {
             "alias": "Python",
             "extension": "py",
-            "id": "py",
             "requireNamespace": false,
             "templates": [
                 {
