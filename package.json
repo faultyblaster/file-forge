@@ -11,6 +11,30 @@
         "Programming Languages"
     ],
     "publisher": "faultyblaster",
+    "author": {
+        "email": "faultyblaster@gmail.com",
+        "name": "faultyblaster",
+        "url": "https://x.com/faultyblasterxd"
+    },
+    "extensionPack": [],
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/faultyblaster/Templator"
+    },
+    "sponsor": {
+        "url": "https:https://www.patreon.com/c/faultyblaster"
+    },
+    "keywords": [
+        "snippet",
+        "extension",
+        "new file",
+        "templates"
+    ],
+    "license": "MIT",
+    "readme": "/README.md",
+    "extensionKind": [
+        "workspace"
+    ],
     "activationEvents": [
         "onStartupFinished"
     ],
