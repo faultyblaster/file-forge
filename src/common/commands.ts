@@ -5,12 +5,13 @@ import { ShowError } from '../messages';
 import { Language, Template } from '../templates/interface';
 import path from 'path';
 import * as fs from 'fs';
+import { Namespacer } from './namespace';
 
 /**
  * Register all the commands to vs code
- * @param context The vs code context variable
+ * @param ctx The vs code context variable
  */
-export function registerCommands(context: vscode.ExtensionContext) {
+export function registerCommands(ctx: vscode.ExtensionContext) {
     // Basic default command
     const createNewFile = vscode.commands.registerCommand(
         FileCreation.newFile,
@@ -22,10 +23,8 @@ export function registerCommands(context: vscode.ExtensionContext) {
                 logger.logInfo(
                     `File requested initially at: ${destinyInitialPath.fsPath}`
                 );
-                let selectedTemplate: usrSelection = await selectTemplate(
-                    context
-                );
-                await createFileHere(destinyInitialPath, selectedTemplate);
+                let selectedTemplate: usrSelection = await selectTemplate(ctx);
+                await createFile(destinyInitialPath, selectedTemplate);
             } catch (error) {
                 if (error instanceof Error) {
                     logger.logError(error.message);
@@ -38,10 +37,17 @@ export function registerCommands(context: vscode.ExtensionContext) {
         }
     );
 
-    context.subscriptions.push(createNewFile);
+    const createCSharpNamespace = vscode.commands.registerCommand(
+        `${extensionData.id}.createCSharpNamespace`,
+        async (clicker: vscode.Uri) => {
+            Namespacer.createCSharpNamespace(clicker, ctx);
+        }
+    );
+
+    ctx.subscriptions.push(createNewFile, createCSharpNamespace);
 }
 
-async function createFileHere(filePath: vscode.Uri, template: usrSelection) {
+async function createFile(filePath: vscode.Uri, template: usrSelection) {
     logger.logInfo(`Creating file at ${filePath.fsPath}`);
     // The snippet to insert to the file
     let Snippet: vscode.SnippetString = createSnippet(template[1].snippet);
@@ -78,7 +84,6 @@ async function createFileHere(filePath: vscode.Uri, template: usrSelection) {
     let fileDirectory = vscode.Uri.file(FullDir);
     logger.logInfo(`Creating file at ${fileDirectory.fsPath}`);
 
-    // TODO: Check if the file exist to avoid messing with existing files
     logger.logInfo('Checking if the file already exist...');
     let attempts = 0;
 
@@ -147,7 +152,7 @@ async function selectTemplate(
             const iconUri = vscode.Uri.file(
                 path.join(
                     ctx.extensionPath,
-                    `/src/icons/langs/${item.extension}.svg`
+                    `/media/icons/langs/${item.extension}.svg`
                 )
             );
             return {
@@ -175,14 +180,14 @@ async function selectTemplate(
                 iconUri = vscode.Uri.file(
                     path.join(
                         ctx.extensionPath,
-                        `/src/icons/langs/${item.extensionOverride}.svg`
+                        `/media/icons/langs/${item.extensionOverride}.svg`
                     )
                 );
             } else {
                 iconUri = vscode.Uri.file(
                     path.join(
                         ctx.extensionPath,
-                        `/src/icons/langs/${selectedLang.extension}.svg`
+                        `/media/icons/langs/${selectedLang.extension}.svg`
                     )
                 );
             }

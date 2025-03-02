@@ -16,6 +16,9 @@
         "name": "faultyblaster",
         "url": "https://x.com/faultyblasterxd"
     },
+    "files": [
+        "media"
+    ],
     "extensionPack": [],
     "repository": {
         "type": "git",
@@ -45,6 +48,11 @@
                 "command": "templator.newFile",
                 "title": "Create new file",
                 "category": "Templator"
+            },
+            {
+                "command": "templator.createCSharpNamespace",
+                "title": "Create C# namespace",
+                "category": "Templator"
             }
         ],
         "menus": {
@@ -52,7 +60,12 @@
                 {
                     "command": "templator.newFile",
                     "when": "explorerResourceIsFolder",
-                    "group": "_templ"
+                    "group": "_fileCreation@global"
+                },
+                {
+                    "command": "templator.createCSharpNamespace",
+                    "when": "resourceExtname == .cs || resourceExtname == .fs}",
+                    "group": "_dotnet"
                 }
             ]
         }

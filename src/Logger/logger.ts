@@ -42,4 +42,5 @@ export enum ErrorsMessages {
     cancelledByUser = 'Process cancelled by the user',
     unexpected = 'An unexpected error has occur',
     fileExist = 'Too many attempts to create a file with the specified name, please select another name',
+    noFilesInWorkspace = 'There are no compatibles files in the workspace',
 }
