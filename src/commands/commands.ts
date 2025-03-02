@@ -4,6 +4,7 @@ import { ErrorsMessages } from '../logger/logger';
 import { ShowError } from '../messages';
 import { Language, Template } from '../templates/interface';
 import path from 'path';
+import * as fs from 'fs';
 
 /**
  * Register all the commands to vs code
@@ -31,6 +32,9 @@ export function registerCommands(context: vscode.ExtensionContext) {
                     ShowError(error.message);
                 }
             }
+            logger.logInfo(
+                'File creation process finished! No issues reported\n'
+            );
         }
     );
 
@@ -38,15 +42,21 @@ export function registerCommands(context: vscode.ExtensionContext) {
 }
 
 async function createFileHere(filePath: vscode.Uri, template: usrSelection) {
-    logger.logInfo(
-        `Creating file at ${filePath.fsPath} with ${template[0].alias}`
-    );
+    logger.logInfo(`Creating file at ${filePath.fsPath}`);
+    // The snippet to insert to the file
+    let Snippet: vscode.SnippetString = createSnippet(template[1].snippet);
+    // Full directory of the new file
+    let FullDir = '';
+
+    // Temp values
     let basePath = filePath.fsPath;
     let filename = template[1].fileName;
     let fileExtension = template[1].extensionOverride
         ? template[1].extensionOverride
         : template[0].extension;
 
+    logger.logInfo('Asking to the user a name for the new file');
+    // Prompts the user for changes on dir and filename/extension
     let confirmedDir = await vscode.window.showInputBox({
         ignoreFocusOut: true,
         placeHolder: 'Enter your file name, and confirm the directory',
@@ -62,20 +72,41 @@ async function createFileHere(filePath: vscode.Uri, template: usrSelection) {
         logger.logWarning(`Process cancelled by user`);
         throw new Error(ErrorsMessages.cancelledByUser);
     }
-    let fullDir = path.join(confirmedDir);
-
-    // TODO: Ask the user for dir changes
-    fullDir = path.normalize(fullDir);
-    let fileDirectory = vscode.Uri.file(fullDir);
-    let snippet: vscode.SnippetString = createSnippet(template[1].snippet);
-
+    // The path as a string
+    FullDir = path.normalize(confirmedDir);
+    // Uri of the file
+    let fileDirectory = vscode.Uri.file(FullDir);
     logger.logInfo(`Creating file at ${fileDirectory.fsPath}`);
 
+    // TODO: Check if the file exist to avoid messing with existing files
+    logger.logInfo('Checking if the file already exist...');
+    let attempts = 0;
+
+    let ext = path.extname(FullDir);
+    let pathNoExt = FullDir.slice(0, FullDir.length - ext.length);
+
+    let fileExist = fs.existsSync(FullDir);
+    while (fileExist && attempts < 10) {
+        logger.logWarning(`The file ${FullDir} already exist!`);
+        attempts++;
+        FullDir = pathNoExt + attempts + ext;
+        FullDir = path.normalize(FullDir);
+        logger.logInfo(`Checking with ${FullDir}`);
+        fileExist = fs.existsSync(FullDir);
+    }
+    if (fileExist) {
+        logger.logError(ErrorsMessages.fileExist);
+        ShowError(ErrorsMessages.fileExist);
+        throw new Error();
+    }
+    fileDirectory = vscode.Uri.file(FullDir);
     try {
+        logger.logInfo('Creating file');
         await vscode.workspace.fs.writeFile(fileDirectory, new Uint8Array());
         const doc = await vscode.workspace.openTextDocument(fileDirectory);
         await vscode.window.showTextDocument(fileDirectory).then((editor) => {
-            editor.insertSnippet(snippet);
+            logger.logInfo('Inserting snippet');
+            editor.insertSnippet(Snippet);
         });
         doc.save();
     } catch (error) {

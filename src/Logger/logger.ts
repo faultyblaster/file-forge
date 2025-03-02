@@ -41,4 +41,5 @@ export enum ErrorsMessages {
     badWorkspace = 'No workspace is open! Please open a folder or workspace first',
     cancelledByUser = 'Process cancelled by the user',
     unexpected = 'An unexpected error has occur',
+    fileExist = 'Too many attempts to create a file with the specified name, please select another name',
 }
