@@ -27,9 +27,12 @@ export class Namespacer {
         );
 
         let projectsAsRelatives = dotnetProjects.map((project): string => {
+            let ext = path.extname(project.fsPath);
             return path.normalize(
                 path.sep +
-                    path.dirname(workspace.asRelativePath(project.fsPath))
+                    workspace
+                        .asRelativePath(project.fsPath)
+                        .slice(0, -ext.length)
             );
         });
 

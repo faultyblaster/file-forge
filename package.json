@@ -2,7 +2,7 @@
     "name": "templator",
     "displayName": "Templator",
     "description": "Templates for vscode",
-    "version": "0.0.1",
+    "version": "0.0.2",
     "engines": {
         "vscode": "^1.97.0"
     },
@@ -16,9 +16,6 @@
         "name": "faultyblaster",
         "url": "https://x.com/faultyblasterxd"
     },
-    "files": [
-        "media"
-    ],
     "extensionPack": [],
     "repository": {
         "type": "git",
@@ -58,6 +55,31 @@
                 "command": "templator.newCSFile",
                 "title": "Create C# File",
                 "category": "Templator"
+            },
+            {
+                "command": "templator.newCSClass",
+                "title": "Class",
+                "category": "Templator"
+            },
+            {
+                "command": "templator.newCSEnum",
+                "title": "Enum",
+                "category": "Templator"
+            },
+            {
+                "command": "templator.newCSInterface",
+                "title": "Interface",
+                "category": "Templator"
+            },
+            {
+                "command": "templator.newCSRecord",
+                "title": "Record",
+                "category": "Templator"
+            },
+            {
+                "command": "templator.newCSStruct",
+                "title": "Struct",
+                "category": "Templator"
             }
         ],
         "menus": {
@@ -81,7 +103,49 @@
             "file.creation.cs": [
                 {
                     "command": "templator.newCSFile",
-                    "group": "_fileCreation@1"
+                    "group": "_general@1"
+                },
+                {
+                    "command": "templator.newCSClass",
+                    "group": "basic@2"
+                },
+                {
+                    "command": "templator.newCSEnum",
+                    "group": "basic@2"
+                },
+                {
+                    "command": "templator.newCSInterface",
+                    "group": "basic@2"
+                },
+                {
+                    "command": "templator.newCSRecord",
+                    "group": "basic@2"
+                },
+                {
+                    "command": "templator.newCSStruct",
+                    "group": "basic@2"
+                }
+            ],
+            "commandPalette": [
+                {
+                    "command": "templator.newCSClass",
+                    "when": "false"
+                },
+                {
+                    "command": "templator.newCSEnum",
+                    "when": "false"
+                },
+                {
+                    "command": "templator.newCSInterface",
+                    "when": "false"
+                },
+                {
+                    "command": "templator.newCSRecord",
+                    "when": "false"
+                },
+                {
+                    "command": "templator.newCSStruct",
+                    "when": "false"
                 }
             ]
         },
