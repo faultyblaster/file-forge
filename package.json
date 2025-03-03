@@ -7,7 +7,36 @@
         "vscode": "^1.97.0"
     },
     "categories": [
-        "Other"
+        "Snippets",
+        "Programming Languages"
+    ],
+    "publisher": "faultyblaster",
+    "author": {
+        "email": "faultyblaster@gmail.com",
+        "name": "faultyblaster",
+        "url": "https://x.com/faultyblasterxd"
+    },
+    "files": [
+        "media"
+    ],
+    "extensionPack": [],
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/faultyblaster/Templator"
+    },
+    "sponsor": {
+        "url": "https:https://www.patreon.com/c/faultyblaster"
+    },
+    "keywords": [
+        "snippet",
+        "extension",
+        "new file",
+        "templates"
+    ],
+    "license": "MIT",
+    "readme": "/README.md",
+    "extensionKind": [
+        "workspace"
     ],
     "activationEvents": [
         "onStartupFinished"
@@ -16,8 +45,50 @@
     "contributes": {
         "commands": [
             {
-                "command": "templator.helloWorld",
-                "title": "Hello World"
+                "command": "templator.newFile",
+                "title": "Create new file",
+                "category": "Templator"
+            },
+            {
+                "command": "templator.createCSharpNamespace",
+                "title": "Create C# namespace",
+                "category": "Templator"
+            },
+            {
+                "command": "templator.newCSFile",
+                "title": "Create C# File",
+                "category": "Templator"
+            }
+        ],
+        "menus": {
+            "explorer/context": [
+                {
+                    "command": "templator.newFile",
+                    "when": "explorerResourceIsFolder",
+                    "group": "_fileCreation@0"
+                },
+                {
+                    "command": "templator.createCSharpNamespace",
+                    "when": "resourceExtname == .cs || resourceExtname == .fs}",
+                    "group": "_dotnet"
+                },
+                {
+                    "submenu": "file.creation.cs",
+                    "group": "_fileCreation",
+                    "when": "explorerResourceIsFolder"
+                }
+            ],
+            "file.creation.cs": [
+                {
+                    "command": "templator.newCSFile",
+                    "group": "_fileCreation@1"
+                }
+            ]
+        },
+        "submenus": [
+            {
+                "id": "file.creation.cs",
+                "label": "New C# file"
             }
         ]
     },

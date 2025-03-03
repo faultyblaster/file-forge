@@ -6,14 +6,13 @@ export interface Root {
 // Individual langues
 export interface Language {
     alias: string;
-    id: string;
     extension: string;
-    requireNamespace: boolean;
-    templates: Templates[];
+    requireNamespace?: boolean;
+    templates: Template[];
 }
 
 // Individual templates
-export interface Templates {
+export interface Template {
     alias: string;
     description: string;
     fileName: string;

@@ -1,0 +1,46 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "type": "object",
+    "properties": {
+        "languages": {
+            "type": "array",
+            "items": {
+                "type": "object",
+                "properties": {
+                    "alias": { "type": "string" },
+                    "extension": { "type": "string" },
+                    "requireNamespace": { "type": "boolean" },
+                    "templates": {
+                        "type": "array",
+                        "items": {
+                            "type": "object",
+                            "properties": {
+                                "alias": { "type": "string" },
+                                "description": { "type": "string" },
+                                "fileName": { "type": "string" },
+                                "extensionOverride": { "type": "string" },
+                                "snippet": {
+                                    "type": "array",
+                                    "items": { "type": "string" }
+                                }
+                            },
+                            "required": [
+                                "alias",
+                                "description",
+                                "fileName",
+                                "snippet"
+                            ]
+                        }
+                    }
+                },
+                "required": [
+                    "alias",
+                    "extension",
+                    "requireNamespace",
+                    "templates"
+                ]
+            }
+        }
+    },
+    "required": ["languages"]
+}
