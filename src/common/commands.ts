@@ -24,22 +24,22 @@ export function registerCommands(ctx: vscode.ExtensionContext) {
         ) => {
             let destinyInitialPath: vscode.Uri;
             logger.logInfo(`File creation process initiated`);
+            if (typeof lang !== 'string') {
+                lang = undefined;
+            }
+            if (typeof temp !== 'string') {
+                temp = undefined;
+            }
             try {
                 destinyInitialPath = await determinateDestination(clicker);
                 logger.logInfo(
-                    `File requested initially at: ${destinyInitialPath.fsPath}`
+                    `File requested initially at: ${destinyInitialPath.fsPath}. lang: ${lang} temp: ${temp}`
                 );
-                let selectedTemplate: usrSelection;
-                if (lang === undefined) {
-                    selectedTemplate = await selectTemplate(ctx);
-                    // No pre-requested
-                } else if (temp === undefined) {
-                    // requested only language
-                    selectedTemplate = await selectTemplate(ctx, lang);
-                } else {
-                    // template requested
-                    selectedTemplate = await selectTemplate(ctx, lang, temp);
-                }
+                let selectedTemplate: usrSelection = await selectTemplate(
+                    ctx,
+                    lang,
+                    temp
+                );
                 await createFile(destinyInitialPath, selectedTemplate);
                 logger.logInfo(
                     'File creation process finished! No issues reported\n'
@@ -62,11 +62,10 @@ export function registerCommands(ctx: vscode.ExtensionContext) {
     const createCSharpNamespace = vscode.commands.registerCommand(
         `${extensionData.id}.createCSharpNamespace`,
         async (clicker: vscode.Uri) => {
-            let nsLine = `namespace ${await Namespacer.createCSharpNamespace(
-                clicker
-            )};`;
+            let ns = await Namespacer.createCSharpNamespace(clicker);
+            let nsLine = `namespace ${ns};`;
             vscode.env.clipboard.writeText(nsLine);
-            ShowInfo('The namespace is now on your clipboard');
+            ShowInfo(`The namespace is now on your clipboard:\n ${ns}`);
         }
     );
 

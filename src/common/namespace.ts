@@ -20,49 +20,58 @@ export class Namespacer {
     static async createCSharpNamespace(filePath: Uri): Promise<string> {
         logger.logInfo(`Creating a new namespace for '${filePath.fsPath}'`);
         let Namespace: string = '';
-
-        let dotnetProjects = await workspace.findFiles(
+        let dotnetProjectsURIs = await workspace.findFiles(
             this.dotnetProjects,
             this.excludePattern
         );
-
-        let projectsAsRelatives = dotnetProjects.map((project): string => {
-            let ext = path.extname(project.fsPath);
+        let dotnetProjects = dotnetProjectsURIs.map((project): string => {
             return path.normalize(
-                path.sep +
-                    workspace
-                        .asRelativePath(project.fsPath)
-                        .slice(0, -ext.length)
+                path.join(
+                    workspace.name ? workspace.name : 'unnamed_workspace',
+                    path.dirname(workspace.asRelativePath(project.fsPath))
+                )
             );
         });
-
-        logger.logInfo(`Found ${dotnetProjects.length} dotnet projects`);
-        projectsAsRelatives.forEach((x) => {
+        dotnetProjects.forEach((x) => {
             logger.logInfo(`\t${x}`);
         });
 
-        let fileBase = path.normalize(
-            path.sep + path.dirname(workspace.asRelativePath(filePath))
+        // Getting the location of the file
+        let fileDir = path.join(
+            workspace.name ? workspace.name : 'unnamed_workspace',
+            path.dirname(workspace.asRelativePath(filePath))
         );
+        fileDir = fileDir.normalize();
+        if (fileDir.endsWith(`${path.sep}.`)) {
+            fileDir = fileDir.slice(0, -2);
+        }
+        logger.logInfo(`File path: ${fileDir}`);
 
-        logger.logInfo(`Relative file path '${fileBase}'`);
-
-        let parent = projectsAsRelatives.find((project) =>
-            fileBase.startsWith(project)
+        let parent = dotnetProjects.find((project) =>
+            fileDir.startsWith(project)
         );
         if (parent === undefined) {
-            parent = path.sep;
+            parent = path.join(
+                workspace.name ? workspace.name : 'unnamed_workspace'
+            );
         }
-        if (parent !== '') {
-            logger.logInfo(`parent: ${parent}`);
-            const removeThis = path.dirname(parent);
-            Namespace = fileBase.slice(removeThis.length);
-        }
-        logger.logInfo(`The namespace is: '${Namespace}' (un-validated)`);
+
+        let partToRemove = path.dirname(parent);
+        let remCount = partToRemove === '.' ? 0 : partToRemove.length;
+        logger.logInfo(
+            `Parent: '${parent}' | removing '${partToRemove}':'${remCount}' chars`
+        );
+        Namespace = fileDir.slice(remCount);
         Namespace = this.validateNamespace(Namespace);
-        logger.logInfo(`The namespace is: '${Namespace}' (validated)`);
+        logger.logInfo(`The namespace is: '${Namespace}'\n`);
         return Namespace;
     }
+
+    /**
+     * Create a namespace from a string, expected a valid path
+     * @param prospect A string in a form of a path
+     * @returns a namespace with only letters, numbers and . (periods)
+     */
     static validateNamespace(prospect: string): string {
         prospect = prospect.replace(this.invalidChars, '');
         prospect = prospect.replace(this.allPathSep, '.');

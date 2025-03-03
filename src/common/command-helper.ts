@@ -21,8 +21,8 @@ import * as fs from 'fs';
  */
 export async function selectTemplate(
     ctx: ExtensionContext,
-    selectLang: string = '',
-    selectTempl: string = ''
+    selectLang: string | undefined,
+    selectTempl: string | undefined
 ): Promise<usrSelection> {
     let selectedLang: Language | undefined;
     let selectedTemplate: Template | undefined;
@@ -35,7 +35,7 @@ export async function selectTemplate(
     };
 
     // Language selection:
-    if (selectLang === '') {
+    if (selectLang === undefined) {
         logger.logInfo(
             `No language preselected! Asking the user for a language and template`
         );
@@ -73,7 +73,7 @@ export async function selectTemplate(
         throw new Error(ErrorsMessages.unexpected);
     }
 
-    if (selectTempl === '') {
+    if (selectTempl === undefined) {
         logger.logInfo(
             `No template pre-requested! Asking the user to select a template`
         );
