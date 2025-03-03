@@ -53,6 +53,11 @@
                 "command": "templator.createCSharpNamespace",
                 "title": "Create C# namespace",
                 "category": "Templator"
+            },
+            {
+                "command": "templator.newCSFile",
+                "title": "Create C# File",
+                "category": "Templator"
             }
         ],
         "menus": {
@@ -60,15 +65,32 @@
                 {
                     "command": "templator.newFile",
                     "when": "explorerResourceIsFolder",
-                    "group": "_fileCreation@global"
+                    "group": "_fileCreation@0"
                 },
                 {
                     "command": "templator.createCSharpNamespace",
                     "when": "resourceExtname == .cs || resourceExtname == .fs}",
                     "group": "_dotnet"
+                },
+                {
+                    "submenu": "file.creation.cs",
+                    "group": "_fileCreation",
+                    "when": "explorerResourceIsFolder"
+                }
+            ],
+            "file.creation.cs": [
+                {
+                    "command": "templator.newCSFile",
+                    "group": "_fileCreation@1"
                 }
             ]
-        }
+        },
+        "submenus": [
+            {
+                "id": "file.creation.cs",
+                "label": "New C# file"
+            }
+        ]
     },
     "scripts": {
         "vscode:prepublish": "npm run package",

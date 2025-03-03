@@ -11,9 +11,9 @@
                     "description": "A simple class file",
                     "fileName": "Class",
                     "snippet": [
-                        "namespace [namespace]",
+                        "namespace [namespace];",
                         "",
-                        "public class $TM_FILENAME_BASE",
+                        "public class ${TM_FILENAME_BASE/^(.)(.*)/${1:/upcase}${2}/}",
                         "{",
                         "   $0",
                         "}"
@@ -24,9 +24,9 @@
                     "description": "A simple enum file",
                     "fileName": "Enum",
                     "snippet": [
-                        "namespace [namespace]",
+                        "namespace [namespace];",
                         "",
-                        "public enum $TM_FILENAME_BASE",
+                        "public enum ${TM_FILENAME_BASE/^(.)(.*)/${1:/upcase}${2}/}",
                         "{",
                         "   Value1,",
                         "   Value2,",
@@ -39,9 +39,9 @@
                     "description": "A simple interface file",
                     "fileName": "Interface",
                     "snippet": [
-                        "namespace [namespace]",
+                        "namespace [namespace];",
                         "",
-                        "public interface $TM_FILENAME_BASE",
+                        "public interface ${TM_FILENAME_BASE/^(.)(.*)/${1:/upcase}${2}/}",
                         "{",
                         "   void Method();",
                         "}"
@@ -52,9 +52,9 @@
                     "description": "A simple record file (C# 9+)",
                     "fileName": "Record",
                     "snippet": [
-                        "namespace [namespace]",
+                        "namespace [namespace];",
                         "",
-                        "public record $TM_FILENAME_BASE(string Name, int Age);"
+                        "public record ${TM_FILENAME_BASE/^(.)(.*)/${1:/upcase}${2}/}(string Name, int Age);"
                     ]
                 },
                 {
@@ -62,9 +62,9 @@
                     "description": "A simple struct file",
                     "fileName": "Struct",
                     "snippet": [
-                        "namespace [namespace]",
+                        "namespace [namespace];",
                         "",
-                        "public struct $TM_FILENAME_BASE",
+                        "public struct ${TM_FILENAME_BASE/^(.)(.*)/${1:/upcase}${2}/}",
                         "{",
                         "   public int Id { get; set; }",
                         "   public string Name { get; set; }",
@@ -78,9 +78,9 @@
                     "snippet": [
                         "using Xunit;",
                         "",
-                        "namespace [namespace]",
+                        "namespace [namespace];",
                         "",
-                        "public class $TM_FILENAME_BASE",
+                        "public class ${TM_FILENAME_BASE/^(.)(.*)/${1:/upcase}${2}/}",
                         "{",
                         "   [Fact]",
                         "   public void TestMethod()",
@@ -101,47 +101,38 @@
                     "fileName": "GlobalUsings",
                     "snippet": [
                         "// GlobalUsings.cs",
+                        "global using static System.Console;",
                         "",
-
                         "// Microsoft Extensions",
-                        "global using Microsoft.Extensions.DependencyInjection;",
-                        "global using Microsoft.Extensions.Logging;",
-                        "global using Microsoft.Extensions.Options;",
+                        "// global using Microsoft.Extensions.DependencyInjection;",
+                        "// global using Microsoft.Extensions.Logging;",
+                        "// global using Microsoft.Extensions.Options;",
                         "",
-
                         "// Entity Framework Core (if using EF Core)",
-                        "global using Microsoft.EntityFrameworkCore;",
-                        "global using Microsoft.EntityFrameworkCore.Metadata.Builders;",
+                        "// global using Microsoft.EntityFrameworkCore;",
+                        "// global using Microsoft.EntityFrameworkCore.Metadata.Builders;",
                         "",
-
                         "// JSON & Serialization",
-                        "global using System.Text.Json;",
-                        "global using System.Text.Json.Serialization;",
+                        "// global using System.Text.Json;",
+                        "// global using System.Text.Json.Serialization;",
                         "",
-
-                        "// Reflection (if needed)",
-                        "global using System.Reflection;",
+                        "// Reflection",
+                        "// global using System.Reflection;",
                         "",
-
-                        "// Custom Project-Specific Usings",
-                        "global using MyProject.Common;",
-                        "global using MyProject.Services;",
+                        "// Database Access",
+                        "// global using Microsoft.Data.SqlClient;",
+                        "// global using System.Data;",
+                        "// global using Npgsql; // PostgreSQL",
+                        "// global using MySql.Data.MySqlClient; // MySQL",
+                        "// global using MongoDB.Driver; // MongoDB",
                         "",
-
-                        "// Testing (Uncomment as needed)",
+                        "// Testing",
                         "// global using Xunit;",
                         "// global using NUnit.Framework;",
                         "// global using Microsoft.VisualStudio.TestTools.UnitTesting;",
                         "// global using Moq;",
                         "// global using FluentAssertions;",
-                        "",
-
-                        "// Database Access (Uncomment based on usage)",
-                        "// global using Microsoft.Data.SqlClient; // Recommended for SQL Server",
-                        "// global using System.Data; // General ADO.NET",
-                        "// global using Npgsql; // PostgreSQL",
-                        "// global using MySql.Data.MySqlClient; // MySQL",
-                        "// global using MongoDB.Driver; // MongoDB"
+                        ""
                     ]
                 }
             ]

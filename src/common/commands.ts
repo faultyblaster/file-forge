@@ -1,7 +1,7 @@
 import * as vscode from 'vscode';
 import { all_languages, extensionData, logger } from '../extension';
 import { ErrorsMessages } from '../logger/logger';
-import { ShowError } from '../messages';
+import { ShowError, ShowInfo } from '../messages';
 import { Language, Template } from '../templates/interface';
 import path from 'path';
 import * as fs from 'fs';
@@ -40,17 +40,63 @@ export function registerCommands(ctx: vscode.ExtensionContext) {
     const createCSharpNamespace = vscode.commands.registerCommand(
         `${extensionData.id}.createCSharpNamespace`,
         async (clicker: vscode.Uri) => {
-            Namespacer.createCSharpNamespace(clicker, ctx);
+            let nsLine = `namespace ${await Namespacer.createCSharpNamespace(
+                clicker
+            )};`;
+            vscode.env.clipboard.writeText(nsLine);
+            ShowInfo('The namespace is now on your clipboard');
         }
     );
 
-    ctx.subscriptions.push(createNewFile, createCSharpNamespace);
+    // File specific commands: Creating a specific file, skipping the selectTemplate part
+
+    // Trigger the file creation, for C# files
+    const createCSFile = vscode.commands.registerCommand(
+        FileCreation.newCSFile,
+        async (clicker: vscode.Uri) => {
+            let destinyInitialPath: vscode.Uri;
+            logger.logInfo(
+                `File creation process initiated: Creating a C# file...`
+            );
+            try {
+                destinyInitialPath = await determinateDestination(clicker);
+                logger.logInfo(
+                    `File requested initially at: ${destinyInitialPath.fsPath}`
+                );
+                let selectedTemplate: usrSelection = await selectTemplate(
+                    ctx,
+                    'C#'
+                );
+                await createFile(destinyInitialPath, selectedTemplate);
+            } catch (error) {
+                if (error instanceof Error) {
+                    logger.logError(error.message);
+                    ShowError(error.message);
+                }
+            }
+            logger.logInfo(
+                'File creation process finished! No issues reported\n'
+            );
+        }
+    );
+
+    // Create C# Class
+    // const createCSClass = vscode.commands.registerCommand(
+    //     FileCreation.newCSClass,
+    //     async (clicker: vscode.Uri) => {}
+    // );
+
+    ctx.subscriptions.push(
+        createNewFile,
+        createCSharpNamespace,
+        // C# files
+        createCSFile
+        // createCSClass
+    );
 }
 
 async function createFile(filePath: vscode.Uri, template: usrSelection) {
     logger.logInfo(`Creating file at ${filePath.fsPath}`);
-    // The snippet to insert to the file
-    let Snippet: vscode.SnippetString = createSnippet(template[1].snippet);
     // Full directory of the new file
     let FullDir = '';
 
@@ -105,6 +151,17 @@ async function createFile(filePath: vscode.Uri, template: usrSelection) {
         throw new Error();
     }
     fileDirectory = vscode.Uri.file(FullDir);
+
+    // Snippet prep
+    let Namespace: string = await Namespacer.createCSharpNamespace(
+        fileDirectory
+    );
+    let Snippet: vscode.SnippetString = createSnippet(
+        template[1].snippet,
+        Namespace
+    );
+
+    // Actual file creation
     try {
         logger.logInfo('Creating file');
         await vscode.workspace.fs.writeFile(fileDirectory, new Uint8Array());
@@ -121,11 +178,17 @@ async function createFile(filePath: vscode.Uri, template: usrSelection) {
     }
 }
 
-function createSnippet(text: string[]): vscode.SnippetString {
+function createSnippet(
+    text: string[],
+    namespace: string | undefined
+): vscode.SnippetString {
     let preSnippet = '';
     text.forEach((line) => {
         preSnippet += line + '\n';
     });
+    if (namespace) {
+        preSnippet = preSnippet.replace(/(\[namespace\])/, namespace);
+    }
     return new vscode.SnippetString(preSnippet);
 }
 
@@ -134,7 +197,9 @@ function createSnippet(text: string[]): vscode.SnippetString {
  * @returns the language and the template as two different objects
  */
 async function selectTemplate(
-    ctx: vscode.ExtensionContext
+    ctx: vscode.ExtensionContext,
+    selectLang: string = '',
+    selectTempl: string = ''
 ): Promise<usrSelection> {
     let selectedLang: Language | undefined;
     let selectedTemplate: Template | undefined;
@@ -147,29 +212,38 @@ async function selectTemplate(
     };
 
     // Language selection:
-    const tempLanguage = await vscode.window.showQuickPick(
-        all_languages.map((item): vscode.QuickPickItem => {
-            const iconUri = vscode.Uri.file(
-                path.join(
-                    ctx.extensionPath,
-                    `/media/icons/langs/${item.extension}.svg`
-                )
-            );
-            return {
-                label: item.alias,
-                description: item.extension,
-                iconPath: iconUri,
-            };
-        }),
-        options
-    );
-    if (tempLanguage === undefined) {
-        throw new Error(ErrorsMessages.cancelledByUser);
+    if (selectLang === '') {
+        const tempLanguage = await vscode.window.showQuickPick(
+            all_languages.map((item): vscode.QuickPickItem => {
+                const iconUri = vscode.Uri.file(
+                    path.join(
+                        ctx.extensionPath,
+                        `/media/icons/langs/${item.extension}.svg`
+                    )
+                );
+                return {
+                    label: item.alias,
+                    description: item.extension,
+                    iconPath: iconUri,
+                };
+            }),
+            options
+        );
+        if (tempLanguage === undefined) {
+            throw new Error(ErrorsMessages.cancelledByUser);
+        }
+        selectedLang = all_languages.find(
+            (lang) => lang.alias === tempLanguage.label
+        );
+    } else {
+        logger.logInfo(
+            `A language was already requested: '${selectLang}', skipping user intervention`
+        );
+        selectedLang = all_languages.find((lang) => lang.alias === selectLang);
     }
-    selectedLang = all_languages.find(
-        (lang) => lang.alias === tempLanguage.label
-    );
+
     if (selectedLang === undefined) {
+        logger.logError('The requested language was not found!');
         throw new Error(ErrorsMessages.unexpected);
     }
 
@@ -258,6 +332,8 @@ async function determinateDestination(
 enum FileCreation {
     newFile = `${extensionData.id}.newFile`,
     newCustomFile = `${extensionData.id}.newCustomFile`,
+    newCSFile = `${extensionData.id}.newCSFile`,
+    newCSClass = `${extensionData.id}.newCSClass`,
 }
 
 type usrSelection = [Language, Template];
