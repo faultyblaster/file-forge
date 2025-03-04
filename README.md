@@ -8,7 +8,7 @@ The following programming languages are shipped by default:
 
 - C#
 - Python
-- C++
+- TypeScript
 
 ## How to
 

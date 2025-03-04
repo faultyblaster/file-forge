@@ -16,9 +16,9 @@ export let all_languages: Language[];
 
 // Extension activation and initialization
 export async function activate(context: vscode.ExtensionContext) {
-    logger.initializeChannel();
     readTemplates();
     registerCommands(context);
+    logger.logInfo(`Extension '${extensionData.id}' successfully activated!`);
 }
 
 /**

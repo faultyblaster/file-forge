@@ -20,24 +20,27 @@ export class Logger {
     public logInfo(message: string): void {
         let date = new Date(Date.now());
         this.channel?.appendLine(
-            `[${date.toLocaleString()}] [ INFO    ]: ${message}`
+            `[${date.toLocaleString()}] [INFO   ]: ${message}`
         );
     }
     public logWarning(message: string): void {
         let date = new Date(Date.now());
         this.channel?.appendLine(
-            `[${date.toLocaleString()}] [ WARNING ]: ${message}`
+            `[${date.toLocaleString()}] [WARNING]: ${message}`
         );
     }
     public logError(message: string): void {
         let date = new Date(Date.now());
         this.channel?.appendLine(
-            `[${date.toLocaleString()}] [ ERROR   ]: ${message}`
+            `[${date.toLocaleString()}] [ERROR  ]: ${message}`
         );
+    }
+    constructor() {
+        this.initializeChannel();
     }
 }
 
-export enum ErrorsMessages {
+export enum ErrorMessages {
     badWorkspace = 'No workspace is open! Please open a folder or workspace first',
     cancelledByUser = 'Process cancelled by the user',
     unexpected = 'An unexpected error has occur',

@@ -1,6 +1,6 @@
 import * as vscode from 'vscode';
 import { extensionData, logger } from '../extension';
-import { ShowError, ShowInfo } from '../messages';
+import { ShowError, ShowInfo } from './messages';
 import { Namespacer } from './namespace';
 import {
     createFile,

@@ -2,8 +2,10 @@
 
 All notable changes to the "templator" extension will be documented in this file.
 
-Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
+## [Unreleased] All the versions below are unreleased versions
 
-## [Unreleased]
+## 0.0.2 2025-03-03
 
-- Initial release
+- The extension is now ready for testing with the C# programming language, 7 basic templates added to it
+- Namespace generation for C# is also ready for testing
+- Added 1 simple template for TS and also 1 for python

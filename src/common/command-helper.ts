@@ -8,11 +8,11 @@ import {
     workspace,
 } from 'vscode';
 import { all_languages, logger } from '../extension';
-import { ErrorsMessages } from '../logger/logger';
+import { ErrorMessages } from '../logger/logger';
 import { Language, Template } from '../templates/interface';
 import path from 'path';
 import { Namespacer } from './namespace';
-import { ShowError } from '../messages';
+import { ShowError } from './messages';
 import * as fs from 'fs';
 
 /**
@@ -56,7 +56,7 @@ export async function selectTemplate(
             options
         );
         if (tempLanguage === undefined) {
-            throw new Error(ErrorsMessages.cancelledByUser);
+            throw new Error(ErrorMessages.cancelledByUser);
         }
         selectedLang = all_languages.find(
             (lang) => lang.alias === tempLanguage.label
@@ -70,7 +70,7 @@ export async function selectTemplate(
 
     if (selectedLang === undefined) {
         logger.logError('The requested language was not found!');
-        throw new Error(ErrorsMessages.unexpected);
+        throw new Error(ErrorMessages.unexpected);
     }
 
     if (selectTempl === undefined) {
@@ -111,7 +111,7 @@ export async function selectTemplate(
             options
         );
         if (temTemplate === undefined) {
-            throw new Error(ErrorsMessages.cancelledByUser);
+            throw new Error(ErrorMessages.cancelledByUser);
         }
         selectedTemplate = selectedLang.templates.find(
             (templ) => templ.alias === temTemplate.label
@@ -126,7 +126,7 @@ export async function selectTemplate(
     }
     if (selectedTemplate === undefined) {
         logger.logError('The requested template was not found!');
-        throw new Error(ErrorsMessages.unexpected);
+        throw new Error(ErrorMessages.unexpected);
     }
     logger.logInfo(
         `Selected language: ${selectedLang.alias}:${selectedTemplate.alias}`
@@ -162,7 +162,7 @@ export async function createFile(filePath: Uri, template: usrSelection) {
 
     if (confirmedDir === undefined) {
         logger.logWarning(`Process cancelled by user`);
-        throw new Error(ErrorsMessages.cancelledByUser);
+        throw new Error(ErrorMessages.cancelledByUser);
     }
     // The path as a string
     FullDir = path.normalize(confirmedDir);
@@ -186,8 +186,8 @@ export async function createFile(filePath: Uri, template: usrSelection) {
         fileExist = fs.existsSync(FullDir);
     }
     if (fileExist) {
-        logger.logError(ErrorsMessages.fileExist);
-        ShowError(ErrorsMessages.fileExist);
+        logger.logError(ErrorMessages.fileExist);
+        ShowError(ErrorMessages.fileExist);
         throw new Error();
     }
     fileDirectory = Uri.file(FullDir);
@@ -241,13 +241,13 @@ export async function determinateDestination(
     if (clicker) {
         return clicker;
     } else if (wsFolders === undefined) {
-        throw new Error(ErrorsMessages.badWorkspace);
+        throw new Error(ErrorMessages.badWorkspace);
     } else if (wsFolders.length === 1) {
         return wsFolders[0].uri;
     } else {
         let workingFolder = await window.showWorkspaceFolderPick();
         if (workingFolder === undefined) {
-            throw new Error(ErrorsMessages.cancelledByUser);
+            throw new Error(ErrorMessages.cancelledByUser);
         }
         return workingFolder.uri;
     }
