@@ -8,7 +8,7 @@
             "templates": [
                 {
                     "alias": "Class",
-                    "description": "A simple class file",
+                    "description": "A simple top level class file",
                     "fileName": "Class",
                     "snippet": [
                         "namespace [namespace];",
@@ -20,8 +20,19 @@
                     ]
                 },
                 {
+                    "alias": "Class (no namespace)",
+                    "description": "A simple top level class file without a namespace",
+                    "fileName": "Class",
+                    "snippet": [
+                        "public class ${TM_FILENAME_BASE/^(.)(.*)/${1:/upcase}${2}/}",
+                        "{",
+                        "   $0",
+                        "}"
+                    ]
+                },
+                {
                     "alias": "Enum",
-                    "description": "A simple enum file",
+                    "description": "A simple top level enum file",
                     "fileName": "Enum",
                     "snippet": [
                         "namespace [namespace];",
@@ -36,7 +47,7 @@
                 },
                 {
                     "alias": "Interface",
-                    "description": "A simple interface file",
+                    "description": "A simple top level interface file",
                     "fileName": "Interface",
                     "snippet": [
                         "namespace [namespace];",
@@ -103,6 +114,17 @@
                         "// GlobalUsings.cs",
                         "global using static System.Console;",
                         "",
+                        "// Database management",
+                        "// global using Microsoft.EntityFrameworkCore;",
+                        "// global using Npgsql.EntityFrameworkCore.PostgreSQL;",
+                        "// global using MySql.EntityFrameworkCore;",
+                        "// global using MongoDB.Driver;",
+                        "// ",
+                        "// Working with math",
+                        "// global using System.Math;",
+                        "// global using System.Numerics;",
+                        "// global using System.Numerics.BigInteger;",
+                        "// ",
                         "// Microsoft Extensions",
                         "// global using Microsoft.Extensions.DependencyInjection;",
                         "// global using Microsoft.Extensions.Logging;",
@@ -115,6 +137,8 @@
                         "// JSON & Serialization",
                         "// global using System.Text.Json;",
                         "// global using System.Text.Json.Serialization;",
+                        "// global using Newtonsoft.Json; // This is the old way of serializing JSON, but still widely used",
+                        "// global using YamlDotNet.Serialization; // YAML",
                         "",
                         "// Reflection",
                         "// global using System.Reflection;",
@@ -151,6 +175,42 @@
                         "\t$0",
                         "}"
                     ]
+                },
+                {
+                    "alias": "interface",
+                    "description": "A simple Interface",
+                    "fileName": "interface",
+                    "snippet": [
+                        "interface ${TM_FILENAME_BASE/^(.)(.*)/${1:/upcase}${2}/} {",
+                        "\t$0",
+                        "}"
+                    ]
+                },
+                {
+                    "alias": "enum",
+                    "description": "A simple Enum",
+                    "fileName": "enum",
+                    "snippet": [
+                        "enum ${TM_FILENAME_BASE/^(.)(.*)/${1:/upcase}${2}/} {",
+                        "\t$0",
+                        "}"
+                    ]
+                },
+                {
+                    "alias": "function",
+                    "description": "A simple Function",
+                    "fileName": "function",
+                    "snippet": [
+                        "function ${TM_FILENAME_BASE/^(.)(.*)/${1:/upcase}${2}/}() {",
+                        "\t$0",
+                        "}"
+                    ]
+                },
+                {
+                    "alias": "Hello World Script",
+                    "description": "A simple Hello World script",
+                    "fileName": "main",
+                    "snippet": ["console.log(\"Hello World\");"]
                 }
             ]
         },
@@ -170,7 +230,207 @@
                     "description": "Save all your dependencies here",
                     "extensionOverride": "txt",
                     "fileName": "requirements",
-                    "snippet": ["pytorch"]
+                    "snippet": [
+                        "# Add your dependencies here",
+                        "# Example: requests==2.25.1",
+                        "",
+                        "# To install all dependencies run:",
+                        "# pip install -r requirements.txt",
+                        "",
+                        "# data visualization libraries",
+                        "# matplotlib==3.3.4 \n # seaborn==0.11.1 \n # plotly==4.14.3 \n # bokeh==2.3.1 \n # altair==4.1.0 \n # ggplot==0.11.5 \n # pygal==2.4.0 \n # geoplotlib==0.3.2 \n # gleam==0.1.9 \n # missingno==0.4.2 \n # leather==0.3.3 \n # wordcloud==1.8.1 \n # pyecharts==1.9.0 \n # folium==0.12.1 \n # networkx==2.5 \n # vispy==0.6.6 \n # pydot==1.4.2 \n # graphviz==0.16 \n # holoviews==1.14.3 \n # hvplot==0.7.2 \n # datashader==0.12.0 \n # bokeh==2.3.1 \n # altair==4.1.0 \n # plotly==4.14.3 \n # seaborn==0.11.1 \n # matplotlib==3.3.4 \n # pandas==1.2.3 \n # numpy==1.20.1",
+                        "",
+                        "# web development libraries",
+                        "# flask==1.1.2 \n # django==3.2.3 \n # fastapi==0.65.2 \n # aiohttp==3.7.4 \n ",
+                        "",
+                        "# Desktop GUI libraries",
+                        "# tkinter==8.6.9 \n # pyqt5==5.15.4 \n # pyqtgraph==0.11.0 \n # kivy==2.0.0 \n # wxpython==4.1.1 \n # pyside2==5.15.2 \n # pywebview==3.4 \n # dearpygui==1.4.0 \n # remi==2019.10.06 \n # flexx==0.4.1 \n # pyforms==3.0.0 \n # pyglet==1.5.21 \n "
+                    ]
+                },
+                {
+                    "alias": "main",
+                    "description": "Main file",
+                    "fileName": "main",
+                    "snippet": [
+                        "def main():",
+                        "\t$0",
+                        "",
+                        "if __name__ == \"__main__\":",
+                        "\tmain()"
+                    ]
+                }
+            ]
+        },
+        {
+            "alias": "Other",
+            "extension": "txt",
+            "requireNamespace": false,
+            "templates": [
+                {
+                    "alias": "text",
+                    "description": "Simple text file",
+                    "fileName": "text",
+                    "extensionOverride": "txt",
+                    "snippet": ["This is a simple text file"]
+                },
+                {
+                    "alias": "markdown",
+                    "description": "Simple markdown file",
+                    "fileName": "markdown",
+                    "extensionOverride": "md",
+                    "snippet": [
+                        "# Markdown",
+                        "",
+                        "This is a simple markdown file"
+                    ]
+                },
+                {
+                    "alias": "json",
+                    "description": "Simple JSON file",
+                    "fileName": "json",
+                    "extensionOverride": "json",
+                    "snippet": ["{", "   \"key\": \"value\"", "}"]
+                },
+                {
+                    "alias": "yaml",
+                    "description": "Simple YAML file",
+                    "fileName": "yaml",
+                    "extensionOverride": "yaml",
+                    "snippet": ["key: value"]
+                },
+                {
+                    "alias": "xml",
+                    "description": "Simple XML file",
+                    "fileName": "xml",
+                    "extensionOverride": "xml",
+                    "snippet": ["<root>", "   <key>value</key>", "</root>"]
+                },
+                {
+                    "alias": "csv",
+                    "description": "Simple CSV file",
+                    "fileName": "csv",
+                    "extensionOverride": "csv",
+                    "snippet": ["key1,key2,key3", "value1,value2,value3"]
+                },
+                {
+                    "alias": "dockerfile",
+                    "description": "Simple Dockerfile",
+                    "fileName": "Dockerfile",
+                    "extensionOverride": "dockerfile",
+                    "snippet": [
+                        "FROM python:3.8",
+                        "",
+                        "WORKDIR /app",
+                        "",
+                        "COPY . .",
+                        "",
+                        "RUN pip install -r requirements.txt",
+                        "",
+                        "CMD [\"python\", \"main.py\"]"
+                    ]
+                },
+                {
+                    "alias": "gitignore",
+                    "description": "Simple .gitignore file",
+                    "fileName": ".gitignore",
+                    "extensionOverride": "",
+                    "snippet": [
+                        "# Ignore all .log files",
+                        "*.log",
+                        "",
+                        "# Ignore all .txt files",
+                        "*.txt",
+                        "",
+                        "# Ignore bin and obj folders",
+                        "bin/",
+                        "obj/"
+                    ]
+                }
+            ]
+        },
+        {
+            "alias": "C++",
+            "extension": "cpp",
+            "requireNamespace": false,
+            "templates": [
+                {
+                    "alias": "class",
+                    "description": "A simple Class",
+                    "fileName": "class",
+                    "snippet": [
+                        "class ${TM_FILENAME_BASE/^(.)(.*)/${1:/upcase}${2}/} {",
+                        "public:",
+                        "\t$0",
+                        "};"
+                    ]
+                },
+                {
+                    "alias": "function",
+                    "description": "A simple Function",
+                    "fileName": "function",
+                    "snippet": [
+                        "void ${TM_FILENAME_BASE/^(.)(.*)/${1:/upcase}${2}/}() {",
+                        "\t$0",
+                        "}"
+                    ]
+                },
+                {
+                    "alias": "main",
+                    "description": "Main file",
+                    "fileName": "main",
+                    "snippet": [
+                        "#include <iostream>",
+                        "",
+                        "int main() {",
+                        "\t$0",
+                        "}"
+                    ]
+                },
+                {
+                    "alias": "header",
+                    "description": "Header file",
+                    "fileName": "header",
+                    "snippet": [
+                        "#ifndef ${TM_FILENAME_BASE/^(.)(.*)/${1:/upcase}${2}/}_H",
+                        "#define ${TM_FILENAME_BASE/^(.)(.*)/${1:/upcase}${2}/}_H",
+                        "",
+                        "class ${TM_FILENAME_BASE/^(.)(.*)/${1:/upcase}${2}/} {",
+                        "public:",
+                        "\t$0",
+                        "};",
+                        "",
+                        "#endif"
+                    ]
+                },
+                {
+                    "alias": "makefile",
+                    "description": "Simple Makefile",
+                    "fileName": "Makefile",
+                    "snippet": [
+                        "CC = g++",
+                        "CFLAGS = -Wall -g",
+                        "",
+                        "all: main",
+                        "",
+                        "main: main.cpp",
+                        "\t$(CC) $(CFLAGS) -o main main.cpp",
+                        "",
+                        "clean:",
+                        "\trm -f main"
+                    ]
+                },
+                {
+                    "alias": "cmake",
+                    "description": "Simple CMakeLists.txt",
+                    "fileName": "CMakeLists",
+                    "extensionOverride": "txt",
+                    "snippet": [
+                        "cmake_minimum_required(VERSION 3.10)",
+                        "",
+                        "project(${TM_FILENAME_BASE/^(.)(.*)/${1:/upcase}${2}/})",
+                        "",
+                        "add_executable(${TM_FILENAME_BASE/^(.)(.*)/${1:/upcase}${2}/} main.cpp)"
+                    ]
                 }
             ]
         }
