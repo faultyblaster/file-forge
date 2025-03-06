@@ -1,8 +1,8 @@
 import * as vscode from 'vscode';
-import { Logger } from './logger/logger';
 import * as DefaultTemplates from './templates/default_templates.json';
 import { Language } from './templates/interface';
 import { registerCommands } from './common/commands';
+import { Logger } from './loggerSystem/logger';
 
 /**
  * the `logger` will help to display the user all the important information, in a output channel, directly on vscode.
