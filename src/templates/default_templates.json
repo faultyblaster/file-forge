@@ -237,14 +237,14 @@
                         "# To install all dependencies run:",
                         "# pip install -r requirements.txt",
                         "",
-                        "# data visualization libraries",
-                        "# matplotlib==3.3.4 \n # seaborn==0.11.1 \n # plotly==4.14.3 \n # bokeh==2.3.1 \n # altair==4.1.0 \n # ggplot==0.11.5 \n # pygal==2.4.0 \n # geoplotlib==0.3.2 \n # gleam==0.1.9 \n # missingno==0.4.2 \n # leather==0.3.3 \n # wordcloud==1.8.1 \n # pyecharts==1.9.0 \n # folium==0.12.1 \n # networkx==2.5 \n # vispy==0.6.6 \n # pydot==1.4.2 \n # graphviz==0.16 \n # holoviews==1.14.3 \n # hvplot==0.7.2 \n # datashader==0.12.0 \n # bokeh==2.3.1 \n # altair==4.1.0 \n # plotly==4.14.3 \n # seaborn==0.11.1 \n # matplotlib==3.3.4 \n # pandas==1.2.3 \n # numpy==1.20.1",
+                        "# To update the requirements file run:",
+                        "# pip freeze > requirements.txt",
                         "",
-                        "# web development libraries",
-                        "# flask==1.1.2 \n # django==3.2.3 \n # fastapi==0.65.2 \n # aiohttp==3.7.4 \n ",
-                        "",
-                        "# Desktop GUI libraries",
-                        "# tkinter==8.6.9 \n # pyqt5==5.15.4 \n # pyqtgraph==0.11.0 \n # kivy==2.0.0 \n # wxpython==4.1.1 \n # pyside2==5.15.2 \n # pywebview==3.4 \n # dearpygui==1.4.0 \n # remi==2019.10.06 \n # flexx==0.4.1 \n # pyforms==3.0.0 \n # pyglet==1.5.21 \n "
+                        "# Common dependencies",
+                        "# requests==2.25.1",
+                        "# numpy==2.2.0",
+                        "# pandas",
+                        "# matplotlib"
                     ]
                 },
                 {
@@ -430,6 +430,54 @@
                         "project(${TM_FILENAME_BASE/^(.)(.*)/${1:/upcase}${2}/})",
                         "",
                         "add_executable(${TM_FILENAME_BASE/^(.)(.*)/${1:/upcase}${2}/} main.cpp)"
+                    ]
+                }
+            ]
+        },
+        {
+            "alias": "html",
+            "extension": "html",
+            "requireNamespace": false,
+            "templates": [
+                {
+                    "alias": "html",
+                    "description": "Simple HTML file",
+                    "fileName": "index",
+                    "snippet": [
+                        "<!DOCTYPE html>",
+                        "<html>",
+                        "<head>",
+                        "\t<title>${TM_FILENAME_BASE/^(.)(.*)/${1:/upcase}${2}/}</title>",
+                        "</head>",
+                        "<body>",
+                        "\t$0",
+                        "</body>",
+                        "</html>"
+                    ]
+                },
+                {
+                    "alias": "css",
+                    "description": "Simple CSS file",
+                    "fileName": "style",
+                    "extensionOverride": "css",
+                    "snippet": ["body {", "\tmargin: 0;", "\tpadding: 0;", "}"]
+                },
+                {
+                    "alias": "html5",
+                    "description": "HTML5 Boilerplate",
+                    "fileName": "index",
+                    "snippet": [
+                        "<!DOCTYPE html>",
+                        "<html lang=\"en\">",
+                        "<head>",
+                        "\t<meta charset=\"UTF-8\">",
+                        "\t<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">",
+                        "\t<title>${TM_FILENAME_BASE/^(.)(.*)/${1:/upcase}${2}/}</title>",
+                        "</head>",
+                        "<body>",
+                        "\t$0",
+                        "</body>",
+                        "</html>"
                     ]
                 }
             ]
