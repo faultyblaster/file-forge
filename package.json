@@ -1,8 +1,8 @@
 {
     "name": "templator",
     "displayName": "Templator",
-    "description": "Templates for vscode",
-    "version": "0.0.3",
+    "description": "Easy file creation with templates, type less, code more.",
+    "version": "0.0.4",
     "engines": {
         "vscode": "^1.97.0"
     },
@@ -30,6 +30,7 @@
         "new file",
         "templates"
     ],
+    "icon": "media/icons/ext/scroll.png",
     "license": "MIT",
     "readme": "/README.md",
     "extensionKind": [
@@ -107,6 +108,21 @@
                 "category": "Templator"
             },
             {
+                "command": "templator.newTSCompilerOptions",
+                "title": "Compiler Options",
+                "category": "Templator"
+            },
+            {
+                "command": "templator.newTSIndex",
+                "title": "Index",
+                "category": "Templator"
+            },
+            {
+                "command": "templator.newTSModule",
+                "title": "Module",
+                "category": "Templator"
+            },
+            {
                 "command": "templator.newPYFile",
                 "title": "Create PY File",
                 "category": "Templator"
@@ -114,6 +130,31 @@
             {
                 "command": "templator.newPYMain",
                 "title": "Main",
+                "category": "Templator"
+            },
+            {
+                "command": "templator.newCppFile",
+                "title": "Create Cpp File",
+                "category": "Templator"
+            },
+            {
+                "command": "templator.newCppClass",
+                "title": "Class",
+                "category": "Templator"
+            },
+            {
+                "command": "templator.newCppFunction",
+                "title": "Function",
+                "category": "Templator"
+            },
+            {
+                "command": "templator.newCppMain",
+                "title": "Main",
+                "category": "Templator"
+            },
+            {
+                "command": "templator.newCppHeader",
+                "title": "Header",
                 "category": "Templator"
             },
             {
@@ -168,6 +209,11 @@
                     "submenu": "file.creation.py",
                     "group": "_fileCreation",
                     "when": "explorerResourceIsFolder && templator.showPYContext"
+                },
+                {
+                    "submenu": "file.creation.cpp",
+                    "group": "_fileCreation",
+                    "when": "explorerResourceIsFolder && templator.showCppContext"
                 }
             ],
             "file.creation.cs": [
@@ -231,6 +277,56 @@
                 },
                 {
                     "command": "templator.newTSInterface",
+                    "group": "bravo"
+                },
+                {
+                    "command": "templator.newTSIndex",
+                    "group": "bravo"
+                },
+                {
+                    "command": "templator.newTSModule",
+                    "group": "bravo"
+                },
+                {
+                    "command": "templator.newTSCompilerOptions",
+                    "group": "delta"
+                },
+                {
+                    "command": "templator.newJsonFile",
+                    "group": "zulu"
+                },
+                {
+                    "command": "templator.newXmlFile",
+                    "group": "zulu"
+                },
+                {
+                    "command": "templator.newMarkdownFile",
+                    "group": "zulu"
+                },
+                {
+                    "command": "templator.newCSVFile",
+                    "group": "zulu"
+                }
+            ],
+            "file.creation.cpp": [
+                {
+                    "command": "templator.newCppFile",
+                    "group": "_alpha"
+                },
+                {
+                    "command": "templator.newCppClass",
+                    "group": "bravo"
+                },
+                {
+                    "command": "templator.newCppFunction",
+                    "group": "bravo"
+                },
+                {
+                    "command": "templator.newCppMain",
+                    "group": "bravo"
+                },
+                {
+                    "command": "templator.newCppHeader",
                     "group": "bravo"
                 },
                 {
@@ -314,6 +410,38 @@
                     "when": "false"
                 },
                 {
+                    "command": "templator.newTSIndex",
+                    "when": "false"
+                },
+                {
+                    "command": "templator.newTSModule",
+                    "when": "false"
+                },
+                {
+                    "command": "templator.newTSCompilerOptions",
+                    "when": "false"
+                },
+                {
+                    "command": "templator.newCppFile",
+                    "when": "false"
+                },
+                {
+                    "command": "templator.newCppClass",
+                    "when": "false"
+                },
+                {
+                    "command": "templator.newCppFunction",
+                    "when": "false"
+                },
+                {
+                    "command": "templator.newCppMain",
+                    "when": "false"
+                },
+                {
+                    "command": "templator.newCppHeader",
+                    "when": "false"
+                },
+                {
                     "command": "templator.newPYMain",
                     "when": "false"
                 },
@@ -351,6 +479,10 @@
             {
                 "id": "file.creation.py",
                 "label": "New Python file"
+            },
+            {
+                "id": "file.creation.cpp",
+                "label": "New C++ file"
             }
         ],
         "keybindings": [
@@ -361,6 +493,18 @@
             {
                 "command": "templator.newCSFile",
                 "key": "shift+alt+c"
+            },
+            {
+                "command": "templator.newCppFile",
+                "key": "shift+alt+o"
+            },
+            {
+                "command": "templator.newTSFile",
+                "key": "shift+alt+t"
+            },
+            {
+                "command": "templator.newPYFile",
+                "key": "shift+alt+p"
             }
         ]
     },
@@ -390,5 +534,8 @@
         "eslint": "^9.19.0",
         "npm-run-all": "^4.1.5",
         "typescript": "^5.7.3"
+    },
+    "dependencies": {
+        "vs-logger": "^1.0.2"
     }
 }

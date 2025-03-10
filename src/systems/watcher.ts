@@ -11,7 +11,7 @@ export class Watcher {
     // show ctx menu for python files
     showPYContext: boolean = false;
     // show ctx menu for cpp files
-    showCPPContext: boolean = false;
+    showCppContext: boolean = false;
 
     // Csproj file watcher
     private csprojWatcher = workspace.createFileSystemWatcher(
@@ -82,11 +82,11 @@ export class Watcher {
      */
     // TODO: Add CPP commands and context entries
     enableCPPContext() {
-        this.showCPPContext = true;
+        this.showCppContext = true;
         this.cppWatcher.dispose();
         commands.executeCommand(
             'setContext',
-            `${extensionData.id}.showCPPContext`,
+            `${extensionData.id}.showCppContext`,
             true
         );
         logger.logInfo('\tcpp context enabled');
@@ -117,6 +117,9 @@ export class Watcher {
                 }
             });
     }
+    /**
+     * Check for ts files in the workspace, if any, enable the context menu, disable the watcher and set the `showTSContext` to true
+     */
     checkForTSFiles() {
         workspace
             .findFiles('**/*.ts', this.excludePatterns, 100)
@@ -128,6 +131,9 @@ export class Watcher {
                 }
             });
     }
+    /**
+     * Check for py files in the workspace, if any, enable the context menu, disable the watcher and set the `showPYContext` to true
+     */
     checkForPYFiles() {
         // Check for py files already in the workspace
         workspace
@@ -140,6 +146,9 @@ export class Watcher {
                 }
             });
     }
+    /**
+     * Check for cpp files in the workspace, if any, enable the context menu, disable the watcher and set the `showCppContext` to true
+     */
     checkForCPPFiles() {
         // Check for cpp files already in the workspace
         workspace
@@ -147,7 +156,7 @@ export class Watcher {
             .then((files: Uri[]) => {
                 if (files.length > 0) {
                     logger.logInfo(`Found ${files.length} cpp files`);
-                    this.showCPPContext = true;
+                    this.showCppContext = true;
                     this.enableCPPContext();
                 }
             });
@@ -179,7 +188,7 @@ export class Watcher {
         logger.logInfo('Starting cpp watcher');
         this.cppWatcher.onDidCreate((uri) => {
             logger.logInfo(`New cpp file created: ${uri.fsPath}`);
-            this.showCPPContext = true;
+            this.showCppContext = true;
             this.enableCPPContext;
         });
 

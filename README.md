@@ -61,6 +61,10 @@ Feedback is welcome! If you have suggestions, bug reports, trypo <!-- This typo 
 
 ## Thanks to
 
-[DevIcon](https://devicon.dev/) for all the icons used in this extension
+[DevIcon](https://devicon.dev/) for the programming language icons.  
+[FreePik](https://www.flaticon.com/authors/freepik) for the extension icon.  
+[This](https://www.flaticon.com/free-icon/scroll_1975103?term=papyrus&page=1&position=71&origin=search&related_id=1975103) is the icon used for the extension.
+
+> This extension is not affiliated with any of the above mentioned websites, and the use of their resources is under their respective licenses.
 
 **Enjoy!**

@@ -220,6 +220,131 @@ export function registerCommands(ctx: vscode.ExtensionContext) {
         }
     );
 
+    // Create ts index
+    const createTSIndex = vscode.commands.registerCommand(
+        `${extensionData.id}.newTSIndex`,
+        async (clicker: vscode.Uri) => {
+            logger.logInfo('Creating a new TypeScript index file');
+            vscode.commands.executeCommand(
+                `${FileCreation.newFile}`,
+                clicker,
+                'TypeScript',
+                'index'
+            );
+        }
+    );
+
+    // Create ts compiler options
+    const createTSCompilerOptions = vscode.commands.registerCommand(
+        `${extensionData.id}.newTSCompilerOptions`,
+        async (clicker: vscode.Uri) => {
+            logger.logInfo('Creating a new TypeScript compiler options file');
+            vscode.commands.executeCommand(
+                `${FileCreation.newFile}`,
+                clicker,
+                'TypeScript',
+                'compiler options'
+            );
+        }
+    );
+
+    // Create ts module
+    const createTSModule = vscode.commands.registerCommand(
+        `${extensionData.id}.newTSModule`,
+        async (clicker: vscode.Uri) => {
+            logger.logInfo('Creating a new TypeScript module file');
+            vscode.commands.executeCommand(
+                `${FileCreation.newFile}`,
+                clicker,
+                'TypeScript',
+                'module'
+            );
+        }
+    );
+
+    // Create Cpp file, no template pre-selection
+    const createCppFile = vscode.commands.registerCommand(
+        `${extensionData.id}.newCppFile`,
+        async (clicker: vscode.Uri) => {
+            logger.logInfo('Creating a new C++ file');
+            vscode.commands.executeCommand(
+                `${FileCreation.newFile}`,
+                clicker,
+                'C++'
+            );
+        }
+    );
+
+    // Create c++ class
+    const createCppClass = vscode.commands.registerCommand(
+        `${extensionData.id}.newCppClass`,
+        async (clicker: vscode.Uri) => {
+            logger.logInfo('Creating a new C++ class');
+            vscode.commands.executeCommand(
+                `${FileCreation.newFile}`,
+                clicker,
+                'C++',
+                'class'
+            );
+        }
+    );
+
+    // Create Cpp function
+    const createCppFunction = vscode.commands.registerCommand(
+        `${extensionData.id}.newCppFunction`,
+        async (clicker: vscode.Uri) => {
+            logger.logInfo('Creating a new C++ function');
+            vscode.commands.executeCommand(
+                `${FileCreation.newFile}`,
+                clicker,
+                'C++',
+                'function'
+            );
+        }
+    );
+
+    // Create Cpp main
+    const createCppMain = vscode.commands.registerCommand(
+        `${extensionData.id}.newCppMain`,
+        async (clicker: vscode.Uri) => {
+            logger.logInfo('Creating a new C++ main file');
+            vscode.commands.executeCommand(
+                `${FileCreation.newFile}`,
+                clicker,
+                'C++',
+                'main'
+            );
+        }
+    );
+
+    // Create Cpp header
+    const createCppHeader = vscode.commands.registerCommand(
+        `${extensionData.id}.newCppHeader`,
+        async (clicker: vscode.Uri) => {
+            logger.logInfo('Creating a new C++ header file');
+            vscode.commands.executeCommand(
+                `${FileCreation.newFile}`,
+                clicker,
+                'C++',
+                'header'
+            );
+        }
+    );
+
+    // Create Cpp makefile
+    const createCppMakefile = vscode.commands.registerCommand(
+        `${extensionData.id}.newCppMakefile`,
+        async (clicker: vscode.Uri) => {
+            logger.logInfo('Creating a new C++ makefile');
+            vscode.commands.executeCommand(
+                `${FileCreation.newFile}`,
+                clicker,
+                'C++',
+                'makefile'
+            );
+        }
+    );
+
     // create Python file, no template pre-selection
     const createPYFile = vscode.commands.registerCommand(
         `${extensionData.id}.newPYFile`,
@@ -311,6 +436,7 @@ export function registerCommands(ctx: vscode.ExtensionContext) {
         }
     );
 
+    // Commands registration
     ctx.subscriptions.push(
         createNewFile,
         createCSharpNamespace,
@@ -327,6 +453,16 @@ export function registerCommands(ctx: vscode.ExtensionContext) {
         createTSClass,
         createTSInterface,
         createTSEnum,
+        createTSIndex,
+        createTSModule,
+        createTSCompilerOptions,
+        // Cpp files
+        createCppFile,
+        createCppClass,
+        createCppFunction,
+        createCppMain,
+        createCppHeader,
+        createCppMakefile,
         // Python files
         createPYFile,
         createPYMain,
