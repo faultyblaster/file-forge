@@ -26,7 +26,6 @@ export async function activate(context: vscode.ExtensionContext) {
     setImmediate(postStart);
 }
 
-// Initialize
 function postStart() {
     watcher.startWatchers();
 }

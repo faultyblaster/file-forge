@@ -1,4 +1,15 @@
 # Templator
+<!-- Badges  -->
+![GitHub](https://img.shields.io/github/license/faultyblaster/templator)
+![GitHub issues](https://img.shields.io/github/issues/faultyblaster/templator)
+![GitHub pull requests](https://img.shields.io/github/issues-pr/faultyblaster/templator)
+![GitHub contributors](https://img.shields.io/github/contributors/faultyblaster/templator)
+![GitHub last commit](https://img.shields.io/github/last-commit/faultyblaster/templator)
+<!-- downloads -->
+<!-- ![Visual Studio Marketplace Downloads](https://img.shields.io/visual-studio-marketplace/d/faultyblaster.templator)
+![Visual Studio Marketplace Installs](https://img.shields.io/visual-studio-marketplace/i/faultyblaster.templator)
+![Visual Studio Marketplace Rating](https://img.shields.io/visual-studio-marketplace/r/faultyblaster.templator)
+![Visual Studio Marketplace Version](https://img.shields.io/visual-studio-marketplace/v/faultyblaster.templator) -->
 
 Create files from templates with a couple clicks or with commands!
 
@@ -9,10 +20,18 @@ The following programming languages are shipped by default:
 - C#
 - Python
 - TypeScript
+- Cpp
+- Other (json, csv)
+
+> **Note:** More templates will be added as the extension grows, if you want to contribute with a template, please, open a issue on the github [issue tab](https://github.com/faultyblaster/templator/issues) and we can discuss it, or you can create a pull request with the template you want to add.
 
 ## How to
 
-Just right click on a folder on the explorer, select the template you want, and that's it, you can also run the command: `Create new file` and select the template you want, and that's it.
+Just right click on a folder on the explorer, select the template you want, and that's it, you can also run the command: `Create new file` or the shortcut `shift+alt+n` and select the template you want, and that's it!
+
+### Automatic context menu activation
+
+The extension will automatically activate the context menu when a file is created for selected languages (cs, py, ts, cpp), this will allow you to create files much faster, and easier.
 
 ## Requirements
 
@@ -25,20 +44,11 @@ Simply add as many languages as you want
 
 ## Known Issues
 
-Bugs and errors will be publicly available on [this extension's github page](https://github.com/faultyblaster/Templator), bugs, specifically, will be available (for tracking and reporting) at [the issue tab](https://github.com/faultyblaster/Templator/issues) on the same repo.
+Bugs and errors will be publicly available on [this extension's github page](https://github.com/faultyblaster/templator), bugs, specifically, will be available (for tracking and reporting) at [the issue tab](https://github.com/faultyblaster/templator/issues) on the same repo.
 
 ## Release Notes
 
 Only big updates and new features will be listed here, for detailed information and version tracking please read the [changelog](/CHANGELOG.md) file.
-
-### 0.0.2
-
-- Added multiple templates for C#, Cpp, Typescript, Python and Other Language agnostic templates (json, scv)
-
-### 0.0.1
-
-[2025-02-21]  
-Started this project
 
 ## License
 
@@ -47,10 +57,10 @@ The code is under the [MIT license](/LICENSE), however, some of the art may be c
 ## Special notes
 
 Thanks for using this extension!  
-Feedback is welcome! If you have suggestions, bug reports, typo reports, or any other comment that can make the extension improve, please, don't hesitate on creating a issue on the github [issue tab](https://github.com/faultyblaster/Templator/issues).
+Feedback is welcome! If you have suggestions, bug reports, trypo <!-- This typo is intentional --> reports, or any other comment that can make the extension better, please, don't hesitate on creating a issue on the github [issue tab](https://github.com/faultyblaster/templator/issues).
 
 ## Thanks to
 
-[Devicon](https://devicon.dev/) for all the icons used in this extension
+[DevIcon](https://devicon.dev/) for all the icons used in this extension
 
 **Enjoy!**
