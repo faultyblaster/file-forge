@@ -13,7 +13,7 @@ import path from 'path';
 import { Namespacer } from './namespace';
 import { ShowError } from './messages';
 import * as fs from 'fs';
-import { ErrorMessages } from '../loggerSystem/logger';
+import { ErrorMessages } from '../systems/logger';
 
 /**
  * Ask the user to select a template from the templates file

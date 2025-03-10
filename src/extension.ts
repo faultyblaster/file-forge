@@ -2,12 +2,14 @@ import * as vscode from 'vscode';
 import * as DefaultTemplates from './templates/default_templates.json';
 import { Language } from './templates/interface';
 import { registerCommands } from './common/commands';
-import { Logger } from './loggerSystem/logger';
+import { Logger } from './systems/logger';
+import { Watcher } from './systems/watcher';
 
 /**
  * the `logger` will help to display the user all the important information, in a output channel, directly on vscode.
  */
 export const logger = new Logger();
+export const watcher = new Watcher();
 
 /**
  * Holds all the default languages information, as an array, it also contains all the snippets.
@@ -19,6 +21,14 @@ export async function activate(context: vscode.ExtensionContext) {
     readTemplates();
     registerCommands(context);
     logger.logInfo(`Extension '${extensionData.id}' successfully activated!`);
+
+    // Doing post initialization stuff
+    setImmediate(postStart);
+}
+
+// Initialize
+function postStart() {
+    watcher.startWatchers();
 }
 
 /**

@@ -80,6 +80,46 @@
                 "command": "templator.newCSStruct",
                 "title": "Struct",
                 "category": "Templator"
+            },
+            {
+                "command": "templator.newCsGlobalUsings",
+                "title": "Global Usings",
+                "category": "Templator"
+            },
+            {
+                "command": "templator.newTSFile",
+                "title": "Create TS File",
+                "category": "Templator"
+            },
+            {
+                "command": "templator.newTSClass",
+                "title": "Class",
+                "category": "Templator"
+            },
+            {
+                "command": "templator.newTSEnum",
+                "title": "Enum",
+                "category": "Templator"
+            },
+            {
+                "command": "templator.newTSInterface",
+                "title": "Interface",
+                "category": "Templator"
+            },
+            {
+                "command": "templator.newPYFile",
+                "title": "Create PY File",
+                "category": "Templator"
+            },
+            {
+                "command": "templator.newPYMain",
+                "title": "Main",
+                "category": "Templator"
+            },
+            {
+                "command": "templator.newPYRequirements",
+                "title": "Requirements",
+                "category": "Templator"
             }
         ],
         "menus": {
@@ -97,7 +137,17 @@
                 {
                     "submenu": "file.creation.cs",
                     "group": "_fileCreation",
-                    "when": "explorerResourceIsFolder"
+                    "when": "explorerResourceIsFolder && templator.showCSharpContext"
+                },
+                {
+                    "submenu": "file.creation.ts",
+                    "group": "_fileCreation",
+                    "when": "explorerResourceIsFolder && templator.showTSContext"
+                },
+                {
+                    "submenu": "file.creation.py",
+                    "group": "_fileCreation",
+                    "when": "explorerResourceIsFolder && templator.showPYContext"
                 }
             ],
             "file.creation.cs": [
@@ -124,6 +174,42 @@
                 {
                     "command": "templator.newCSStruct",
                     "group": "basic@2"
+                },
+                {
+                    "command": "templator.newCsGlobalUsings",
+                    "group": "global@1"
+                }
+            ],
+            "file.creation.ts": [
+                {
+                    "command": "templator.newTSFile",
+                    "group": "_general@1"
+                },
+                {
+                    "command": "templator.newTSClass",
+                    "group": "basic@2"
+                },
+                {
+                    "command": "templator.newTSEnum",
+                    "group": "basic@2"
+                },
+                {
+                    "command": "templator.newTSInterface",
+                    "group": "basic@2"
+                }
+            ],
+            "file.creation.py": [
+                {
+                    "command": "templator.newPYFile",
+                    "group": "_general@1"
+                },
+                {
+                    "command": "templator.newPYMain",
+                    "group": "basic@2"
+                },
+                {
+                    "command": "templator.newPYRequirements",
+                    "group": "basic@2"
                 }
             ],
             "commandPalette": [
@@ -146,6 +232,26 @@
                 {
                     "command": "templator.newCSStruct",
                     "when": "false"
+                },
+                {
+                    "command": "templator.newTSClass",
+                    "when": "false"
+                },
+                {
+                    "command": "templator.newTSEnum",
+                    "when": "false"
+                },
+                {
+                    "command": "templator.newTSInterface",
+                    "when": "false"
+                },
+                {
+                    "command": "templator.newPYMain",
+                    "when": "false"
+                },
+                {
+                    "command": "templator.newPYRequirements",
+                    "when": "false"
                 }
             ]
         },
@@ -153,6 +259,14 @@
             {
                 "id": "file.creation.cs",
                 "label": "New C# file"
+            },
+            {
+                "id": "file.creation.ts",
+                "label": "New TypeScript file"
+            },
+            {
+                "id": "file.creation.py",
+                "label": "New Python file"
             }
         ]
     },

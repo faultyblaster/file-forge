@@ -70,8 +70,10 @@ export function registerCommands(ctx: vscode.ExtensionContext) {
     );
 
     // File specific commands: Creating a specific file, skipping the selectTemplate part
+
+    // Create cs file, no template pre-selection
     const createCSFile = vscode.commands.registerCommand(
-        FileCreation.newCSFile,
+        `${extensionData.id}.newCSFile`,
         async (clicker: vscode.Uri) => {
             vscode.commands.executeCommand(
                 `${FileCreation.newFile}`,
@@ -83,7 +85,7 @@ export function registerCommands(ctx: vscode.ExtensionContext) {
 
     // Create C# Class
     const createCSClass = vscode.commands.registerCommand(
-        FileCreation.newCSClass,
+        `${extensionData.id}.newCSClass`,
         async (clicker: vscode.Uri) => {
             vscode.commands.executeCommand(
                 `${FileCreation.newFile}`,
@@ -94,7 +96,7 @@ export function registerCommands(ctx: vscode.ExtensionContext) {
         }
     ); // Create C# Enum
     const createCSEnum = vscode.commands.registerCommand(
-        FileCreation.newCSEnum,
+        `${extensionData.id}.newCSEnum`,
         async (clicker: vscode.Uri) => {
             vscode.commands.executeCommand(
                 `${FileCreation.newFile}`,
@@ -106,7 +108,7 @@ export function registerCommands(ctx: vscode.ExtensionContext) {
     );
     // Create C# Interface
     const createCSInterface = vscode.commands.registerCommand(
-        FileCreation.newCSInterface,
+        `${extensionData.id}.newCSInterface`,
         async (clicker: vscode.Uri) => {
             vscode.commands.executeCommand(
                 `${FileCreation.newFile}`,
@@ -118,7 +120,7 @@ export function registerCommands(ctx: vscode.ExtensionContext) {
     );
     // Create C# Record
     const createCSRecord = vscode.commands.registerCommand(
-        FileCreation.newCSRecord,
+        `${extensionData.id}.newCSRecord`,
         async (clicker: vscode.Uri) => {
             vscode.commands.executeCommand(
                 `${FileCreation.newFile}`,
@@ -130,13 +132,117 @@ export function registerCommands(ctx: vscode.ExtensionContext) {
     );
     // Create C# Struct
     const createCSStruct = vscode.commands.registerCommand(
-        FileCreation.newCSStruct,
+        `${extensionData.id}.newCSStruct`,
         async (clicker: vscode.Uri) => {
             vscode.commands.executeCommand(
                 `${FileCreation.newFile}`,
                 clicker,
                 'C#',
                 'Struct'
+            );
+        }
+    );
+
+    // Create C# Global Usings
+    const createCSGlobUsings = vscode.commands.registerCommand(
+        `${extensionData.id}.newGlobalUsings`,
+        async (clicker: vscode.Uri) => {
+            vscode.commands.executeCommand(
+                `${FileCreation.newFile}`,
+                clicker,
+                'C#',
+                'GlobalUsings'
+            );
+        }
+    );
+
+    // commands for typescript
+
+    // Create ts file, no template pre-selection
+    const createTSFile = vscode.commands.registerCommand(
+        `${extensionData.id}.newTSFile`,
+        async (clicker: vscode.Uri) => {
+            vscode.commands.executeCommand(
+                `${FileCreation.newFile}`,
+                clicker,
+                'TypeScript'
+            );
+        }
+    );
+
+    // create ts class
+    const createTSClass = vscode.commands.registerCommand(
+        `${extensionData.id}.newTSClass`,
+        async (clicker: vscode.Uri) => {
+            vscode.commands.executeCommand(
+                `${FileCreation.newFile}`,
+                clicker,
+                'TypeScript',
+                'class'
+            );
+        }
+    );
+
+    // create ts interface
+    const createTSInterface = vscode.commands.registerCommand(
+        `${extensionData.id}.newTSInterface`,
+        async (clicker: vscode.Uri) => {
+            vscode.commands.executeCommand(
+                `${FileCreation.newFile}`,
+                clicker,
+                'TypeScript',
+                'interface'
+            );
+        }
+    );
+
+    // create ts enum
+    const createTSEnum = vscode.commands.registerCommand(
+        `${extensionData.id}.newTSEnum`,
+        async (clicker: vscode.Uri) => {
+            vscode.commands.executeCommand(
+                `${FileCreation.newFile}`,
+                clicker,
+                'TypeScript',
+                'enum'
+            );
+        }
+    );
+
+    // create Python file, no template pre-selection
+    const createPYFile = vscode.commands.registerCommand(
+        `${extensionData.id}.newPYFile`,
+        async (clicker: vscode.Uri) => {
+            vscode.commands.executeCommand(
+                `${FileCreation.newFile}`,
+                clicker,
+                'Python'
+            );
+        }
+    );
+
+    // create Python main
+    const createPYMain = vscode.commands.registerCommand(
+        `${extensionData.id}.newPYMain`,
+        async (clicker: vscode.Uri) => {
+            vscode.commands.executeCommand(
+                `${FileCreation.newFile}`,
+                clicker,
+                'Python',
+                'main'
+            );
+        }
+    );
+
+    // create Python requirements.txt
+    const createPYRequirements = vscode.commands.registerCommand(
+        `${extensionData.id}.newPYRequirements`,
+        async (clicker: vscode.Uri) => {
+            vscode.commands.executeCommand(
+                `${FileCreation.newFile}`,
+                clicker,
+                'Python',
+                'requirements'
             );
         }
     );
@@ -150,7 +256,17 @@ export function registerCommands(ctx: vscode.ExtensionContext) {
         createCSEnum,
         createCSInterface,
         createCSRecord,
-        createCSStruct
+        createCSStruct,
+        createCSGlobUsings,
+        // TypeScript files
+        createTSFile,
+        createTSClass,
+        createTSInterface,
+        createTSEnum,
+        // Python files
+        createPYFile,
+        createPYMain,
+        createPYRequirements
     );
 }
 
@@ -160,10 +276,4 @@ export function registerCommands(ctx: vscode.ExtensionContext) {
 enum FileCreation {
     newFile = `${extensionData.id}.newFile`,
     newCustomFile = `${extensionData.id}.newCustomFile`,
-    newCSFile = `${extensionData.id}.newCSFile`,
-    newCSClass = `${extensionData.id}.newCSClass`,
-    newCSEnum = `${extensionData.id}.newCSEnum`,
-    newCSInterface = `${extensionData.id}.newCSInterface`,
-    newCSRecord = `${extensionData.id}.newCSRecord`,
-    newCSStruct = `${extensionData.id}.newCSStruct`,
 }

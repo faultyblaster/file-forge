@@ -211,6 +211,16 @@
                     "description": "A simple Hello World script",
                     "fileName": "main",
                     "snippet": ["console.log(\"Hello World\");"]
+                },
+                {
+                    "alias": "type",
+                    "description": "A simple Type",
+                    "fileName": "type",
+                    "snippet": [
+                        "type ${TM_FILENAME_BASE/^(.)(.*)/${1:/upcase}${2}/} = {",
+                        "\t$0",
+                        "};"
+                    ]
                 }
             ]
         },
