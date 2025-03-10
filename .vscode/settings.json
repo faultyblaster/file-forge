@@ -13,10 +13,13 @@
     "cSpell.words": [
         "mypy",
         "Namespacer",
+        "Newtonsoft",
+        "Npgsql",
         "pycache",
         "pytest",
         "selec",
         "templ",
-        "venv"
+        "venv",
+        "Xunit"
     ]
 }

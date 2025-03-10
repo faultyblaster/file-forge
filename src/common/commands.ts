@@ -1,7 +1,7 @@
 import * as vscode from 'vscode';
 import { extensionData, logger } from '../extension';
 import { ShowError, ShowInfo } from './messages';
-import { Namespacer } from './namespace';
+import { Namespacer } from '../systems/namespacer';
 import {
     createFile,
     determinateDestination,
@@ -75,6 +75,7 @@ export function registerCommands(ctx: vscode.ExtensionContext) {
     const createCSFile = vscode.commands.registerCommand(
         `${extensionData.id}.newCSFile`,
         async (clicker: vscode.Uri) => {
+            logger.logInfo('Creating a new C# file');
             vscode.commands.executeCommand(
                 `${FileCreation.newFile}`,
                 clicker,
@@ -87,6 +88,7 @@ export function registerCommands(ctx: vscode.ExtensionContext) {
     const createCSClass = vscode.commands.registerCommand(
         `${extensionData.id}.newCSClass`,
         async (clicker: vscode.Uri) => {
+            logger.logInfo('Creating a new C# class');
             vscode.commands.executeCommand(
                 `${FileCreation.newFile}`,
                 clicker,
@@ -98,6 +100,7 @@ export function registerCommands(ctx: vscode.ExtensionContext) {
     const createCSEnum = vscode.commands.registerCommand(
         `${extensionData.id}.newCSEnum`,
         async (clicker: vscode.Uri) => {
+            logger.logInfo('Creating a new C# enum');
             vscode.commands.executeCommand(
                 `${FileCreation.newFile}`,
                 clicker,
@@ -110,6 +113,7 @@ export function registerCommands(ctx: vscode.ExtensionContext) {
     const createCSInterface = vscode.commands.registerCommand(
         `${extensionData.id}.newCSInterface`,
         async (clicker: vscode.Uri) => {
+            logger.logInfo('Creating a new C# interface');
             vscode.commands.executeCommand(
                 `${FileCreation.newFile}`,
                 clicker,
@@ -122,6 +126,7 @@ export function registerCommands(ctx: vscode.ExtensionContext) {
     const createCSRecord = vscode.commands.registerCommand(
         `${extensionData.id}.newCSRecord`,
         async (clicker: vscode.Uri) => {
+            logger.logInfo('Creating a new C# record');
             vscode.commands.executeCommand(
                 `${FileCreation.newFile}`,
                 clicker,
@@ -134,6 +139,7 @@ export function registerCommands(ctx: vscode.ExtensionContext) {
     const createCSStruct = vscode.commands.registerCommand(
         `${extensionData.id}.newCSStruct`,
         async (clicker: vscode.Uri) => {
+            logger.logInfo('Creating a new C# struct');
             vscode.commands.executeCommand(
                 `${FileCreation.newFile}`,
                 clicker,
@@ -145,13 +151,14 @@ export function registerCommands(ctx: vscode.ExtensionContext) {
 
     // Create C# Global Usings
     const createCSGlobUsings = vscode.commands.registerCommand(
-        `${extensionData.id}.newGlobalUsings`,
+        `${extensionData.id}.newCsGlobalUsings`,
         async (clicker: vscode.Uri) => {
+            logger.logInfo('Creating a new C# Global Usings file');
             vscode.commands.executeCommand(
                 `${FileCreation.newFile}`,
                 clicker,
                 'C#',
-                'GlobalUsings'
+                'Global Usings'
             );
         }
     );
@@ -162,6 +169,7 @@ export function registerCommands(ctx: vscode.ExtensionContext) {
     const createTSFile = vscode.commands.registerCommand(
         `${extensionData.id}.newTSFile`,
         async (clicker: vscode.Uri) => {
+            logger.logInfo('Creating a new TypeScript file');
             vscode.commands.executeCommand(
                 `${FileCreation.newFile}`,
                 clicker,
@@ -174,6 +182,7 @@ export function registerCommands(ctx: vscode.ExtensionContext) {
     const createTSClass = vscode.commands.registerCommand(
         `${extensionData.id}.newTSClass`,
         async (clicker: vscode.Uri) => {
+            logger.logInfo('Creating a new TypeScript class');
             vscode.commands.executeCommand(
                 `${FileCreation.newFile}`,
                 clicker,
@@ -187,6 +196,7 @@ export function registerCommands(ctx: vscode.ExtensionContext) {
     const createTSInterface = vscode.commands.registerCommand(
         `${extensionData.id}.newTSInterface`,
         async (clicker: vscode.Uri) => {
+            logger.logInfo('Creating a new TypeScript interface');
             vscode.commands.executeCommand(
                 `${FileCreation.newFile}`,
                 clicker,
@@ -200,6 +210,7 @@ export function registerCommands(ctx: vscode.ExtensionContext) {
     const createTSEnum = vscode.commands.registerCommand(
         `${extensionData.id}.newTSEnum`,
         async (clicker: vscode.Uri) => {
+            logger.logInfo('Creating a new TypeScript enum');
             vscode.commands.executeCommand(
                 `${FileCreation.newFile}`,
                 clicker,
@@ -213,6 +224,7 @@ export function registerCommands(ctx: vscode.ExtensionContext) {
     const createPYFile = vscode.commands.registerCommand(
         `${extensionData.id}.newPYFile`,
         async (clicker: vscode.Uri) => {
+            logger.logInfo('Creating a new Python file');
             vscode.commands.executeCommand(
                 `${FileCreation.newFile}`,
                 clicker,
@@ -225,6 +237,7 @@ export function registerCommands(ctx: vscode.ExtensionContext) {
     const createPYMain = vscode.commands.registerCommand(
         `${extensionData.id}.newPYMain`,
         async (clicker: vscode.Uri) => {
+            logger.logInfo('Creating a new Python main file');
             vscode.commands.executeCommand(
                 `${FileCreation.newFile}`,
                 clicker,
@@ -238,11 +251,62 @@ export function registerCommands(ctx: vscode.ExtensionContext) {
     const createPYRequirements = vscode.commands.registerCommand(
         `${extensionData.id}.newPYRequirements`,
         async (clicker: vscode.Uri) => {
+            logger.logInfo('Creating a new Python requirements file');
             vscode.commands.executeCommand(
                 `${FileCreation.newFile}`,
                 clicker,
                 'Python',
                 'requirements'
+            );
+        }
+    );
+
+    // Language agnostic commands, files such as json, xml, markdown, csv, etc
+    const createJsonFile = vscode.commands.registerCommand(
+        `${extensionData.id}.newJsonFile`,
+        async (clicker: vscode.Uri) => {
+            logger.logInfo('Creating a new JSON file');
+            vscode.commands.executeCommand(
+                `${FileCreation.newFile}`,
+                clicker,
+                'Other',
+                'json'
+            );
+        }
+    );
+    const createXmlFile = vscode.commands.registerCommand(
+        `${extensionData.id}.newXmlFile`,
+        async (clicker: vscode.Uri) => {
+            logger.logInfo('Creating a new XML file');
+            vscode.commands.executeCommand(
+                `${FileCreation.newFile}`,
+                clicker,
+                'Other',
+                'xml'
+            );
+        }
+    );
+    const createMdFile = vscode.commands.registerCommand(
+        `${extensionData.id}.newMarkdownFile`,
+        async (clicker: vscode.Uri) => {
+            logger.logInfo('Creating a new Markdown file');
+            vscode.commands.executeCommand(
+                `${FileCreation.newFile}`,
+                clicker,
+                'Other',
+                'markdown'
+            );
+        }
+    );
+    const createSCVFile = vscode.commands.registerCommand(
+        `${extensionData.id}.newCSVFile`,
+        async (clicker: vscode.Uri) => {
+            logger.logInfo('Creating a new CSV file');
+            vscode.commands.executeCommand(
+                `${FileCreation.newFile}`,
+                clicker,
+                'Other',
+                'csv'
             );
         }
     );
@@ -266,7 +330,12 @@ export function registerCommands(ctx: vscode.ExtensionContext) {
         // Python files
         createPYFile,
         createPYMain,
-        createPYRequirements
+        createPYRequirements,
+        // Other files
+        createJsonFile,
+        createXmlFile,
+        createMdFile,
+        createSCVFile
     );
 }
 

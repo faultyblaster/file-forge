@@ -10,7 +10,7 @@ import {
 import { all_languages, logger } from '../extension';
 import { Language, Template } from '../templates/interface';
 import path from 'path';
-import { Namespacer } from './namespace';
+import { Namespacer } from '../systems/namespacer';
 import { ShowError } from './messages';
 import * as fs from 'fs';
 import { ErrorMessages } from '../systems/logger';

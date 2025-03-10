@@ -63,7 +63,7 @@ export class Namespacer {
         );
         Namespace = fileDir.slice(remCount);
         Namespace = this.validateNamespace(Namespace);
-        logger.logInfo(`The namespace is: '${Namespace}'\n`);
+        logger.logInfo(`The namespace is: '${Namespace}'`);
         return Namespace;
     }
 

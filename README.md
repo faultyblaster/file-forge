@@ -20,7 +20,7 @@ No requirements to install, but the use of the extension for x languages assumes
 
 <!-- ## You can create your own templates
 
-Simply add as many languages as you want 
+Simply add as many languages as you want
  -->
 
 ## Known Issues
@@ -30,6 +30,10 @@ Bugs and errors will be publicly available on [this extension's github page](htt
 ## Release Notes
 
 Only big updates and new features will be listed here, for detailed information and version tracking please read the [changelog](/CHANGELOG.md) file.
+
+### 0.0.2
+
+- Added multiple templates for C#, Cpp, Typescript, Python and Other Language agnostic templates (json, scv)
 
 ### 0.0.1
 

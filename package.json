@@ -120,6 +120,26 @@
                 "command": "templator.newPYRequirements",
                 "title": "Requirements",
                 "category": "Templator"
+            },
+            {
+                "command": "templator.newJsonFile",
+                "title": "JSON File",
+                "category": "Templator"
+            },
+            {
+                "command": "templator.newXmlFile",
+                "title": "XML File",
+                "category": "Templator"
+            },
+            {
+                "command": "templator.newMarkdownFile",
+                "title": "Markdown File",
+                "category": "Templator"
+            },
+            {
+                "command": "templator.newCSVFile",
+                "title": "CSV File",
+                "category": "Templator"
             }
         ],
         "menus": {
@@ -153,63 +173,111 @@
             "file.creation.cs": [
                 {
                     "command": "templator.newCSFile",
-                    "group": "_general@1"
+                    "group": "_alpha"
                 },
                 {
                     "command": "templator.newCSClass",
-                    "group": "basic@2"
+                    "group": "bravo"
                 },
                 {
                     "command": "templator.newCSEnum",
-                    "group": "basic@2"
+                    "group": "bravo"
                 },
                 {
                     "command": "templator.newCSInterface",
-                    "group": "basic@2"
+                    "group": "bravo"
                 },
                 {
                     "command": "templator.newCSRecord",
-                    "group": "basic@2"
+                    "group": "bravo"
                 },
                 {
                     "command": "templator.newCSStruct",
-                    "group": "basic@2"
+                    "group": "bravo"
                 },
                 {
                     "command": "templator.newCsGlobalUsings",
-                    "group": "global@1"
+                    "group": "charlie"
+                },
+                {
+                    "command": "templator.newJsonFile",
+                    "group": "zulu"
+                },
+                {
+                    "command": "templator.newXmlFile",
+                    "group": "zulu"
+                },
+                {
+                    "command": "templator.newMarkdownFile",
+                    "group": "zulu"
+                },
+                {
+                    "command": "templator.newCSVFile",
+                    "group": "zulu"
                 }
             ],
             "file.creation.ts": [
                 {
                     "command": "templator.newTSFile",
-                    "group": "_general@1"
+                    "group": "_alpha"
                 },
                 {
                     "command": "templator.newTSClass",
-                    "group": "basic@2"
+                    "group": "bravo"
                 },
                 {
                     "command": "templator.newTSEnum",
-                    "group": "basic@2"
+                    "group": "bravo"
                 },
                 {
                     "command": "templator.newTSInterface",
-                    "group": "basic@2"
+                    "group": "bravo"
+                },
+                {
+                    "command": "templator.newJsonFile",
+                    "group": "zulu"
+                },
+                {
+                    "command": "templator.newXmlFile",
+                    "group": "zulu"
+                },
+                {
+                    "command": "templator.newMarkdownFile",
+                    "group": "zulu"
+                },
+                {
+                    "command": "templator.newCSVFile",
+                    "group": "zulu"
                 }
             ],
             "file.creation.py": [
                 {
                     "command": "templator.newPYFile",
-                    "group": "_general@1"
+                    "group": "_alpha"
                 },
                 {
                     "command": "templator.newPYMain",
-                    "group": "basic@2"
+                    "group": "bravo"
                 },
                 {
                     "command": "templator.newPYRequirements",
-                    "group": "basic@2"
+                    "group": "bravo"
+                },
+                {
+                    "command": "templator.newJsonFile",
+                    "group": "zulu"
+                },
+                {
+                    "command": "templator.newXmlFile",
+                    "group": "zulu"
+                },
+                {
+                    "command": "templator.newMarkdownFile",
+                    "group": "zulu"
+                },
+                {
+                    "command": "templator.newCSVFile",
+                    "group": "zulu"
                 }
             ],
             "commandPalette": [
@@ -252,6 +320,22 @@
                 {
                     "command": "templator.newPYRequirements",
                     "when": "false"
+                },
+                {
+                    "command": "templator.newJsonFile",
+                    "when": "false"
+                },
+                {
+                    "command": "templator.newXmlFile",
+                    "when": "false"
+                },
+                {
+                    "command": "templator.newMarkdownFile",
+                    "when": "false"
+                },
+                {
+                    "command": "templator.newCSVFile",
+                    "when": "false"
                 }
             ]
         },
@@ -267,6 +351,16 @@
             {
                 "id": "file.creation.py",
                 "label": "New Python file"
+            }
+        ],
+        "keybindings": [
+            {
+                "command": "templator.newFile",
+                "key": "shift+alt+n"
+            },
+            {
+                "command": "templator.newCSFile",
+                "key": "shift+alt+c"
             }
         ]
     },

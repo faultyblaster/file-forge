@@ -14,19 +14,18 @@ export class Watcher {
     showCPPContext: boolean = false;
 
     // Csproj file watcher
-    private csprojWatcher = workspace.createFileSystemWatcher('**/*.csproj');
-
+    private csprojWatcher = workspace.createFileSystemWatcher(
+        '**/*.{csproj,cs,sln}'
+    );
     // typescript file watcher
     private tsWatcher = workspace.createFileSystemWatcher('**/*.ts');
-
-    // javascript file watcher
-    // private jsWatcher = workspace.createFileSystemWatcher('**/*.js');
-
     // python file watcher
     private pyWatcher = workspace.createFileSystemWatcher('**/*.py');
-
     // cpp file watcher
     private cppWatcher = workspace.createFileSystemWatcher('**/*.cpp');
+    // TODO: Implement the following watchers
+    // javascript file watcher
+    // private jsWatcher = workspace.createFileSystemWatcher('**/*.js');
 
     // exclude patterns for ts, js, py, cpp, dotnet and rust environments
     private excludePatterns: GlobPattern =
@@ -35,7 +34,7 @@ export class Watcher {
     constructor() {
         logger.logInfo('Initializing watcher system');
     }
-    // Once at least one file is created, show the context menu, disable the watcher
+
     /**
      * Enable the context menu for csharp files
      */
@@ -81,6 +80,7 @@ export class Watcher {
     /**
      * Enable the context menu for cpp files
      */
+    // TODO: Add CPP commands and context entries
     enableCPPContext() {
         this.showCPPContext = true;
         this.cppWatcher.dispose();
@@ -92,26 +92,32 @@ export class Watcher {
         logger.logInfo('\tcpp context enabled');
     }
 
-    // Check for initial files
-    async checkForInitialFiles() {
+    /**
+     * Check for initial files in the workspace, if any, enable the context menu
+     */
+    checkForInitialFiles() {
         this.checkForCSProjFiles();
         this.checkForTSFiles();
         this.checkForPYFiles();
         this.checkForCPPFiles();
+        logger.logInfo('\tInitial files checked');
     }
-    checkForCSProjFiles() {
-        // Check for csproj files already in the workspace
+    /**
+     * Check for sln, csproj or cs files in the workspace, if any, enable the context menu, disable the watcher and set the `showCSContext` to true
+     */
+    checkForCSProjFiles(): void {
         workspace
-            .findFiles('**/*.csproj', this.excludePatterns, 100)
+            .findFiles('**/*.{sln,cs,csproj}', this.excludePatterns, 100)
             .then((files: Uri[]) => {
                 if (files.length > 0) {
-                    logger.logInfo(`Found ${files.length} csproj files`);
+                    logger.logInfo(
+                        `Found ${files.length} sln, csproj or cs files`
+                    );
                     this.enableCsContext();
                 }
             });
     }
     checkForTSFiles() {
-        // Check for ts files already in the workspace
         workspace
             .findFiles('**/*.ts', this.excludePatterns, 100)
             .then((files: Uri[]) => {
@@ -151,54 +157,33 @@ export class Watcher {
      * Start the file watchers for csproj, ts, py and cpp files
      */
     startWatchers() {
-        logger.logInfo('Starting watchers');
-        logger.logInfo('Checking for initial files');
-        this.checkForInitialFiles();
-        logger.logInfo('Checking for initial files done');
+        logger.logInfo('Starting watchers for all available file types');
 
-        if (this.showCSContext) {
-            logger.logInfo('Enabling cs context');
+        this.csprojWatcher.onDidCreate((uri) => {
+            logger.logInfo(`New csproj file created: ${uri.fsPath}`);
+            this.showCSContext = true;
             this.enableCsContext();
-        } else {
-            logger.logInfo('Starting csproj watcher');
-            this.csprojWatcher.onDidCreate((uri) => {
-                logger.logInfo(`New csproj file created: ${uri.fsPath}`);
-                this.showCSContext = true;
-                this.enableCsContext();
-            });
-        }
-        if (this.showTSContext) {
-            logger.logInfo('Enabling ts context');
+        });
+        logger.logInfo('Starting ts watcher');
+        this.tsWatcher.onDidCreate((uri) => {
+            logger.logInfo(`New ts file created: ${uri.fsPath}`);
+            this.showTSContext = true;
             this.enableTSContext();
-        } else {
-            logger.logInfo('Starting ts watcher');
-            this.tsWatcher.onDidCreate((uri) => {
-                logger.logInfo(`New ts file created: ${uri.fsPath}`);
-                this.showTSContext = true;
-                this.enableTSContext();
-            });
-        }
-        if (this.showPYContext) {
-            logger.logInfo('Enabling py context');
+        });
+        logger.logInfo('Starting py watcher');
+        this.pyWatcher.onDidCreate((uri) => {
+            logger.logInfo(`New py file created: ${uri.fsPath}`);
+            this.showPYContext = true;
             this.enablePYContext();
-        } else {
-            logger.logInfo('Starting py watcher');
-            this.pyWatcher.onDidCreate((uri) => {
-                logger.logInfo(`New py file created: ${uri.fsPath}`);
-                this.showPYContext = true;
-                this.enablePYContext();
-            });
-        }
-        if (this.showCPPContext) {
-            logger.logInfo('Enabling cpp context');
-            this.enableCPPContext();
-        } else {
-            logger.logInfo('Starting cpp watcher');
-            this.cppWatcher.onDidCreate((uri) => {
-                logger.logInfo(`New cpp file created: ${uri.fsPath}`);
-                this.showCPPContext = true;
-                this.enableCPPContext;
-            });
-        }
+        });
+        logger.logInfo('Starting cpp watcher');
+        this.cppWatcher.onDidCreate((uri) => {
+            logger.logInfo(`New cpp file created: ${uri.fsPath}`);
+            this.showCPPContext = true;
+            this.enableCPPContext;
+        });
+
+        logger.logInfo('Watchers started, checking for initial files');
+        this.checkForInitialFiles();
     }
 }
