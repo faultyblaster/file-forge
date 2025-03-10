@@ -49,4 +49,8 @@ The code is under the [MIT license](/LICENSE), however, some of the art may be c
 Thanks for using this extension!  
 Feedback is welcome! If you have suggestions, bug reports, typo reports, or any other comment that can make the extension improve, please, don't hesitate on creating a issue on the github [issue tab](https://github.com/faultyblaster/Templator/issues).
 
+## Thanks to
+
+[Devicon](https://devicon.dev/) for all the icons used in this extension
+
 **Enjoy!**
