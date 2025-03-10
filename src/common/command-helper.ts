@@ -10,10 +10,9 @@ import {
 import { all_languages, logger } from '../extension';
 import { Language, Template } from '../templates/interface';
 import path from 'path';
-import { Namespacer } from './namespace';
-import { ShowError } from './messages';
+import { Namespacer } from '../systems/namespacer';
+import { ErrorMessages, ShowError } from './messages';
 import * as fs from 'fs';
-import { ErrorMessages } from '../loggerSystem/logger';
 
 /**
  * Ask the user to select a template from the templates file
@@ -40,19 +39,23 @@ export async function selectTemplate(
             `No language preselected! Asking the user for a language and template`
         );
         const tempLanguage = await window.showQuickPick(
-            all_languages.map((item): QuickPickItem => {
-                const iconUri = Uri.file(
-                    path.join(
-                        ctx.extensionPath,
-                        `/media/icons/langs/${item.extension}.svg`
-                    )
-                );
-                return {
-                    label: item.alias,
-                    description: item.extension,
-                    iconPath: iconUri,
-                };
-            }),
+            all_languages
+                .map((item): QuickPickItem => {
+                    const iconUri = Uri.file(
+                        path.join(
+                            ctx.extensionPath,
+                            `/media/icons/langs/${item.extension}.svg`
+                        )
+                    );
+                    return {
+                        label: item.alias,
+                        description: item.extension,
+                        iconPath: iconUri,
+                    };
+                })
+                .sort((a, b) => {
+                    return a.label.localeCompare(b.label);
+                }),
             options
         );
         if (tempLanguage === undefined) {
@@ -69,7 +72,9 @@ export async function selectTemplate(
     }
 
     if (selectedLang === undefined) {
-        logger.logError('The requested language was not found!');
+        logger.logError(
+            `The requested language (${selectLang}) was not found!`
+        );
         throw new Error(ErrorMessages.unexpected);
     }
 
@@ -77,8 +82,10 @@ export async function selectTemplate(
         logger.logInfo(
             `No template pre-requested! Asking the user to select a template`
         );
-        const temTemplate = await window.showQuickPick(
-            selectedLang.templates.map((item): QuickPickItem => {
+
+        // Template mapping
+        let languageTemplateItems = selectedLang.templates
+            .map((item): QuickPickItem => {
                 let iconUri: Uri;
                 if (item.extensionOverride) {
                     iconUri = Uri.file(
@@ -107,7 +114,14 @@ export async function selectTemplate(
                     description: filename,
                     iconPath: iconUri,
                 };
-            }),
+            })
+            .sort((a, b) => {
+                return a.label.localeCompare(b.label);
+            });
+
+        // Template selection:
+        const temTemplate = await window.showQuickPick(
+            languageTemplateItems,
             options
         );
         if (temTemplate === undefined) {
@@ -214,6 +228,13 @@ export async function createFile(filePath: Uri, template: usrSelection) {
         }
     }
 }
+
+/**
+ * Creates a snippet string from a array of strings
+ * @param text the array of strings to be converted into a snippet
+ * @param namespace in case the snippet has a namespace, it will be replaced by this value
+ * @returns a SnippetString object `vscode.SnippetString`
+ */
 function createSnippet(
     text: string[],
     namespace: string | undefined

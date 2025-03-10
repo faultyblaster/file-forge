@@ -2,12 +2,22 @@ import * as vscode from 'vscode';
 import * as DefaultTemplates from './templates/default_templates.json';
 import { Language } from './templates/interface';
 import { registerCommands } from './common/commands';
-import { Logger } from './loggerSystem/logger';
+import { Watcher } from './systems/watcher';
+import { VsLogger } from 'vs-logger';
+
+/**
+ * Important extension data available globally to avoid typos.
+ */
+export enum extensionData {
+    id = 'templator',
+    name = 'Templator',
+}
 
 /**
  * the `logger` will help to display the user all the important information, in a output channel, directly on vscode.
  */
-export const logger = new Logger();
+export const logger = new VsLogger(extensionData.id);
+export const watcher = new Watcher();
 
 /**
  * Holds all the default languages information, as an array, it also contains all the snippets.
@@ -19,6 +29,13 @@ export async function activate(context: vscode.ExtensionContext) {
     readTemplates();
     registerCommands(context);
     logger.logInfo(`Extension '${extensionData.id}' successfully activated!`);
+
+    // Doing post initialization stuff
+    setImmediate(postStart);
+}
+
+function postStart() {
+    watcher.startWatchers();
 }
 
 /**
@@ -33,12 +50,4 @@ function readTemplates() {
     logger.logInfo(
         `The Default templates file contains ${DefaultTemplates.languages.length} languages and ${template_count} templates.`
     );
-}
-
-/**
- * Important extension data available globally to avoid typos.
- */
-export enum extensionData {
-    id = 'templator',
-    name = 'Templator',
 }

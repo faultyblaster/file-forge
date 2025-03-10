@@ -15,7 +15,7 @@
                         "",
                         "public class ${TM_FILENAME_BASE/^(.)(.*)/${1:/upcase}${2}/}",
                         "{",
-                        "   $0",
+                        "\t${0:// Add your code here}",
                         "}"
                     ]
                 },
@@ -26,7 +26,7 @@
                     "snippet": [
                         "public class ${TM_FILENAME_BASE/^(.)(.*)/${1:/upcase}${2}/}",
                         "{",
-                        "   $0",
+                        "\t${0:// Add your code here}",
                         "}"
                     ]
                 },
@@ -39,9 +39,9 @@
                         "",
                         "public enum ${TM_FILENAME_BASE/^(.)(.*)/${1:/upcase}${2}/}",
                         "{",
-                        "   Value1,",
-                        "   Value2,",
-                        "   Value3",
+                        "\tValue1,",
+                        "\tValue2,",
+                        "\tValue3",
                         "}"
                     ]
                 },
@@ -54,7 +54,7 @@
                         "",
                         "public interface ${TM_FILENAME_BASE/^(.)(.*)/${1:/upcase}${2}/}",
                         "{",
-                        "   void Method();",
+                        "\tvoid Method();",
                         "}"
                     ]
                 },
@@ -77,8 +77,8 @@
                         "",
                         "public struct ${TM_FILENAME_BASE/^(.)(.*)/${1:/upcase}${2}/}",
                         "{",
-                        "   public int Id { get; set; }",
-                        "   public string Name { get; set; }",
+                        "\tpublic int Id { get; set; }",
+                        "\tpublic string Name { get; set; }",
                         "}"
                     ]
                 },
@@ -93,16 +93,16 @@
                         "",
                         "public class ${TM_FILENAME_BASE/^(.)(.*)/${1:/upcase}${2}/}",
                         "{",
-                        "   [Fact]",
-                        "   public void TestMethod()",
-                        "   {",
-                        "       // Arrange",
-                        "       ",
-                        "       // Act",
-                        "       ",
-                        "       // Assert",
-                        "       Assert.True(true);",
-                        "   }",
+                        "\t[Fact]",
+                        "\tpublic void TestMethod()",
+                        "\t{",
+                        "\t\t// Arrange",
+                        "\t\t",
+                        "\t\t// Act",
+                        "\t\t",
+                        "\t\t// Assert",
+                        "\t\tAssert.True(true);",
+                        "\t}",
                         "}"
                     ]
                 },
@@ -167,6 +167,58 @@
             "requireNamespace": false,
             "templates": [
                 {
+                    "alias": "compiler options",
+                    "description": "Ts config file with strict mode",
+                    "fileName": "tsconfig",
+                    "extensionOverride": "json",
+                    "snippet": [
+                        "{",
+                        "\t\"compilerOptions\": {",
+                        "\t\t\"target\": \"ES2020\",",
+                        "\t\t\"module\": \"commonjs\",",
+                        "\t\t\"rootDir\": \"src\",",
+                        "\t\t\"forceConsistentCasingInFileNames\": true,",
+                        "\t\t\"strict\": true,",
+                        "\t\t\"noImplicitAny\": true,",
+                        "\t\t\"strictNullChecks\": true,",
+                        "\t\t\"strictFunctionTypes\": true,",
+                        "\t\t\"noImplicitThis\": true,",
+                        "\t\t\"alwaysStrict\": true,",
+                        "\t\t\"noUnusedLocals\": true,",
+                        "\t\t\"noUnusedParameters\": true,",
+                        "\t\t\"noImplicitReturns\": true,",
+                        "\t\t\"noFallthroughCasesInSwitch\": true,",
+                        "\t\t\"noImplicitOverride\": true,",
+                        "\t\t\"noPropertyAccessFromIndexSignature\": true,",
+                        "\t\t\"skipLibCheck\": true,",
+                        "\t\t\"declaration\": true,",
+                        "\t\t\"outDir\": \"dist\",",
+                        "\t\t\"esModuleInterop\": true,",
+                        "\t\t\"resolveJsonModule\": true",
+                        "\t},",
+                        "\t\"include\": [\"src/**/*\"]",
+                        "}"
+                    ]
+                },
+                {
+                    "alias": "index",
+                    "description": "Simple index file",
+                    "fileName": "index",
+                    "snippet": [
+                        "export * from './${TM_FILENAME_BASE/^(.)(.*)/${1:/upcase}${2}/}';"
+                    ]
+                },
+                {
+                    "alias": "module",
+                    "description": "A simple Module",
+                    "fileName": "module",
+                    "snippet": [
+                        "export module ${TM_FILENAME_BASE/^(.)(.*)/${1:/upcase}${2}/} {",
+                        "\t$0",
+                        "}"
+                    ]
+                },
+                {
                     "alias": "class",
                     "description": "A simple Class",
                     "fileName": "class",
@@ -207,10 +259,30 @@
                     ]
                 },
                 {
-                    "alias": "Hello World Script",
+                    "alias": "hello World Script",
                     "description": "A simple Hello World script",
                     "fileName": "main",
                     "snippet": ["console.log(\"Hello World\");"]
+                },
+                {
+                    "alias": "type",
+                    "description": "A simple Type",
+                    "fileName": "type",
+                    "snippet": [
+                        "type ${TM_FILENAME_BASE/^(.)(.*)/${1:/upcase}${2}/} = {",
+                        "\t$0",
+                        "};"
+                    ]
+                },
+                {
+                    "alias": "module",
+                    "description": "",
+                    "fileName": "module",
+                    "snippet": [
+                        "module ${TM_FILENAME_BASE/^(.)(.*)/${1:/upcase}${2}/} {",
+                        "\t$0",
+                        "}"
+                    ]
                 }
             ]
         },
@@ -257,93 +329,6 @@
                         "",
                         "if __name__ == \"__main__\":",
                         "\tmain()"
-                    ]
-                }
-            ]
-        },
-        {
-            "alias": "Other",
-            "extension": "txt",
-            "requireNamespace": false,
-            "templates": [
-                {
-                    "alias": "text",
-                    "description": "Simple text file",
-                    "fileName": "text",
-                    "extensionOverride": "txt",
-                    "snippet": ["This is a simple text file"]
-                },
-                {
-                    "alias": "markdown",
-                    "description": "Simple markdown file",
-                    "fileName": "markdown",
-                    "extensionOverride": "md",
-                    "snippet": [
-                        "# Markdown",
-                        "",
-                        "This is a simple markdown file"
-                    ]
-                },
-                {
-                    "alias": "json",
-                    "description": "Simple JSON file",
-                    "fileName": "json",
-                    "extensionOverride": "json",
-                    "snippet": ["{", "   \"key\": \"value\"", "}"]
-                },
-                {
-                    "alias": "yaml",
-                    "description": "Simple YAML file",
-                    "fileName": "yaml",
-                    "extensionOverride": "yaml",
-                    "snippet": ["key: value"]
-                },
-                {
-                    "alias": "xml",
-                    "description": "Simple XML file",
-                    "fileName": "xml",
-                    "extensionOverride": "xml",
-                    "snippet": ["<root>", "   <key>value</key>", "</root>"]
-                },
-                {
-                    "alias": "csv",
-                    "description": "Simple CSV file",
-                    "fileName": "csv",
-                    "extensionOverride": "csv",
-                    "snippet": ["key1,key2,key3", "value1,value2,value3"]
-                },
-                {
-                    "alias": "dockerfile",
-                    "description": "Simple Dockerfile",
-                    "fileName": "Dockerfile",
-                    "extensionOverride": "dockerfile",
-                    "snippet": [
-                        "FROM python:3.8",
-                        "",
-                        "WORKDIR /app",
-                        "",
-                        "COPY . .",
-                        "",
-                        "RUN pip install -r requirements.txt",
-                        "",
-                        "CMD [\"python\", \"main.py\"]"
-                    ]
-                },
-                {
-                    "alias": "gitignore",
-                    "description": "Simple .gitignore file",
-                    "fileName": ".gitignore",
-                    "extensionOverride": "",
-                    "snippet": [
-                        "# Ignore all .log files",
-                        "*.log",
-                        "",
-                        "# Ignore all .txt files",
-                        "*.txt",
-                        "",
-                        "# Ignore bin and obj folders",
-                        "bin/",
-                        "obj/"
                     ]
                 }
             ]
@@ -478,6 +463,93 @@
                         "\t$0",
                         "</body>",
                         "</html>"
+                    ]
+                }
+            ]
+        },
+        {
+            "alias": "Other",
+            "extension": "txt",
+            "requireNamespace": false,
+            "templates": [
+                {
+                    "alias": "text",
+                    "description": "Simple text file",
+                    "fileName": "text",
+                    "extensionOverride": "txt",
+                    "snippet": ["This is a simple text file"]
+                },
+                {
+                    "alias": "markdown",
+                    "description": "Simple markdown file",
+                    "fileName": "markdown",
+                    "extensionOverride": "md",
+                    "snippet": [
+                        "# Markdown",
+                        "",
+                        "This is a simple markdown file"
+                    ]
+                },
+                {
+                    "alias": "json",
+                    "description": "Simple JSON file",
+                    "fileName": "json",
+                    "extensionOverride": "json",
+                    "snippet": ["{", "   \"key\": \"value\"", "}"]
+                },
+                {
+                    "alias": "yaml",
+                    "description": "Simple YAML file",
+                    "fileName": "yaml",
+                    "extensionOverride": "yaml",
+                    "snippet": ["key: value"]
+                },
+                {
+                    "alias": "xml",
+                    "description": "Simple XML file",
+                    "fileName": "xml",
+                    "extensionOverride": "xml",
+                    "snippet": ["<root>", "   <key>value</key>", "</root>"]
+                },
+                {
+                    "alias": "csv",
+                    "description": "Simple CSV file",
+                    "fileName": "csv",
+                    "extensionOverride": "csv",
+                    "snippet": ["key1,key2,key3", "value1,value2,value3"]
+                },
+                {
+                    "alias": "dockerfile",
+                    "description": "Simple Dockerfile",
+                    "fileName": "Dockerfile",
+                    "extensionOverride": "dockerfile",
+                    "snippet": [
+                        "FROM python:3.8",
+                        "",
+                        "WORKDIR /app",
+                        "",
+                        "COPY . .",
+                        "",
+                        "RUN pip install -r requirements.txt",
+                        "",
+                        "CMD [\"python\", \"main.py\"]"
+                    ]
+                },
+                {
+                    "alias": "gitignore",
+                    "description": "Simple, empty .gitignore file",
+                    "fileName": ".gitignore",
+                    "extensionOverride": "",
+                    "snippet": [
+                        "# Ignore all .log files",
+                        "*.log",
+                        "",
+                        "# Ignore all .txt files",
+                        "*.txt",
+                        "",
+                        "# Ignore bin and obj folders",
+                        "bin/",
+                        "obj/"
                     ]
                 }
             ]

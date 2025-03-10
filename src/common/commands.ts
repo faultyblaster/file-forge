@@ -1,7 +1,7 @@
 import * as vscode from 'vscode';
 import { extensionData, logger } from '../extension';
 import { ShowError, ShowInfo } from './messages';
-import { Namespacer } from './namespace';
+import { Namespacer } from '../systems/namespacer';
 import {
     createFile,
     determinateDestination,
@@ -70,9 +70,12 @@ export function registerCommands(ctx: vscode.ExtensionContext) {
     );
 
     // File specific commands: Creating a specific file, skipping the selectTemplate part
+
+    // Create cs file, no template pre-selection
     const createCSFile = vscode.commands.registerCommand(
-        FileCreation.newCSFile,
+        `${extensionData.id}.newCSFile`,
         async (clicker: vscode.Uri) => {
+            logger.logInfo('Creating a new C# file');
             vscode.commands.executeCommand(
                 `${FileCreation.newFile}`,
                 clicker,
@@ -83,8 +86,9 @@ export function registerCommands(ctx: vscode.ExtensionContext) {
 
     // Create C# Class
     const createCSClass = vscode.commands.registerCommand(
-        FileCreation.newCSClass,
+        `${extensionData.id}.newCSClass`,
         async (clicker: vscode.Uri) => {
+            logger.logInfo('Creating a new C# class');
             vscode.commands.executeCommand(
                 `${FileCreation.newFile}`,
                 clicker,
@@ -94,8 +98,9 @@ export function registerCommands(ctx: vscode.ExtensionContext) {
         }
     ); // Create C# Enum
     const createCSEnum = vscode.commands.registerCommand(
-        FileCreation.newCSEnum,
+        `${extensionData.id}.newCSEnum`,
         async (clicker: vscode.Uri) => {
+            logger.logInfo('Creating a new C# enum');
             vscode.commands.executeCommand(
                 `${FileCreation.newFile}`,
                 clicker,
@@ -106,8 +111,9 @@ export function registerCommands(ctx: vscode.ExtensionContext) {
     );
     // Create C# Interface
     const createCSInterface = vscode.commands.registerCommand(
-        FileCreation.newCSInterface,
+        `${extensionData.id}.newCSInterface`,
         async (clicker: vscode.Uri) => {
+            logger.logInfo('Creating a new C# interface');
             vscode.commands.executeCommand(
                 `${FileCreation.newFile}`,
                 clicker,
@@ -118,8 +124,9 @@ export function registerCommands(ctx: vscode.ExtensionContext) {
     );
     // Create C# Record
     const createCSRecord = vscode.commands.registerCommand(
-        FileCreation.newCSRecord,
+        `${extensionData.id}.newCSRecord`,
         async (clicker: vscode.Uri) => {
+            logger.logInfo('Creating a new C# record');
             vscode.commands.executeCommand(
                 `${FileCreation.newFile}`,
                 clicker,
@@ -130,8 +137,9 @@ export function registerCommands(ctx: vscode.ExtensionContext) {
     );
     // Create C# Struct
     const createCSStruct = vscode.commands.registerCommand(
-        FileCreation.newCSStruct,
+        `${extensionData.id}.newCSStruct`,
         async (clicker: vscode.Uri) => {
+            logger.logInfo('Creating a new C# struct');
             vscode.commands.executeCommand(
                 `${FileCreation.newFile}`,
                 clicker,
@@ -141,6 +149,294 @@ export function registerCommands(ctx: vscode.ExtensionContext) {
         }
     );
 
+    // Create C# Global Usings
+    const createCSGlobUsings = vscode.commands.registerCommand(
+        `${extensionData.id}.newCsGlobalUsings`,
+        async (clicker: vscode.Uri) => {
+            logger.logInfo('Creating a new C# Global Usings file');
+            vscode.commands.executeCommand(
+                `${FileCreation.newFile}`,
+                clicker,
+                'C#',
+                'Global Usings'
+            );
+        }
+    );
+
+    // commands for typescript
+
+    // Create ts file, no template pre-selection
+    const createTSFile = vscode.commands.registerCommand(
+        `${extensionData.id}.newTSFile`,
+        async (clicker: vscode.Uri) => {
+            logger.logInfo('Creating a new TypeScript file');
+            vscode.commands.executeCommand(
+                `${FileCreation.newFile}`,
+                clicker,
+                'TypeScript'
+            );
+        }
+    );
+
+    // create ts class
+    const createTSClass = vscode.commands.registerCommand(
+        `${extensionData.id}.newTSClass`,
+        async (clicker: vscode.Uri) => {
+            logger.logInfo('Creating a new TypeScript class');
+            vscode.commands.executeCommand(
+                `${FileCreation.newFile}`,
+                clicker,
+                'TypeScript',
+                'class'
+            );
+        }
+    );
+
+    // create ts interface
+    const createTSInterface = vscode.commands.registerCommand(
+        `${extensionData.id}.newTSInterface`,
+        async (clicker: vscode.Uri) => {
+            logger.logInfo('Creating a new TypeScript interface');
+            vscode.commands.executeCommand(
+                `${FileCreation.newFile}`,
+                clicker,
+                'TypeScript',
+                'interface'
+            );
+        }
+    );
+
+    // create ts enum
+    const createTSEnum = vscode.commands.registerCommand(
+        `${extensionData.id}.newTSEnum`,
+        async (clicker: vscode.Uri) => {
+            logger.logInfo('Creating a new TypeScript enum');
+            vscode.commands.executeCommand(
+                `${FileCreation.newFile}`,
+                clicker,
+                'TypeScript',
+                'enum'
+            );
+        }
+    );
+
+    // Create ts index
+    const createTSIndex = vscode.commands.registerCommand(
+        `${extensionData.id}.newTSIndex`,
+        async (clicker: vscode.Uri) => {
+            logger.logInfo('Creating a new TypeScript index file');
+            vscode.commands.executeCommand(
+                `${FileCreation.newFile}`,
+                clicker,
+                'TypeScript',
+                'index'
+            );
+        }
+    );
+
+    // Create ts compiler options
+    const createTSCompilerOptions = vscode.commands.registerCommand(
+        `${extensionData.id}.newTSCompilerOptions`,
+        async (clicker: vscode.Uri) => {
+            logger.logInfo('Creating a new TypeScript compiler options file');
+            vscode.commands.executeCommand(
+                `${FileCreation.newFile}`,
+                clicker,
+                'TypeScript',
+                'compiler options'
+            );
+        }
+    );
+
+    // Create ts module
+    const createTSModule = vscode.commands.registerCommand(
+        `${extensionData.id}.newTSModule`,
+        async (clicker: vscode.Uri) => {
+            logger.logInfo('Creating a new TypeScript module file');
+            vscode.commands.executeCommand(
+                `${FileCreation.newFile}`,
+                clicker,
+                'TypeScript',
+                'module'
+            );
+        }
+    );
+
+    // Create Cpp file, no template pre-selection
+    const createCppFile = vscode.commands.registerCommand(
+        `${extensionData.id}.newCppFile`,
+        async (clicker: vscode.Uri) => {
+            logger.logInfo('Creating a new C++ file');
+            vscode.commands.executeCommand(
+                `${FileCreation.newFile}`,
+                clicker,
+                'C++'
+            );
+        }
+    );
+
+    // Create c++ class
+    const createCppClass = vscode.commands.registerCommand(
+        `${extensionData.id}.newCppClass`,
+        async (clicker: vscode.Uri) => {
+            logger.logInfo('Creating a new C++ class');
+            vscode.commands.executeCommand(
+                `${FileCreation.newFile}`,
+                clicker,
+                'C++',
+                'class'
+            );
+        }
+    );
+
+    // Create Cpp function
+    const createCppFunction = vscode.commands.registerCommand(
+        `${extensionData.id}.newCppFunction`,
+        async (clicker: vscode.Uri) => {
+            logger.logInfo('Creating a new C++ function');
+            vscode.commands.executeCommand(
+                `${FileCreation.newFile}`,
+                clicker,
+                'C++',
+                'function'
+            );
+        }
+    );
+
+    // Create Cpp main
+    const createCppMain = vscode.commands.registerCommand(
+        `${extensionData.id}.newCppMain`,
+        async (clicker: vscode.Uri) => {
+            logger.logInfo('Creating a new C++ main file');
+            vscode.commands.executeCommand(
+                `${FileCreation.newFile}`,
+                clicker,
+                'C++',
+                'main'
+            );
+        }
+    );
+
+    // Create Cpp header
+    const createCppHeader = vscode.commands.registerCommand(
+        `${extensionData.id}.newCppHeader`,
+        async (clicker: vscode.Uri) => {
+            logger.logInfo('Creating a new C++ header file');
+            vscode.commands.executeCommand(
+                `${FileCreation.newFile}`,
+                clicker,
+                'C++',
+                'header'
+            );
+        }
+    );
+
+    // Create Cpp makefile
+    const createCppMakefile = vscode.commands.registerCommand(
+        `${extensionData.id}.newCppMakefile`,
+        async (clicker: vscode.Uri) => {
+            logger.logInfo('Creating a new C++ makefile');
+            vscode.commands.executeCommand(
+                `${FileCreation.newFile}`,
+                clicker,
+                'C++',
+                'makefile'
+            );
+        }
+    );
+
+    // create Python file, no template pre-selection
+    const createPYFile = vscode.commands.registerCommand(
+        `${extensionData.id}.newPYFile`,
+        async (clicker: vscode.Uri) => {
+            logger.logInfo('Creating a new Python file');
+            vscode.commands.executeCommand(
+                `${FileCreation.newFile}`,
+                clicker,
+                'Python'
+            );
+        }
+    );
+
+    // create Python main
+    const createPYMain = vscode.commands.registerCommand(
+        `${extensionData.id}.newPYMain`,
+        async (clicker: vscode.Uri) => {
+            logger.logInfo('Creating a new Python main file');
+            vscode.commands.executeCommand(
+                `${FileCreation.newFile}`,
+                clicker,
+                'Python',
+                'main'
+            );
+        }
+    );
+
+    // create Python requirements.txt
+    const createPYRequirements = vscode.commands.registerCommand(
+        `${extensionData.id}.newPYRequirements`,
+        async (clicker: vscode.Uri) => {
+            logger.logInfo('Creating a new Python requirements file');
+            vscode.commands.executeCommand(
+                `${FileCreation.newFile}`,
+                clicker,
+                'Python',
+                'requirements'
+            );
+        }
+    );
+
+    // Language agnostic commands, files such as json, xml, markdown, csv, etc
+    const createJsonFile = vscode.commands.registerCommand(
+        `${extensionData.id}.newJsonFile`,
+        async (clicker: vscode.Uri) => {
+            logger.logInfo('Creating a new JSON file');
+            vscode.commands.executeCommand(
+                `${FileCreation.newFile}`,
+                clicker,
+                'Other',
+                'json'
+            );
+        }
+    );
+    const createXmlFile = vscode.commands.registerCommand(
+        `${extensionData.id}.newXmlFile`,
+        async (clicker: vscode.Uri) => {
+            logger.logInfo('Creating a new XML file');
+            vscode.commands.executeCommand(
+                `${FileCreation.newFile}`,
+                clicker,
+                'Other',
+                'xml'
+            );
+        }
+    );
+    const createMdFile = vscode.commands.registerCommand(
+        `${extensionData.id}.newMarkdownFile`,
+        async (clicker: vscode.Uri) => {
+            logger.logInfo('Creating a new Markdown file');
+            vscode.commands.executeCommand(
+                `${FileCreation.newFile}`,
+                clicker,
+                'Other',
+                'markdown'
+            );
+        }
+    );
+    const createSCVFile = vscode.commands.registerCommand(
+        `${extensionData.id}.newCSVFile`,
+        async (clicker: vscode.Uri) => {
+            logger.logInfo('Creating a new CSV file');
+            vscode.commands.executeCommand(
+                `${FileCreation.newFile}`,
+                clicker,
+                'Other',
+                'csv'
+            );
+        }
+    );
+
+    // Commands registration
     ctx.subscriptions.push(
         createNewFile,
         createCSharpNamespace,
@@ -150,7 +446,32 @@ export function registerCommands(ctx: vscode.ExtensionContext) {
         createCSEnum,
         createCSInterface,
         createCSRecord,
-        createCSStruct
+        createCSStruct,
+        createCSGlobUsings,
+        // TypeScript files
+        createTSFile,
+        createTSClass,
+        createTSInterface,
+        createTSEnum,
+        createTSIndex,
+        createTSModule,
+        createTSCompilerOptions,
+        // Cpp files
+        createCppFile,
+        createCppClass,
+        createCppFunction,
+        createCppMain,
+        createCppHeader,
+        createCppMakefile,
+        // Python files
+        createPYFile,
+        createPYMain,
+        createPYRequirements,
+        // Other files
+        createJsonFile,
+        createXmlFile,
+        createMdFile,
+        createSCVFile
     );
 }
 
@@ -160,10 +481,4 @@ export function registerCommands(ctx: vscode.ExtensionContext) {
 enum FileCreation {
     newFile = `${extensionData.id}.newFile`,
     newCustomFile = `${extensionData.id}.newCustomFile`,
-    newCSFile = `${extensionData.id}.newCSFile`,
-    newCSClass = `${extensionData.id}.newCSClass`,
-    newCSEnum = `${extensionData.id}.newCSEnum`,
-    newCSInterface = `${extensionData.id}.newCSInterface`,
-    newCSRecord = `${extensionData.id}.newCSRecord`,
-    newCSStruct = `${extensionData.id}.newCSStruct`,
 }

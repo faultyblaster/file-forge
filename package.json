@@ -1,8 +1,8 @@
 {
     "name": "templator",
     "displayName": "Templator",
-    "description": "Templates for vscode",
-    "version": "0.0.2",
+    "description": "Easy file creation with templates, type less, code more.",
+    "version": "0.0.4",
     "engines": {
         "vscode": "^1.97.0"
     },
@@ -30,6 +30,7 @@
         "new file",
         "templates"
     ],
+    "icon": "media/icons/ext/scroll.png",
     "license": "MIT",
     "readme": "/README.md",
     "extensionKind": [
@@ -80,6 +81,106 @@
                 "command": "templator.newCSStruct",
                 "title": "Struct",
                 "category": "Templator"
+            },
+            {
+                "command": "templator.newCsGlobalUsings",
+                "title": "Global Usings",
+                "category": "Templator"
+            },
+            {
+                "command": "templator.newTSFile",
+                "title": "Create TS File",
+                "category": "Templator"
+            },
+            {
+                "command": "templator.newTSClass",
+                "title": "Class",
+                "category": "Templator"
+            },
+            {
+                "command": "templator.newTSEnum",
+                "title": "Enum",
+                "category": "Templator"
+            },
+            {
+                "command": "templator.newTSInterface",
+                "title": "Interface",
+                "category": "Templator"
+            },
+            {
+                "command": "templator.newTSCompilerOptions",
+                "title": "Compiler Options",
+                "category": "Templator"
+            },
+            {
+                "command": "templator.newTSIndex",
+                "title": "Index",
+                "category": "Templator"
+            },
+            {
+                "command": "templator.newTSModule",
+                "title": "Module",
+                "category": "Templator"
+            },
+            {
+                "command": "templator.newPYFile",
+                "title": "Create PY File",
+                "category": "Templator"
+            },
+            {
+                "command": "templator.newPYMain",
+                "title": "Main",
+                "category": "Templator"
+            },
+            {
+                "command": "templator.newCppFile",
+                "title": "Create Cpp File",
+                "category": "Templator"
+            },
+            {
+                "command": "templator.newCppClass",
+                "title": "Class",
+                "category": "Templator"
+            },
+            {
+                "command": "templator.newCppFunction",
+                "title": "Function",
+                "category": "Templator"
+            },
+            {
+                "command": "templator.newCppMain",
+                "title": "Main",
+                "category": "Templator"
+            },
+            {
+                "command": "templator.newCppHeader",
+                "title": "Header",
+                "category": "Templator"
+            },
+            {
+                "command": "templator.newPYRequirements",
+                "title": "Requirements",
+                "category": "Templator"
+            },
+            {
+                "command": "templator.newJsonFile",
+                "title": "JSON File",
+                "category": "Templator"
+            },
+            {
+                "command": "templator.newXmlFile",
+                "title": "XML File",
+                "category": "Templator"
+            },
+            {
+                "command": "templator.newMarkdownFile",
+                "title": "Markdown File",
+                "category": "Templator"
+            },
+            {
+                "command": "templator.newCSVFile",
+                "title": "CSV File",
+                "category": "Templator"
             }
         ],
         "menus": {
@@ -97,33 +198,182 @@
                 {
                     "submenu": "file.creation.cs",
                     "group": "_fileCreation",
-                    "when": "explorerResourceIsFolder"
+                    "when": "explorerResourceIsFolder && templator.showCSharpContext"
+                },
+                {
+                    "submenu": "file.creation.ts",
+                    "group": "_fileCreation",
+                    "when": "explorerResourceIsFolder && templator.showTSContext"
+                },
+                {
+                    "submenu": "file.creation.py",
+                    "group": "_fileCreation",
+                    "when": "explorerResourceIsFolder && templator.showPYContext"
+                },
+                {
+                    "submenu": "file.creation.cpp",
+                    "group": "_fileCreation",
+                    "when": "explorerResourceIsFolder && templator.showCppContext"
                 }
             ],
             "file.creation.cs": [
                 {
                     "command": "templator.newCSFile",
-                    "group": "_general@1"
+                    "group": "_alpha"
                 },
                 {
                     "command": "templator.newCSClass",
-                    "group": "basic@2"
+                    "group": "bravo"
                 },
                 {
                     "command": "templator.newCSEnum",
-                    "group": "basic@2"
+                    "group": "bravo"
                 },
                 {
                     "command": "templator.newCSInterface",
-                    "group": "basic@2"
+                    "group": "bravo"
                 },
                 {
                     "command": "templator.newCSRecord",
-                    "group": "basic@2"
+                    "group": "bravo"
                 },
                 {
                     "command": "templator.newCSStruct",
-                    "group": "basic@2"
+                    "group": "bravo"
+                },
+                {
+                    "command": "templator.newCsGlobalUsings",
+                    "group": "charlie"
+                },
+                {
+                    "command": "templator.newJsonFile",
+                    "group": "zulu"
+                },
+                {
+                    "command": "templator.newXmlFile",
+                    "group": "zulu"
+                },
+                {
+                    "command": "templator.newMarkdownFile",
+                    "group": "zulu"
+                },
+                {
+                    "command": "templator.newCSVFile",
+                    "group": "zulu"
+                }
+            ],
+            "file.creation.ts": [
+                {
+                    "command": "templator.newTSFile",
+                    "group": "_alpha"
+                },
+                {
+                    "command": "templator.newTSClass",
+                    "group": "bravo"
+                },
+                {
+                    "command": "templator.newTSEnum",
+                    "group": "bravo"
+                },
+                {
+                    "command": "templator.newTSInterface",
+                    "group": "bravo"
+                },
+                {
+                    "command": "templator.newTSIndex",
+                    "group": "bravo"
+                },
+                {
+                    "command": "templator.newTSModule",
+                    "group": "bravo"
+                },
+                {
+                    "command": "templator.newTSCompilerOptions",
+                    "group": "delta"
+                },
+                {
+                    "command": "templator.newJsonFile",
+                    "group": "zulu"
+                },
+                {
+                    "command": "templator.newXmlFile",
+                    "group": "zulu"
+                },
+                {
+                    "command": "templator.newMarkdownFile",
+                    "group": "zulu"
+                },
+                {
+                    "command": "templator.newCSVFile",
+                    "group": "zulu"
+                }
+            ],
+            "file.creation.cpp": [
+                {
+                    "command": "templator.newCppFile",
+                    "group": "_alpha"
+                },
+                {
+                    "command": "templator.newCppClass",
+                    "group": "bravo"
+                },
+                {
+                    "command": "templator.newCppFunction",
+                    "group": "bravo"
+                },
+                {
+                    "command": "templator.newCppMain",
+                    "group": "bravo"
+                },
+                {
+                    "command": "templator.newCppHeader",
+                    "group": "bravo"
+                },
+                {
+                    "command": "templator.newJsonFile",
+                    "group": "zulu"
+                },
+                {
+                    "command": "templator.newXmlFile",
+                    "group": "zulu"
+                },
+                {
+                    "command": "templator.newMarkdownFile",
+                    "group": "zulu"
+                },
+                {
+                    "command": "templator.newCSVFile",
+                    "group": "zulu"
+                }
+            ],
+            "file.creation.py": [
+                {
+                    "command": "templator.newPYFile",
+                    "group": "_alpha"
+                },
+                {
+                    "command": "templator.newPYMain",
+                    "group": "bravo"
+                },
+                {
+                    "command": "templator.newPYRequirements",
+                    "group": "bravo"
+                },
+                {
+                    "command": "templator.newJsonFile",
+                    "group": "zulu"
+                },
+                {
+                    "command": "templator.newXmlFile",
+                    "group": "zulu"
+                },
+                {
+                    "command": "templator.newMarkdownFile",
+                    "group": "zulu"
+                },
+                {
+                    "command": "templator.newCSVFile",
+                    "group": "zulu"
                 }
             ],
             "commandPalette": [
@@ -146,6 +396,74 @@
                 {
                     "command": "templator.newCSStruct",
                     "when": "false"
+                },
+                {
+                    "command": "templator.newTSClass",
+                    "when": "false"
+                },
+                {
+                    "command": "templator.newTSEnum",
+                    "when": "false"
+                },
+                {
+                    "command": "templator.newTSInterface",
+                    "when": "false"
+                },
+                {
+                    "command": "templator.newTSIndex",
+                    "when": "false"
+                },
+                {
+                    "command": "templator.newTSModule",
+                    "when": "false"
+                },
+                {
+                    "command": "templator.newTSCompilerOptions",
+                    "when": "false"
+                },
+                {
+                    "command": "templator.newCppFile",
+                    "when": "false"
+                },
+                {
+                    "command": "templator.newCppClass",
+                    "when": "false"
+                },
+                {
+                    "command": "templator.newCppFunction",
+                    "when": "false"
+                },
+                {
+                    "command": "templator.newCppMain",
+                    "when": "false"
+                },
+                {
+                    "command": "templator.newCppHeader",
+                    "when": "false"
+                },
+                {
+                    "command": "templator.newPYMain",
+                    "when": "false"
+                },
+                {
+                    "command": "templator.newPYRequirements",
+                    "when": "false"
+                },
+                {
+                    "command": "templator.newJsonFile",
+                    "when": "false"
+                },
+                {
+                    "command": "templator.newXmlFile",
+                    "when": "false"
+                },
+                {
+                    "command": "templator.newMarkdownFile",
+                    "when": "false"
+                },
+                {
+                    "command": "templator.newCSVFile",
+                    "when": "false"
                 }
             ]
         },
@@ -153,6 +471,40 @@
             {
                 "id": "file.creation.cs",
                 "label": "New C# file"
+            },
+            {
+                "id": "file.creation.ts",
+                "label": "New TypeScript file"
+            },
+            {
+                "id": "file.creation.py",
+                "label": "New Python file"
+            },
+            {
+                "id": "file.creation.cpp",
+                "label": "New C++ file"
+            }
+        ],
+        "keybindings": [
+            {
+                "command": "templator.newFile",
+                "key": "shift+alt+n"
+            },
+            {
+                "command": "templator.newCSFile",
+                "key": "shift+alt+c"
+            },
+            {
+                "command": "templator.newCppFile",
+                "key": "shift+alt+o"
+            },
+            {
+                "command": "templator.newTSFile",
+                "key": "shift+alt+t"
+            },
+            {
+                "command": "templator.newPYFile",
+                "key": "shift+alt+p"
             }
         ]
     },
@@ -171,16 +523,19 @@
         "test": "vscode-test"
     },
     "devDependencies": {
-        "@types/vscode": "^1.97.0",
         "@types/mocha": "^10.0.10",
         "@types/node": "20.x",
+        "@types/vscode": "^1.97.0",
         "@typescript-eslint/eslint-plugin": "^8.22.0",
         "@typescript-eslint/parser": "^8.22.0",
-        "eslint": "^9.19.0",
-        "esbuild": "^0.24.2",
-        "npm-run-all": "^4.1.5",
-        "typescript": "^5.7.3",
         "@vscode/test-cli": "^0.0.10",
-        "@vscode/test-electron": "^2.4.1"
+        "@vscode/test-electron": "^2.4.1",
+        "esbuild": "^0.25.1",
+        "eslint": "^9.19.0",
+        "npm-run-all": "^4.1.5",
+        "typescript": "^5.7.3"
+    },
+    "dependencies": {
+        "vs-logger": "^1.0.2"
     }
 }
