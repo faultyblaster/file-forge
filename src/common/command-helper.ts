@@ -8,7 +8,7 @@ import {
     workspace,
 } from 'vscode';
 import { all_languages, logger } from '../extension';
-import { Language, Template } from '../templates/interface';
+import { Language, Template } from '../templates/template-definition';
 import path from 'path';
 import { Namespacer } from '../systems/namespacer';
 import { ErrorMessages, ShowError } from './messages';
@@ -40,7 +40,7 @@ export async function selectTemplate(
         );
         const tempLanguage = await window.showQuickPick(
             all_languages
-                .map((item): QuickPickItem => {
+                .map((item) => {
                     const iconUri = Uri.file(
                         path.join(
                             ctx.extensionPath,
@@ -51,6 +51,9 @@ export async function selectTemplate(
                         label: item.alias,
                         description: item.extension,
                         iconPath: iconUri,
+                        id: item.id,
+                    } as QuickPickItem & {
+                        id: string;
                     };
                 })
                 .sort((a, b) => {
@@ -62,13 +65,13 @@ export async function selectTemplate(
             throw new Error(ErrorMessages.cancelledByUser);
         }
         selectedLang = all_languages.find(
-            (lang) => lang.alias === tempLanguage.label
+            (lang) => lang.id === tempLanguage.id
         );
     } else {
         logger.logInfo(
             `A language was already requested: '${selectLang}', skipping user intervention`
         );
-        selectedLang = all_languages.find((lang) => lang.alias === selectLang);
+        selectedLang = all_languages.find((lang) => lang.id === selectLang);
     }
 
     if (selectedLang === undefined) {
@@ -85,7 +88,7 @@ export async function selectTemplate(
 
         // Template mapping
         let languageTemplateItems = selectedLang.templates
-            .map((item): QuickPickItem => {
+            .map((item) => {
                 let iconUri: Uri;
                 if (item.extensionOverride) {
                     iconUri = Uri.file(
@@ -110,9 +113,11 @@ export async function selectTemplate(
                 }
                 return {
                     label: item.alias,
-                    // detail: item.description,
                     description: filename,
                     iconPath: iconUri,
+                    id: item.id,
+                } as QuickPickItem & {
+                    id: string;
                 };
             })
             .sort((a, b) => {
@@ -128,14 +133,14 @@ export async function selectTemplate(
             throw new Error(ErrorMessages.cancelledByUser);
         }
         selectedTemplate = selectedLang.templates.find(
-            (templ) => templ.alias === temTemplate.label
+            (templ) => templ.id === temTemplate.id
         );
     } else {
         logger.logInfo(
             `A template was already requested: '${selectTempl}', skipping user intervention:`
         );
         selectedTemplate = selectedLang.templates.find(
-            (templ) => templ.alias === selectTempl
+            (templ) => templ.id === selectTempl
         );
     }
     if (selectedTemplate === undefined) {
@@ -151,36 +156,58 @@ export async function selectTemplate(
 
 export async function createFile(filePath: Uri, template: usrSelection) {
     logger.logInfo(`Creating file at ${filePath.fsPath}`);
-    // Full directory of the new file
     let FullDir = '';
-
-    // Temp values
-    let basePath = filePath.fsPath;
     let filename = template[1].fileName;
     let fileExtension = template[1].extensionOverride
         ? template[1].extensionOverride
         : template[0].extension;
 
-    logger.logInfo('Asking to the user a name for the new file');
-    // Prompts the user for changes on dir and filename/extension
+    let localePath = workspace.asRelativePath(filePath);
+    let externalFilePath = filePath.fsPath.replace(localePath, '');
+
     let confirmedDir = await window.showInputBox({
         ignoreFocusOut: true,
         placeHolder: 'Enter your file name, and confirm the directory',
         title: 'Enter your file name',
-        value: path.join(basePath, filename + '.' + fileExtension),
+        value: localePath + path.sep + filename + '.' + fileExtension,
         valueSelection: [
-            basePath.length + 1,
-            basePath.length + 1 + filename.length,
+            localePath.length - filename.length,
+            localePath.length,
         ],
+        validateInput: (input) => {
+            // Check for invalid characters in a path
+            const regex = /[<>:"|?*\x00-\x1F]/g;
+            const invalidChars = input.match(regex);
+            if (invalidChars) {
+                return `The following characters are not allowed in a path: '${invalidChars.join(
+                    ', '
+                )}'. Please remove them.`;
+            }
+
+            // Check for only white spaces
+            const onlySpaces = /^\s*$/;
+            if (onlySpaces.test(input)) {
+                return 'The input cannot be empty or only contain spaces.';
+            }
+
+            // Check if the path contains a relative path (e.g. "..")
+            const relativePath = /(\.\.\/|\.\.\\)/;
+            if (relativePath.test(input)) {
+                return 'Relative paths are not allowed. Please provide an absolute path.';
+            }
+
+            // At the end, return null to indicate that the input is valid
+            return null;
+        },
     });
 
     if (confirmedDir === undefined) {
         logger.logWarning(`Process cancelled by user`);
         throw new Error(ErrorMessages.cancelledByUser);
     }
-    // The path as a string
+    confirmedDir = path.join(externalFilePath, confirmedDir);
+    logger.logInfo(`Confirmed directory: ${confirmedDir}`);
     FullDir = path.normalize(confirmedDir);
-    // Uri of the file
     let fileDirectory = Uri.file(FullDir);
     logger.logInfo(`Creating file at ${fileDirectory.fsPath}`);
 
@@ -210,6 +237,10 @@ export async function createFile(filePath: Uri, template: usrSelection) {
     let Namespace: string = await Namespacer.createCSharpNamespace(
         fileDirectory
     );
+    if (template[1].snippet === undefined) {
+        logger.logError('The snippet is empty!');
+        throw new Error(ErrorMessages.templateError);
+    }
     let Snippet: SnippetString = createSnippet(template[1].snippet, Namespace);
 
     // Actual file creation

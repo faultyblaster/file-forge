@@ -3,11 +3,14 @@
     "languages": [
         {
             "alias": "C#",
+            "id": "csharp",
+            "description": "Powerful, modern programming language for .NET",
             "extension": "cs",
             "requireNamespace": true,
             "templates": [
                 {
                     "alias": "Class",
+                    "id": "class",
                     "description": "A simple top level class file",
                     "fileName": "Class",
                     "snippet": [
@@ -21,6 +24,7 @@
                 },
                 {
                     "alias": "Class (no namespace)",
+                    "id": "root-class",
                     "description": "A simple top level class file without a namespace",
                     "fileName": "Class",
                     "snippet": [
@@ -32,6 +36,7 @@
                 },
                 {
                     "alias": "Enum",
+                    "id": "enum",
                     "description": "A simple top level enum file",
                     "fileName": "Enum",
                     "snippet": [
@@ -47,6 +52,7 @@
                 },
                 {
                     "alias": "Interface",
+                    "id": "interface",
                     "description": "A simple top level interface file",
                     "fileName": "Interface",
                     "snippet": [
@@ -60,6 +66,7 @@
                 },
                 {
                     "alias": "Record",
+                    "id": "record",
                     "description": "A simple record file (C# 9+)",
                     "fileName": "Record",
                     "snippet": [
@@ -70,6 +77,7 @@
                 },
                 {
                     "alias": "Struct",
+                    "id": "struct",
                     "description": "A simple struct file",
                     "fileName": "Struct",
                     "snippet": [
@@ -84,6 +92,7 @@
                 },
                 {
                     "alias": "XUnitTest",
+                    "id": "xunit-test",
                     "description": "A simple xUnit test class",
                     "fileName": "XUnitTest",
                     "snippet": [
@@ -108,6 +117,7 @@
                 },
                 {
                     "alias": "Global Usings",
+                    "id": "global-usings",
                     "description": "All your global usings must be placed here",
                     "fileName": "GlobalUsings",
                     "snippet": [
@@ -163,11 +173,14 @@
         },
         {
             "alias": "TypeScript",
+            "description": "Powerful, modern programming language",
+            "id": "ts",
             "extension": "ts",
             "requireNamespace": false,
             "templates": [
                 {
-                    "alias": "compiler options",
+                    "alias": "Compiler options",
+                    "id": "tsconfig",
                     "description": "Ts config file with strict mode",
                     "fileName": "tsconfig",
                     "extensionOverride": "json",
@@ -201,7 +214,8 @@
                     ]
                 },
                 {
-                    "alias": "index",
+                    "alias": "Index",
+                    "id": "index",
                     "description": "Simple index file",
                     "fileName": "index",
                     "snippet": [
@@ -209,7 +223,8 @@
                     ]
                 },
                 {
-                    "alias": "module",
+                    "alias": "Module",
+                    "id": "module",
                     "description": "A simple Module",
                     "fileName": "module",
                     "snippet": [
@@ -219,7 +234,8 @@
                     ]
                 },
                 {
-                    "alias": "class",
+                    "alias": "Class",
+                    "id": "class",
                     "description": "A simple Class",
                     "fileName": "class",
                     "snippet": [
@@ -229,7 +245,8 @@
                     ]
                 },
                 {
-                    "alias": "interface",
+                    "alias": "Interface",
+                    "id": "interface",
                     "description": "A simple Interface",
                     "fileName": "interface",
                     "snippet": [
@@ -239,7 +256,8 @@
                     ]
                 },
                 {
-                    "alias": "enum",
+                    "alias": "Enum",
+                    "id": "enum",
                     "description": "A simple Enum",
                     "fileName": "enum",
                     "snippet": [
@@ -249,7 +267,8 @@
                     ]
                 },
                 {
-                    "alias": "function",
+                    "id": "function",
+                    "alias": "Function",
                     "description": "A simple Function",
                     "fileName": "function",
                     "snippet": [
@@ -259,13 +278,15 @@
                     ]
                 },
                 {
-                    "alias": "hello World Script",
+                    "id": "hello-world",
+                    "alias": "Hello World",
                     "description": "A simple Hello World script",
                     "fileName": "main",
                     "snippet": ["console.log(\"Hello World\");"]
                 },
                 {
-                    "alias": "type",
+                    "id": "type",
+                    "alias": "Type",
                     "description": "A simple Type",
                     "fileName": "type",
                     "snippet": [
@@ -275,8 +296,9 @@
                     ]
                 },
                 {
-                    "alias": "module",
-                    "description": "",
+                    "id": "module",
+                    "alias": "Module",
+                    "description": "A simple Module",
                     "fileName": "module",
                     "snippet": [
                         "module ${TM_FILENAME_BASE/^(.)(.*)/${1:/upcase}${2}/} {",
@@ -288,17 +310,21 @@
         },
         {
             "alias": "Python",
+            "description": "Simple, loosely typed programming language",
+            "id": "py",
             "extension": "py",
             "requireNamespace": false,
             "templates": [
                 {
+                    "id": "script",
                     "alias": "script",
                     "description": "Simple hello world script",
                     "fileName": "script",
                     "snippet": ["print(\"Hello world\")"]
                 },
                 {
-                    "alias": "requirements",
+                    "id": "requirements",
+                    "alias": "Requirements",
                     "description": "Save all your dependencies here",
                     "extensionOverride": "txt",
                     "fileName": "requirements",
@@ -320,7 +346,8 @@
                     ]
                 },
                 {
-                    "alias": "main",
+                    "id": "main",
+                    "alias": "Main",
                     "description": "Main file",
                     "fileName": "main",
                     "snippet": [
@@ -335,11 +362,14 @@
         },
         {
             "alias": "C++",
+            "id": "cpp",
+            "description": "Powerful, modern programming language",
             "extension": "cpp",
             "requireNamespace": false,
             "templates": [
                 {
-                    "alias": "class",
+                    "id": "class",
+                    "alias": "Class",
                     "description": "A simple Class",
                     "fileName": "class",
                     "snippet": [
@@ -350,7 +380,8 @@
                     ]
                 },
                 {
-                    "alias": "function",
+                    "id": "function",
+                    "alias": "Function",
                     "description": "A simple Function",
                     "fileName": "function",
                     "snippet": [
@@ -360,7 +391,8 @@
                     ]
                 },
                 {
-                    "alias": "main",
+                    "id": "main",
+                    "alias": "Main",
                     "description": "Main file",
                     "fileName": "main",
                     "snippet": [
@@ -372,7 +404,23 @@
                     ]
                 },
                 {
-                    "alias": "header",
+                    "id": "main-std",
+                    "alias": "Main (std)",
+                    "description": "Main file with std namespace",
+                    "fileName": "main",
+                    "snippet": [
+                        "#include <iostream>",
+                        "",
+                        "using namespace std;",
+                        "",
+                        "int main() {",
+                        "\t$0",
+                        "}"
+                    ]
+                },
+                {
+                    "id": "header",
+                    "alias": "Header",
                     "description": "Header file",
                     "fileName": "header",
                     "snippet": [
@@ -388,7 +436,8 @@
                     ]
                 },
                 {
-                    "alias": "makefile",
+                    "id": "makefile",
+                    "alias": "Makefile",
                     "description": "Simple Makefile",
                     "fileName": "Makefile",
                     "snippet": [
@@ -405,7 +454,8 @@
                     ]
                 },
                 {
-                    "alias": "cmake",
+                    "id": "cmake",
+                    "alias": "CMake",
                     "description": "Simple CMakeLists.txt",
                     "fileName": "CMakeLists",
                     "extensionOverride": "txt",
@@ -420,12 +470,15 @@
             ]
         },
         {
-            "alias": "html",
+            "id": "html",
+            "alias": "HTML",
             "extension": "html",
+            "description": "Hypertext Markup Language",
             "requireNamespace": false,
             "templates": [
                 {
-                    "alias": "html",
+                    "id": "index",
+                    "alias": "Index HTML file",
                     "description": "Simple HTML file",
                     "fileName": "index",
                     "snippet": [
@@ -441,14 +494,16 @@
                     ]
                 },
                 {
-                    "alias": "css",
+                    "id": "style",
+                    "alias": "Style CSS file",
                     "description": "Simple CSS file",
                     "fileName": "style",
                     "extensionOverride": "css",
                     "snippet": ["body {", "\tmargin: 0;", "\tpadding: 0;", "}"]
                 },
                 {
-                    "alias": "html5",
+                    "id": "html5",
+                    "alias": "HTML5 Boilerplate",
                     "description": "HTML5 Boilerplate",
                     "fileName": "index",
                     "snippet": [
@@ -468,58 +523,69 @@
             ]
         },
         {
+            "id": "other",
             "alias": "Other",
+            "description": "Other file types, not specific to any language",
             "extension": "txt",
             "requireNamespace": false,
             "templates": [
                 {
-                    "alias": "text",
+                    "id": "text",
+                    "alias": "Text file",
                     "description": "Simple text file",
                     "fileName": "text",
                     "extensionOverride": "txt",
                     "snippet": ["This is a simple text file"]
                 },
                 {
-                    "alias": "markdown",
+                    "id": "markdown",
+                    "alias": "Markdown file",
                     "description": "Simple markdown file",
                     "fileName": "markdown",
                     "extensionOverride": "md",
                     "snippet": [
-                        "# Markdown",
+                        "# ${TM_FILENAME_BASE/^(.)(.*)/${1:/upcase}${2}/}",
                         "",
-                        "This is a simple markdown file"
+                        " ## Description",
+                        "This is a simple markdown file",
+                        ""
                     ]
                 },
                 {
-                    "alias": "json",
+                    "id": "json",
+                    "alias": "JSON file",
                     "description": "Simple JSON file",
                     "fileName": "json",
                     "extensionOverride": "json",
                     "snippet": ["{", "   \"key\": \"value\"", "}"]
                 },
                 {
-                    "alias": "yaml",
+                    "id": "yaml",
+                    "alias": "YAML file",
                     "description": "Simple YAML file",
                     "fileName": "yaml",
                     "extensionOverride": "yaml",
                     "snippet": ["key: value"]
                 },
                 {
-                    "alias": "xml",
+                    "id": "xml",
+                    "alias": "XML file",
                     "description": "Simple XML file",
                     "fileName": "xml",
                     "extensionOverride": "xml",
                     "snippet": ["<root>", "   <key>value</key>", "</root>"]
                 },
                 {
-                    "alias": "csv",
+                    "id": "csv",
+                    "alias": "CSV file",
                     "description": "Simple CSV file",
                     "fileName": "csv",
                     "extensionOverride": "csv",
                     "snippet": ["key1,key2,key3", "value1,value2,value3"]
                 },
                 {
-                    "alias": "dockerfile",
+                    "id": "dockerfile",
+                    "alias": "Dockerfile",
                     "description": "Simple Dockerfile",
                     "fileName": "Dockerfile",
                     "extensionOverride": "dockerfile",
@@ -536,7 +602,8 @@
                     ]
                 },
                 {
-                    "alias": "gitignore",
+                    "id": "gitignore",
+                    "alias": ".gitignore",
                     "description": "Simple, empty .gitignore file",
                     "fileName": ".gitignore",
                     "extensionOverride": "",

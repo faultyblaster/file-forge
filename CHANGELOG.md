@@ -12,6 +12,11 @@ All notable changes to the "templator" extension will be documented in this file
 - Removed logger, added a dependency for logging
 - Improved documentation
 - Dependencies updated, security vulnerabilities fixed
+- Added input validation for file name and path
+- Changed the Template Definitions
+  - Now  it allows the property `Children`, which allows the creation of a second template (Not yet implemented)
+  - Added the property `id` to the `Language` and `Template` objects
+  - Added the property `description` to the `language` and `template` objects
 
 ## [0.0.3] - 2025-03-10
 
@@ -33,3 +38,5 @@ All notable changes to the "templator" extension will be documented in this file
 - Started the project, added basic functionality for file generation.
 
 > Note: The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
+
+**Note:** On 2025-03-12 I noticed the name `templator` was already taken on the marketplace, so the name will be changed to other name, but the code will remain the same. Probably on the version 0.0.5 the name will be decided. The github repository will also be renamed to whatever name is decided.

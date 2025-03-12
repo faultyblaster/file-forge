@@ -524,18 +524,18 @@
     },
     "devDependencies": {
         "@types/mocha": "^10.0.10",
-        "@types/node": "20.x",
+        "@types/node": "^22.13.10",
         "@types/vscode": "^1.97.0",
-        "@typescript-eslint/eslint-plugin": "^8.22.0",
-        "@typescript-eslint/parser": "^8.22.0",
+        "@typescript-eslint/eslint-plugin": "^8.26.1",
+        "@typescript-eslint/parser": "^8.26.1",
         "@vscode/test-cli": "^0.0.10",
         "@vscode/test-electron": "^2.4.1",
         "esbuild": "^0.25.1",
-        "eslint": "^9.19.0",
+        "eslint": "^9.22.0",
         "npm-run-all": "^4.1.5",
-        "typescript": "^5.7.3"
+        "typescript": "^5.8.2"
     },
     "dependencies": {
-        "vs-logger": "^1.0.2"
+        "vs-logger": "^1.1.1"
     }
 }

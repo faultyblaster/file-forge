@@ -1,6 +1,6 @@
 import * as vscode from 'vscode';
 import * as DefaultTemplates from './templates/default_templates.json';
-import { Language } from './templates/interface';
+import { Language } from './templates/template-definition';
 import { registerCommands } from './common/commands';
 import { Watcher } from './systems/watcher';
 import { VsLogger } from 'vs-logger';

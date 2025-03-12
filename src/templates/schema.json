@@ -1,46 +1,88 @@
 {
     "$schema": "http://json-schema.org/draft-07/schema#",
-    "type": "object",
-    "properties": {
-        "languages": {
-            "type": "array",
-            "items": {
-                "type": "object",
-                "properties": {
-                    "alias": { "type": "string" },
-                    "extension": { "type": "string" },
-                    "requireNamespace": { "type": "boolean" },
-                    "templates": {
-                        "type": "array",
-                        "items": {
-                            "type": "object",
-                            "properties": {
-                                "alias": { "type": "string" },
-                                "description": { "type": "string" },
-                                "fileName": { "type": "string" },
-                                "extensionOverride": { "type": "string" },
-                                "snippet": {
-                                    "type": "array",
-                                    "items": { "type": "string" }
-                                }
-                            },
-                            "required": [
-                                "alias",
-                                "description",
-                                "fileName",
-                                "snippet"
-                            ]
-                        }
+    "$ref": "#/definitions/Root",
+    "definitions": {
+        "Root": {
+            "type": "object",
+            "properties": {
+                "$schema": {
+                    "type": "string",
+                    "default": "./schema.json"
+                },
+                "languages": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/Language"
+                    }
+                }
+            },
+            "required": ["languages"],
+            "additionalProperties": false
+        },
+        "Language": {
+            "type": "object",
+            "properties": {
+                "alias": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "string"
+                },
+                "description": {
+                    "type": "string"
+                },
+                "extension": {
+                    "type": "string"
+                },
+                "requireNamespace": {
+                    "type": "boolean"
+                },
+                "templates": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/Template"
+                    }
+                }
+            },
+            "required": [
+                "alias",
+                "id",
+                "description",
+                "extension",
+                "templates"
+            ],
+            "additionalProperties": false
+        },
+        "Template": {
+            "type": "object",
+            "properties": {
+                "alias": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "string"
+                },
+                "description": {
+                    "type": "string"
+                },
+                "fileName": {
+                    "type": "string"
+                },
+                "extensionOverride": {
+                    "type": "string"
+                },
+                "snippet": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
                     }
                 },
-                "required": [
-                    "alias",
-                    "extension",
-                    "requireNamespace",
-                    "templates"
-                ]
-            }
+                "children": {
+                    "type": "string"
+                }
+            },
+            "required": ["alias", "id", "description", "fileName"],
+            "additionalProperties": false
         }
-    },
-    "required": ["languages"]
+    }
 }

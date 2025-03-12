@@ -32,15 +32,25 @@ export function registerCommands(ctx: vscode.ExtensionContext) {
             }
             try {
                 destinyInitialPath = await determinateDestination(clicker);
-                logger.logInfo(
-                    `File requested initially at: ${destinyInitialPath.fsPath}. lang: ${lang} temp: ${temp}`
-                );
-                let selectedTemplate: usrSelection = await selectTemplate(
+
+                let userPickedOptions: usrSelection = await selectTemplate(
                     ctx,
                     lang,
                     temp
                 );
-                await createFile(destinyInitialPath, selectedTemplate);
+                await createFile(destinyInitialPath, userPickedOptions);
+
+                // TODO: Check if the selectedTemplate has a children property, if so, create the children file
+
+                // if (userPickedOptions[1].children) {
+                //     let children = userPickedOptions[1].children;
+                //     let childrenPath = vscode.Uri.joinPath(
+                //         destinyInitialPath,
+                //         children
+                //     );
+                //     await createFile(childrenPath, userPickedOptions);
+                // }
+
                 logger.logInfo(
                     'File creation process finished! No issues reported\n'
                 );
@@ -79,7 +89,7 @@ export function registerCommands(ctx: vscode.ExtensionContext) {
             vscode.commands.executeCommand(
                 `${FileCreation.newFile}`,
                 clicker,
-                'C#'
+                'csharp'
             );
         }
     );
@@ -92,8 +102,8 @@ export function registerCommands(ctx: vscode.ExtensionContext) {
             vscode.commands.executeCommand(
                 `${FileCreation.newFile}`,
                 clicker,
-                'C#',
-                'Class'
+                'csharp',
+                'class'
             );
         }
     ); // Create C# Enum
@@ -104,8 +114,8 @@ export function registerCommands(ctx: vscode.ExtensionContext) {
             vscode.commands.executeCommand(
                 `${FileCreation.newFile}`,
                 clicker,
-                'C#',
-                'Enum'
+                'csharp',
+                'enum'
             );
         }
     );
@@ -117,8 +127,8 @@ export function registerCommands(ctx: vscode.ExtensionContext) {
             vscode.commands.executeCommand(
                 `${FileCreation.newFile}`,
                 clicker,
-                'C#',
-                'Interface'
+                'csharp',
+                'interface'
             );
         }
     );
@@ -130,8 +140,8 @@ export function registerCommands(ctx: vscode.ExtensionContext) {
             vscode.commands.executeCommand(
                 `${FileCreation.newFile}`,
                 clicker,
-                'C#',
-                'Record'
+                'csharp',
+                'record'
             );
         }
     );
@@ -143,8 +153,8 @@ export function registerCommands(ctx: vscode.ExtensionContext) {
             vscode.commands.executeCommand(
                 `${FileCreation.newFile}`,
                 clicker,
-                'C#',
-                'Struct'
+                'csharp',
+                'struct'
             );
         }
     );
@@ -157,8 +167,8 @@ export function registerCommands(ctx: vscode.ExtensionContext) {
             vscode.commands.executeCommand(
                 `${FileCreation.newFile}`,
                 clicker,
-                'C#',
-                'Global Usings'
+                'csharp',
+                'global-usings'
             );
         }
     );
@@ -173,7 +183,7 @@ export function registerCommands(ctx: vscode.ExtensionContext) {
             vscode.commands.executeCommand(
                 `${FileCreation.newFile}`,
                 clicker,
-                'TypeScript'
+                'ts'
             );
         }
     );
@@ -186,7 +196,7 @@ export function registerCommands(ctx: vscode.ExtensionContext) {
             vscode.commands.executeCommand(
                 `${FileCreation.newFile}`,
                 clicker,
-                'TypeScript',
+                'ts',
                 'class'
             );
         }
@@ -200,7 +210,7 @@ export function registerCommands(ctx: vscode.ExtensionContext) {
             vscode.commands.executeCommand(
                 `${FileCreation.newFile}`,
                 clicker,
-                'TypeScript',
+                'ts',
                 'interface'
             );
         }
@@ -214,7 +224,7 @@ export function registerCommands(ctx: vscode.ExtensionContext) {
             vscode.commands.executeCommand(
                 `${FileCreation.newFile}`,
                 clicker,
-                'TypeScript',
+                'ts',
                 'enum'
             );
         }
@@ -228,7 +238,7 @@ export function registerCommands(ctx: vscode.ExtensionContext) {
             vscode.commands.executeCommand(
                 `${FileCreation.newFile}`,
                 clicker,
-                'TypeScript',
+                'ts',
                 'index'
             );
         }
@@ -242,8 +252,8 @@ export function registerCommands(ctx: vscode.ExtensionContext) {
             vscode.commands.executeCommand(
                 `${FileCreation.newFile}`,
                 clicker,
-                'TypeScript',
-                'compiler options'
+                'ts',
+                'tsconfig'
             );
         }
     );
@@ -256,7 +266,7 @@ export function registerCommands(ctx: vscode.ExtensionContext) {
             vscode.commands.executeCommand(
                 `${FileCreation.newFile}`,
                 clicker,
-                'TypeScript',
+                'ts',
                 'module'
             );
         }
@@ -270,7 +280,7 @@ export function registerCommands(ctx: vscode.ExtensionContext) {
             vscode.commands.executeCommand(
                 `${FileCreation.newFile}`,
                 clicker,
-                'C++'
+                'cpp'
             );
         }
     );
@@ -283,7 +293,7 @@ export function registerCommands(ctx: vscode.ExtensionContext) {
             vscode.commands.executeCommand(
                 `${FileCreation.newFile}`,
                 clicker,
-                'C++',
+                'cpp',
                 'class'
             );
         }
@@ -297,7 +307,7 @@ export function registerCommands(ctx: vscode.ExtensionContext) {
             vscode.commands.executeCommand(
                 `${FileCreation.newFile}`,
                 clicker,
-                'C++',
+                'cpp',
                 'function'
             );
         }
@@ -311,7 +321,7 @@ export function registerCommands(ctx: vscode.ExtensionContext) {
             vscode.commands.executeCommand(
                 `${FileCreation.newFile}`,
                 clicker,
-                'C++',
+                'cpp',
                 'main'
             );
         }
@@ -325,7 +335,7 @@ export function registerCommands(ctx: vscode.ExtensionContext) {
             vscode.commands.executeCommand(
                 `${FileCreation.newFile}`,
                 clicker,
-                'C++',
+                'cpp',
                 'header'
             );
         }
@@ -339,7 +349,7 @@ export function registerCommands(ctx: vscode.ExtensionContext) {
             vscode.commands.executeCommand(
                 `${FileCreation.newFile}`,
                 clicker,
-                'C++',
+                'cpp',
                 'makefile'
             );
         }
@@ -353,7 +363,7 @@ export function registerCommands(ctx: vscode.ExtensionContext) {
             vscode.commands.executeCommand(
                 `${FileCreation.newFile}`,
                 clicker,
-                'Python'
+                'py'
             );
         }
     );
@@ -366,7 +376,7 @@ export function registerCommands(ctx: vscode.ExtensionContext) {
             vscode.commands.executeCommand(
                 `${FileCreation.newFile}`,
                 clicker,
-                'Python',
+                'py',
                 'main'
             );
         }
@@ -380,7 +390,7 @@ export function registerCommands(ctx: vscode.ExtensionContext) {
             vscode.commands.executeCommand(
                 `${FileCreation.newFile}`,
                 clicker,
-                'Python',
+                'py',
                 'requirements'
             );
         }
@@ -394,7 +404,7 @@ export function registerCommands(ctx: vscode.ExtensionContext) {
             vscode.commands.executeCommand(
                 `${FileCreation.newFile}`,
                 clicker,
-                'Other',
+                'other',
                 'json'
             );
         }
@@ -406,7 +416,7 @@ export function registerCommands(ctx: vscode.ExtensionContext) {
             vscode.commands.executeCommand(
                 `${FileCreation.newFile}`,
                 clicker,
-                'Other',
+                'other',
                 'xml'
             );
         }
@@ -418,7 +428,7 @@ export function registerCommands(ctx: vscode.ExtensionContext) {
             vscode.commands.executeCommand(
                 `${FileCreation.newFile}`,
                 clicker,
-                'Other',
+                'other',
                 'markdown'
             );
         }
@@ -430,7 +440,7 @@ export function registerCommands(ctx: vscode.ExtensionContext) {
             vscode.commands.executeCommand(
                 `${FileCreation.newFile}`,
                 clicker,
-                'Other',
+                'other',
                 'csv'
             );
         }
@@ -472,6 +482,9 @@ export function registerCommands(ctx: vscode.ExtensionContext) {
         createXmlFile,
         createMdFile,
         createSCVFile
+    );
+    logger.logInfo(
+        `A total of ${ctx.subscriptions.length} commands registered`
     );
 }
 
