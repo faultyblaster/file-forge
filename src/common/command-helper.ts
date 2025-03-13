@@ -162,8 +162,10 @@ export async function createFile(filePath: Uri, template: usrSelection) {
         ? template[1].extensionOverride
         : template[0].extension;
 
-    let localePath = workspace.asRelativePath(filePath);
-    let externalFilePath = filePath.fsPath.replace(localePath, '');
+    let localePath = path.normalize(workspace.asRelativePath(filePath));
+    let externalFilePath = path.normalize(
+        filePath.fsPath.replace(localePath, '')
+    );
 
     let confirmedDir = await window.showInputBox({
         ignoreFocusOut: true,
@@ -171,8 +173,8 @@ export async function createFile(filePath: Uri, template: usrSelection) {
         title: 'Enter your file name',
         value: localePath + path.sep + filename + '.' + fileExtension,
         valueSelection: [
-            localePath.length - filename.length,
-            localePath.length,
+            localePath.length + 1,
+            localePath.length + filename.length + 2,
         ],
         validateInput: (input) => {
             // Check for invalid characters in a path
