@@ -1,11 +1,12 @@
 {
-    "name": "templator",
-    "displayName": "Templator",
+    "name": "file-forge",
+    "displayName": "File Forge",
     "description": "Easy file creation with templates, type less, code more.",
-    "version": "0.0.5",
+    "version": "0.0.6",
     "engines": {
         "vscode": "^1.97.0"
     },
+    "preview": true,
     "categories": [
         "Snippets",
         "Programming Languages"
@@ -19,7 +20,7 @@
     "extensionPack": [],
     "repository": {
         "type": "git",
-        "url": "https://github.com/faultyblaster/Templator"
+        "url": "https://github.com/faultyblaster/file-forge"
     },
     "sponsor": {
         "url": "https:https://www.patreon.com/c/faultyblaster"
@@ -28,7 +29,9 @@
         "snippet",
         "extension",
         "new file",
-        "templates"
+        "templates",
+        "file creation",
+        "context menu"
     ],
     "icon": "media/icons/ext/scroll.png",
     "license": "MIT",
@@ -43,439 +46,439 @@
     "contributes": {
         "commands": [
             {
-                "command": "templator.newFile",
+                "command": "file-forge.newFile",
                 "title": "Create new file",
-                "category": "Templator"
+                "category": "File Forge"
             },
             {
-                "command": "templator.createCSharpNamespace",
+                "command": "file-forge.createCSharpNamespace",
                 "title": "Create C# namespace",
-                "category": "Templator"
+                "category": "File Forge"
             },
             {
-                "command": "templator.newCSFile",
+                "command": "file-forge.newCSFile",
                 "title": "Create C# File",
-                "category": "Templator"
+                "category": "File Forge"
             },
             {
-                "command": "templator.newCSClass",
+                "command": "file-forge.newCSClass",
                 "title": "Class",
-                "category": "Templator"
+                "category": "File Forge"
             },
             {
-                "command": "templator.newCSEnum",
+                "command": "file-forge.newCSEnum",
                 "title": "Enum",
-                "category": "Templator"
+                "category": "File Forge"
             },
             {
-                "command": "templator.newCSInterface",
+                "command": "file-forge.newCSInterface",
                 "title": "Interface",
-                "category": "Templator"
+                "category": "File Forge"
             },
             {
-                "command": "templator.newCSRecord",
+                "command": "file-forge.newCSRecord",
                 "title": "Record",
-                "category": "Templator"
+                "category": "File Forge"
             },
             {
-                "command": "templator.newCSStruct",
+                "command": "file-forge.newCSStruct",
                 "title": "Struct",
-                "category": "Templator"
+                "category": "File Forge"
             },
             {
-                "command": "templator.newCsGlobalUsings",
+                "command": "file-forge.newCsGlobalUsings",
                 "title": "Global Usings",
-                "category": "Templator"
+                "category": "File Forge"
             },
             {
-                "command": "templator.newTSFile",
+                "command": "file-forge.newTSFile",
                 "title": "Create TS File",
-                "category": "Templator"
+                "category": "File Forge"
             },
             {
-                "command": "templator.newTSClass",
+                "command": "file-forge.newTSClass",
                 "title": "Class",
-                "category": "Templator"
+                "category": "File Forge"
             },
             {
-                "command": "templator.newTSEnum",
+                "command": "file-forge.newTSEnum",
                 "title": "Enum",
-                "category": "Templator"
+                "category": "File Forge"
             },
             {
-                "command": "templator.newTSInterface",
+                "command": "file-forge.newTSInterface",
                 "title": "Interface",
-                "category": "Templator"
+                "category": "File Forge"
             },
             {
-                "command": "templator.newTSCompilerOptions",
+                "command": "file-forge.newTSCompilerOptions",
                 "title": "Compiler Options",
-                "category": "Templator"
+                "category": "File Forge"
             },
             {
-                "command": "templator.newTSIndex",
+                "command": "file-forge.newTSIndex",
                 "title": "Index",
-                "category": "Templator"
+                "category": "File Forge"
             },
             {
-                "command": "templator.newTSPackage",
+                "command": "file-forge.newTSPackage",
                 "title": "Package",
-                "category": "Templator"
+                "category": "File Forge"
             },
             {
-                "command": "templator.newPYFile",
+                "command": "file-forge.newPYFile",
                 "title": "Create PY File",
-                "category": "Templator"
+                "category": "File Forge"
             },
             {
-                "command": "templator.newPYMain",
+                "command": "file-forge.newPYMain",
                 "title": "Main",
-                "category": "Templator"
+                "category": "File Forge"
             },
             {
-                "command": "templator.newPYScript",
+                "command": "file-forge.newPYScript",
                 "title": "Script",
-                "category": "Templator"
+                "category": "File Forge"
             },
             {
-                "command": "templator.newCppFile",
+                "command": "file-forge.newCppFile",
                 "title": "Create Cpp File",
-                "category": "Templator"
+                "category": "File Forge"
             },
             {
-                "command": "templator.newCppClass",
+                "command": "file-forge.newCppClass",
                 "title": "Class",
-                "category": "Templator"
+                "category": "File Forge"
             },
             {
-                "command": "templator.newCppFunction",
+                "command": "file-forge.newCppFunction",
                 "title": "Function",
-                "category": "Templator"
+                "category": "File Forge"
             },
             {
-                "command": "templator.newCppMain",
+                "command": "file-forge.newCppMain",
                 "title": "Main",
-                "category": "Templator"
+                "category": "File Forge"
             },
             {
-                "command": "templator.newCppHeader",
+                "command": "file-forge.newCppHeader",
                 "title": "Header",
-                "category": "Templator"
+                "category": "File Forge"
             },
             {
-                "command": "templator.newPYRequirements",
+                "command": "file-forge.newPYRequirements",
                 "title": "Requirements",
-                "category": "Templator"
+                "category": "File Forge"
             },
             {
-                "command": "templator.newJsonFile",
+                "command": "file-forge.newJsonFile",
                 "title": "JSON File",
-                "category": "Templator"
+                "category": "File Forge"
             },
             {
-                "command": "templator.newXmlFile",
+                "command": "file-forge.newXmlFile",
                 "title": "XML File",
-                "category": "Templator"
+                "category": "File Forge"
             },
             {
-                "command": "templator.newMarkdownFile",
+                "command": "file-forge.newMarkdownFile",
                 "title": "Markdown File",
-                "category": "Templator"
+                "category": "File Forge"
             },
             {
-                "command": "templator.newCSVFile",
+                "command": "file-forge.newCSVFile",
                 "title": "CSV File",
-                "category": "Templator"
+                "category": "File Forge"
             }
         ],
         "menus": {
             "explorer/context": [
                 {
-                    "command": "templator.newFile",
+                    "command": "file-forge.newFile",
                     "when": "explorerResourceIsFolder",
                     "group": "_fileCreation@0"
                 },
                 {
-                    "command": "templator.createCSharpNamespace",
+                    "command": "file-forge.createCSharpNamespace",
                     "when": "resourceExtname == .cs || resourceExtname == .fs}",
                     "group": "_dotnet"
                 },
                 {
                     "submenu": "file.creation.cs",
                     "group": "_fileCreation",
-                    "when": "explorerResourceIsFolder && templator.showCSharpContext"
+                    "when": "explorerResourceIsFolder && file-forge.showCSharpContext"
                 },
                 {
                     "submenu": "file.creation.ts",
                     "group": "_fileCreation",
-                    "when": "explorerResourceIsFolder && templator.showTSContext"
+                    "when": "explorerResourceIsFolder && file-forge.showTSContext"
                 },
                 {
                     "submenu": "file.creation.py",
                     "group": "_fileCreation",
-                    "when": "explorerResourceIsFolder && templator.showPYContext"
+                    "when": "explorerResourceIsFolder && file-forge.showPYContext"
                 },
                 {
                     "submenu": "file.creation.cpp",
                     "group": "_fileCreation",
-                    "when": "explorerResourceIsFolder && templator.showCppContext"
+                    "when": "explorerResourceIsFolder && file-forge.showCppContext"
                 }
             ],
             "file.creation.cs": [
                 {
-                    "command": "templator.newCSFile",
+                    "command": "file-forge.newCSFile",
                     "group": "_alpha"
                 },
                 {
-                    "command": "templator.newCSClass",
+                    "command": "file-forge.newCSClass",
                     "group": "bravo"
                 },
                 {
-                    "command": "templator.newCSEnum",
+                    "command": "file-forge.newCSEnum",
                     "group": "bravo"
                 },
                 {
-                    "command": "templator.newCSInterface",
+                    "command": "file-forge.newCSInterface",
                     "group": "bravo"
                 },
                 {
-                    "command": "templator.newCSRecord",
+                    "command": "file-forge.newCSRecord",
                     "group": "bravo"
                 },
                 {
-                    "command": "templator.newCSStruct",
+                    "command": "file-forge.newCSStruct",
                     "group": "bravo"
                 },
                 {
-                    "command": "templator.newCsGlobalUsings",
+                    "command": "file-forge.newCsGlobalUsings",
                     "group": "charlie"
                 },
                 {
-                    "command": "templator.newJsonFile",
+                    "command": "file-forge.newJsonFile",
                     "group": "zulu"
                 },
                 {
-                    "command": "templator.newXmlFile",
+                    "command": "file-forge.newXmlFile",
                     "group": "zulu"
                 },
                 {
-                    "command": "templator.newMarkdownFile",
+                    "command": "file-forge.newMarkdownFile",
                     "group": "zulu"
                 },
                 {
-                    "command": "templator.newCSVFile",
+                    "command": "file-forge.newCSVFile",
                     "group": "zulu"
                 }
             ],
             "file.creation.ts": [
                 {
-                    "command": "templator.newTSFile",
+                    "command": "file-forge.newTSFile",
                     "group": "_alpha"
                 },
                 {
-                    "command": "templator.newTSClass",
+                    "command": "file-forge.newTSClass",
                     "group": "bravo"
                 },
                 {
-                    "command": "templator.newTSEnum",
+                    "command": "file-forge.newTSEnum",
                     "group": "bravo"
                 },
                 {
-                    "command": "templator.newTSInterface",
+                    "command": "file-forge.newTSInterface",
                     "group": "bravo"
                 },
                 {
-                    "command": "templator.newTSIndex",
+                    "command": "file-forge.newTSIndex",
                     "group": "bravo"
                 },
                 {
-                    "command": "templator.newTSPackage",
+                    "command": "file-forge.newTSPackage",
                     "group": "delta"
                 },
                 {
-                    "command": "templator.newTSCompilerOptions",
+                    "command": "file-forge.newTSCompilerOptions",
                     "group": "delta"
                 },
                 {
-                    "command": "templator.newJsonFile",
+                    "command": "file-forge.newJsonFile",
                     "group": "zulu"
                 },
                 {
-                    "command": "templator.newXmlFile",
+                    "command": "file-forge.newXmlFile",
                     "group": "zulu"
                 },
                 {
-                    "command": "templator.newMarkdownFile",
+                    "command": "file-forge.newMarkdownFile",
                     "group": "zulu"
                 },
                 {
-                    "command": "templator.newCSVFile",
+                    "command": "file-forge.newCSVFile",
                     "group": "zulu"
                 }
             ],
             "file.creation.cpp": [
                 {
-                    "command": "templator.newCppFile",
+                    "command": "file-forge.newCppFile",
                     "group": "_alpha"
                 },
                 {
-                    "command": "templator.newCppClass",
+                    "command": "file-forge.newCppClass",
                     "group": "bravo"
                 },
                 {
-                    "command": "templator.newCppFunction",
+                    "command": "file-forge.newCppFunction",
                     "group": "bravo"
                 },
                 {
-                    "command": "templator.newCppMain",
+                    "command": "file-forge.newCppMain",
                     "group": "bravo"
                 },
                 {
-                    "command": "templator.newCppHeader",
+                    "command": "file-forge.newCppHeader",
                     "group": "bravo"
                 },
                 {
-                    "command": "templator.newJsonFile",
+                    "command": "file-forge.newJsonFile",
                     "group": "zulu"
                 },
                 {
-                    "command": "templator.newXmlFile",
+                    "command": "file-forge.newXmlFile",
                     "group": "zulu"
                 },
                 {
-                    "command": "templator.newMarkdownFile",
+                    "command": "file-forge.newMarkdownFile",
                     "group": "zulu"
                 },
                 {
-                    "command": "templator.newCSVFile",
+                    "command": "file-forge.newCSVFile",
                     "group": "zulu"
                 }
             ],
             "file.creation.py": [
                 {
-                    "command": "templator.newPYFile",
+                    "command": "file-forge.newPYFile",
                     "group": "_alpha"
                 },
                 {
-                    "command": "templator.newPYMain",
+                    "command": "file-forge.newPYMain",
                     "group": "bravo"
                 },
                 {
-                    "command": "templator.newPYRequirements",
+                    "command": "file-forge.newPYRequirements",
                     "group": "bravo"
                 },
                 {
-                    "command": "templator.newPYScript",
+                    "command": "file-forge.newPYScript",
                     "group": "bravo"
                 },
                 {
-                    "command": "templator.newJsonFile",
+                    "command": "file-forge.newJsonFile",
                     "group": "zulu"
                 },
                 {
-                    "command": "templator.newXmlFile",
+                    "command": "file-forge.newXmlFile",
                     "group": "zulu"
                 },
                 {
-                    "command": "templator.newMarkdownFile",
+                    "command": "file-forge.newMarkdownFile",
                     "group": "zulu"
                 },
                 {
-                    "command": "templator.newCSVFile",
+                    "command": "file-forge.newCSVFile",
                     "group": "zulu"
                 }
             ],
             "commandPalette": [
                 {
-                    "command": "templator.newCSClass",
+                    "command": "file-forge.newCSClass",
                     "when": "false"
                 },
                 {
-                    "command": "templator.newCSEnum",
+                    "command": "file-forge.newCSEnum",
                     "when": "false"
                 },
                 {
-                    "command": "templator.newCSInterface",
+                    "command": "file-forge.newCSInterface",
                     "when": "false"
                 },
                 {
-                    "command": "templator.newCSRecord",
+                    "command": "file-forge.newCSRecord",
                     "when": "false"
                 },
                 {
-                    "command": "templator.newCSStruct",
+                    "command": "file-forge.newCSStruct",
                     "when": "false"
                 },
                 {
-                    "command": "templator.newTSClass",
+                    "command": "file-forge.newTSClass",
                     "when": "false"
                 },
                 {
-                    "command": "templator.newTSEnum",
+                    "command": "file-forge.newTSEnum",
                     "when": "false"
                 },
                 {
-                    "command": "templator.newTSInterface",
+                    "command": "file-forge.newTSInterface",
                     "when": "false"
                 },
                 {
-                    "command": "templator.newTSIndex",
+                    "command": "file-forge.newTSIndex",
                     "when": "false"
                 },
                 {
-                    "command": "templator.newTSPackage",
+                    "command": "file-forge.newTSPackage",
                     "when": "false"
                 },
                 {
-                    "command": "templator.newTSCompilerOptions",
+                    "command": "file-forge.newTSCompilerOptions",
                     "when": "false"
                 },
                 {
-                    "command": "templator.newCppFile",
+                    "command": "file-forge.newCppFile",
                     "when": "false"
                 },
                 {
-                    "command": "templator.newCppClass",
+                    "command": "file-forge.newCppClass",
                     "when": "false"
                 },
                 {
-                    "command": "templator.newCppFunction",
+                    "command": "file-forge.newCppFunction",
                     "when": "false"
                 },
                 {
-                    "command": "templator.newCppMain",
+                    "command": "file-forge.newCppMain",
                     "when": "false"
                 },
                 {
-                    "command": "templator.newCppHeader",
+                    "command": "file-forge.newCppHeader",
                     "when": "false"
                 },
                 {
-                    "command": "templator.newPYMain",
+                    "command": "file-forge.newPYMain",
                     "when": "false"
                 },
                 {
-                    "command": "templator.newPYRequirements",
+                    "command": "file-forge.newPYRequirements",
                     "when": "false"
                 },
                 {
-                    "command": "templator.newPYScript",
+                    "command": "file-forge.newPYScript",
                     "when": "false"
                 },
                 {
-                    "command": "templator.newJsonFile",
+                    "command": "file-forge.newJsonFile",
                     "when": "false"
                 },
                 {
-                    "command": "templator.newXmlFile",
+                    "command": "file-forge.newXmlFile",
                     "when": "false"
                 },
                 {
-                    "command": "templator.newMarkdownFile",
+                    "command": "file-forge.newMarkdownFile",
                     "when": "false"
                 },
                 {
-                    "command": "templator.newCSVFile",
+                    "command": "file-forge.newCSVFile",
                     "when": "false"
                 }
             ]
@@ -500,23 +503,23 @@
         ],
         "keybindings": [
             {
-                "command": "templator.newFile",
+                "command": "file-forge.newFile",
                 "key": "shift+alt+n"
             },
             {
-                "command": "templator.newCSFile",
+                "command": "file-forge.newCSFile",
                 "key": "shift+alt+c"
             },
             {
-                "command": "templator.newCppFile",
+                "command": "file-forge.newCppFile",
                 "key": "shift+alt+o"
             },
             {
-                "command": "templator.newTSFile",
+                "command": "file-forge.newTSFile",
                 "key": "shift+alt+t"
             },
             {
-                "command": "templator.newPYFile",
+                "command": "file-forge.newPYFile",
                 "key": "shift+alt+p"
             }
         ]

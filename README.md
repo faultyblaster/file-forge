@@ -1,19 +1,15 @@
-# Templator
-<!-- Badges  -->
-![GitHub](https://img.shields.io/github/license/faultyblaster/templator)
-![GitHub issues](https://img.shields.io/github/issues/faultyblaster/templator)
-![GitHub pull requests](https://img.shields.io/github/issues-pr/faultyblaster/templator)
-![GitHub contributors](https://img.shields.io/github/contributors/faultyblaster/templator)
-![GitHub last commit](https://img.shields.io/github/last-commit/faultyblaster/templator)
-<!-- downloads -->
-<!-- ![Visual Studio Marketplace Downloads](https://img.shields.io/visual-studio-marketplace/d/faultyblaster.templator)
-![Visual Studio Marketplace Installs](https://img.shields.io/visual-studio-marketplace/i/faultyblaster.templator)
-![Visual Studio Marketplace Rating](https://img.shields.io/visual-studio-marketplace/r/faultyblaster.templator)
-![Visual Studio Marketplace Version](https://img.shields.io/visual-studio-marketplace/v/faultyblaster.templator) -->
+# File Forge
+
+<!-- Title: File Forge -->
+<!-- Description: Create files from templates with a couple clicks or with commands! -->
+<!-- Github: https://github.com/faultyblaster/file-forge -->
+
+<!-- file location -->
+<!-- ts.gif: '/media/showcase/ts.gif' -->
+<!-- cs.gif: '/media/showcase/cs.gif' -->
+<!-- py.gif: '/media/showcase/py.gif' -->
 
 Create files from templates with a couple clicks or with commands!
-
-<!-- TODO: Add Gifts -->
 
 The following programming languages are shipped by default:
 

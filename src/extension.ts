@@ -9,8 +9,8 @@ import { VsLogger } from 'vs-logger';
  * Important extension data available globally to avoid typos.
  */
 export enum extensionData {
-    id = 'templator',
-    name = 'Templator',
+    id = 'file-forge',
+    name = 'File Forge',
 }
 
 /**

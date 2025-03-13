@@ -4,6 +4,13 @@ All notable changes to the "templator" extension will be documented in this file
 
 ## [Unreleased] All the versions below are unreleased versions
 
+## [0.0.6] - 2025-03-13
+
+- Changed the name of the extension from `templator` to `file-forge`.
+- Added gif's to the readme file for better understanding of the extension
+- Extension marked as `preview` in the marketplace
+- Attempted to publish with the new name! If it succeeds, the version will be updated to 0.1.0
+
 ## [0.0.5] - 2025-03-12
 
 - Fixed a windows bug: Wrong path separator for a couple of methods
