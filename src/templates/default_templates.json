@@ -219,17 +219,44 @@
                     "description": "Simple index file",
                     "fileName": "index",
                     "snippet": [
-                        "export * from './${TM_FILENAME_BASE/^(.)(.*)/${1:/upcase}${2}/}';"
+                        " // Add your imports or exports here",
+                        " // example:",
+                        " // export * from './${TM_FILENAME_BASE/^(.)(.*)/${1:/upcase}${2}/}';",
+                        " // import { ${TM_FILENAME_BASE/^(.)(.*)/${1:/upcase}${2}/} } from './${TM_FILENAME_BASE/^(.)(.*)/${1:/upcase}${2}/}';"
                     ]
                 },
                 {
-                    "alias": "Module",
-                    "id": "module",
-                    "description": "A simple Module",
-                    "fileName": "module",
+                    "alias": "Package",
+                    "id": "package",
+                    "description": "Package.json file for Node.js projects, using typescript",
+                    "fileName": "package",
+                    "extensionOverride": "json",
                     "snippet": [
-                        "export module ${TM_FILENAME_BASE/^(.)(.*)/${1:/upcase}${2}/} {",
-                        "\t$0",
+                        "{",
+                        "\t\"name\": \"${1:your_project_name}\",",
+                        "\t\"version\": \"1.0.0\",",
+                        "\t\"description\": \"\",",
+                        "\t\"license\": \"${2:MIT}\",",
+                        "\t\"author\": \"${3:Your Name}\",",
+                        "\t\"main\": \"dist/index.js\",",
+                        "\t\"types\": \"dist/index.d.ts\",",
+                        "\t\"keywords\": [],",
+                        "\t\"repository\": {",
+                        "\t\t\"type\": \"git\",",
+                        "\t\t\"url\": \"\"",
+                        "\t\\},",
+                        "\t\"scripts\": {",
+                        "\t\t\"build\": \"tsc\",",
+                        "\t\t\"start\": \"node dist/index.js\",",
+                        "\t\t\"test\": \"jest\"",
+                        "\t},",
+                        "\t\"dependencies\": {},",
+                        "\t\"devDependencies\": {",
+                        "\t\t\"typescript\": \"^4.0.0\",",
+                        "\t\t\"jest\": \"^26.0.0\",",
+                        "\t\t\"ts-jest\": \"^26.0.0\",",
+                        "\t\t\"@types/jest\": \"^26.0.0\"",
+                        "\t}",
                         "}"
                     ]
                 },
@@ -247,22 +274,25 @@
                 {
                     "alias": "Interface",
                     "id": "interface",
-                    "description": "A simple Interface",
+                    "description": "A person interface",
                     "fileName": "interface",
                     "snippet": [
                         "interface ${TM_FILENAME_BASE/^(.)(.*)/${1:/upcase}${2}/} {",
-                        "\t$0",
+                        "\tname: string;",
+                        "\tage: number;",
                         "}"
                     ]
                 },
                 {
                     "alias": "Enum",
                     "id": "enum",
-                    "description": "A simple Enum",
+                    "description": "A color enum",
                     "fileName": "enum",
                     "snippet": [
                         "enum ${TM_FILENAME_BASE/^(.)(.*)/${1:/upcase}${2}/} {",
-                        "\t$0",
+                        "\tRed,",
+                        "\tGreen,",
+                        "\tBlue",
                         "}"
                     ]
                 },
@@ -283,17 +313,6 @@
                     "description": "A simple Hello World script",
                     "fileName": "main",
                     "snippet": ["console.log(\"Hello World\");"]
-                },
-                {
-                    "id": "type",
-                    "alias": "Type",
-                    "description": "A simple Type",
-                    "fileName": "type",
-                    "snippet": [
-                        "type ${TM_FILENAME_BASE/^(.)(.*)/${1:/upcase}${2}/} = {",
-                        "\t$0",
-                        "};"
-                    ]
                 },
                 {
                     "id": "module",
@@ -546,7 +565,7 @@
                     "snippet": [
                         "# ${TM_FILENAME_BASE/^(.)(.*)/${1:/upcase}${2}/}",
                         "",
-                        " ## Description",
+                        "## Description",
                         "This is a simple markdown file",
                         ""
                     ]
@@ -599,24 +618,6 @@
                         "RUN pip install -r requirements.txt",
                         "",
                         "CMD [\"python\", \"main.py\"]"
-                    ]
-                },
-                {
-                    "id": "gitignore",
-                    "alias": ".gitignore",
-                    "description": "Simple, empty .gitignore file",
-                    "fileName": ".gitignore",
-                    "extensionOverride": "",
-                    "snippet": [
-                        "# Ignore all .log files",
-                        "*.log",
-                        "",
-                        "# Ignore all .txt files",
-                        "*.txt",
-                        "",
-                        "# Ignore bin and obj folders",
-                        "bin/",
-                        "obj/"
                     ]
                 }
             ]

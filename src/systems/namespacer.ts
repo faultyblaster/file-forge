@@ -41,7 +41,7 @@ export class Namespacer {
             workspace.name ? workspace.name : 'unnamed_workspace',
             path.dirname(workspace.asRelativePath(filePath))
         );
-        fileDir = fileDir.normalize();
+        // fileDir = path.normalize(fileDir); // Not needed, already normalized in the line above
         if (fileDir.endsWith(`${path.sep}.`)) {
             fileDir = fileDir.slice(0, -2);
         }

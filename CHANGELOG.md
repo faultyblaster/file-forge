@@ -4,6 +4,19 @@ All notable changes to the "templator" extension will be documented in this file
 
 ## [Unreleased] All the versions below are unreleased versions
 
+## [0.0.5] - 2025-03-12
+
+- Fixed a windows bug: Wrong path separator for a couple of methods
+- Fixed a bug: Quick pick inconsistency while giving the file name
+- Removed unnecessary code
+- Added double verification for the `clicker`, which didn't behave as expected under certain conditions
+- Added a new command for python script creation
+- Added a new command for typescript package creation
+- Minor modifications to the namespace generation for C#
+- Changes to multiple templates for multiple languages
+
+> Note: The version 0.0.5 will be the last version with the name `templator`, the name is still to be decided
+
 ## [0.0.4] - 2025-03-10
 
 - Added file watcher for Cpp

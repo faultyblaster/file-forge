@@ -2,7 +2,7 @@
     "name": "templator",
     "displayName": "Templator",
     "description": "Easy file creation with templates, type less, code more.",
-    "version": "0.0.4",
+    "version": "0.0.5",
     "engines": {
         "vscode": "^1.97.0"
     },
@@ -118,8 +118,8 @@
                 "category": "Templator"
             },
             {
-                "command": "templator.newTSModule",
-                "title": "Module",
+                "command": "templator.newTSPackage",
+                "title": "Package",
                 "category": "Templator"
             },
             {
@@ -130,6 +130,11 @@
             {
                 "command": "templator.newPYMain",
                 "title": "Main",
+                "category": "Templator"
+            },
+            {
+                "command": "templator.newPYScript",
+                "title": "Script",
                 "category": "Templator"
             },
             {
@@ -284,8 +289,8 @@
                     "group": "bravo"
                 },
                 {
-                    "command": "templator.newTSModule",
-                    "group": "bravo"
+                    "command": "templator.newTSPackage",
+                    "group": "delta"
                 },
                 {
                     "command": "templator.newTSCompilerOptions",
@@ -360,6 +365,10 @@
                     "group": "bravo"
                 },
                 {
+                    "command": "templator.newPYScript",
+                    "group": "bravo"
+                },
+                {
                     "command": "templator.newJsonFile",
                     "group": "zulu"
                 },
@@ -414,7 +423,7 @@
                     "when": "false"
                 },
                 {
-                    "command": "templator.newTSModule",
+                    "command": "templator.newTSPackage",
                     "when": "false"
                 },
                 {
@@ -447,6 +456,10 @@
                 },
                 {
                     "command": "templator.newPYRequirements",
+                    "when": "false"
+                },
+                {
+                    "command": "templator.newPYScript",
                     "when": "false"
                 },
                 {

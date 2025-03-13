@@ -1,10 +1,10 @@
 import * as vscode from 'vscode';
 import { extensionData, logger } from '../extension';
-import { ShowError, ShowInfo } from './messages';
+import { ErrorMessages, ShowError, ShowInfo } from './messages';
 import { Namespacer } from '../systems/namespacer';
 import {
     createFile,
-    determinateDestination,
+    // determinateDestination,
     selectTemplate,
     usrSelection,
 } from './command-helper';
@@ -22,7 +22,26 @@ export function registerCommands(ctx: vscode.ExtensionContext) {
             lang: string | undefined,
             temp: string | undefined
         ) => {
-            let destinyInitialPath: vscode.Uri;
+            const wsFolders = vscode.workspace.workspaceFolders;
+            logger.logInfo(`Clicker: ${clicker}`);
+            if (clicker === undefined || !(clicker instanceof vscode.Uri)) {
+                if (wsFolders === undefined) {
+                    throw new Error(ErrorMessages.badWorkspace);
+                } else if (wsFolders.length === 1) {
+                    clicker = wsFolders[0].uri;
+                } else {
+                    clicker = await vscode.window
+                        .showWorkspaceFolderPick()
+                        .then((folder) => {
+                            if (folder === undefined) {
+                                throw new Error(ErrorMessages.badWorkspace);
+                            } else {
+                                return folder.uri;
+                            }
+                        });
+                }
+            }
+
             logger.logInfo(`File creation process initiated`);
             if (typeof lang !== 'string') {
                 lang = undefined;
@@ -31,14 +50,12 @@ export function registerCommands(ctx: vscode.ExtensionContext) {
                 temp = undefined;
             }
             try {
-                destinyInitialPath = await determinateDestination(clicker);
-
                 let userPickedOptions: usrSelection = await selectTemplate(
                     ctx,
                     lang,
                     temp
                 );
-                await createFile(destinyInitialPath, userPickedOptions);
+                await createFile(clicker, userPickedOptions);
 
                 // TODO: Check if the selectedTemplate has a children property, if so, create the children file
 
@@ -259,15 +276,15 @@ export function registerCommands(ctx: vscode.ExtensionContext) {
     );
 
     // Create ts module
-    const createTSModule = vscode.commands.registerCommand(
-        `${extensionData.id}.newTSModule`,
+    const newTSPackage = vscode.commands.registerCommand(
+        `${extensionData.id}.newTSPackage`,
         async (clicker: vscode.Uri) => {
             logger.logInfo('Creating a new TypeScript module file');
             vscode.commands.executeCommand(
                 `${FileCreation.newFile}`,
                 clicker,
                 'ts',
-                'module'
+                'package'
             );
         }
     );
@@ -396,6 +413,20 @@ export function registerCommands(ctx: vscode.ExtensionContext) {
         }
     );
 
+    // Create python script
+    const createPYScript = vscode.commands.registerCommand(
+        `${extensionData.id}.newPYScript`,
+        async (clicker: vscode.Uri) => {
+            logger.logInfo('Creating a new Python script file');
+            vscode.commands.executeCommand(
+                `${FileCreation.newFile}`,
+                clicker,
+                'py',
+                'script'
+            );
+        }
+    );
+
     // Language agnostic commands, files such as json, xml, markdown, csv, etc
     const createJsonFile = vscode.commands.registerCommand(
         `${extensionData.id}.newJsonFile`,
@@ -464,7 +495,7 @@ export function registerCommands(ctx: vscode.ExtensionContext) {
         createTSInterface,
         createTSEnum,
         createTSIndex,
-        createTSModule,
+        newTSPackage,
         createTSCompilerOptions,
         // Cpp files
         createCppFile,
@@ -477,6 +508,7 @@ export function registerCommands(ctx: vscode.ExtensionContext) {
         createPYFile,
         createPYMain,
         createPYRequirements,
+        createPYScript,
         // Other files
         createJsonFile,
         createXmlFile,

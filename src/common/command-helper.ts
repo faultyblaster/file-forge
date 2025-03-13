@@ -154,7 +154,18 @@ export async function selectTemplate(
     return [selectedLang, selectedTemplate];
 }
 
+/**
+ * Creates a file at the given path using the selected template
+ * @param filePath the path where the file will be created
+ * @param template the template to be used for the file creation
+ */
 export async function createFile(filePath: Uri, template: usrSelection) {
+    // Stop the process if we are not in a workspace
+    const wsFolders = workspace.workspaceFolders;
+    if (wsFolders === undefined) {
+        logger.logError(ErrorMessages.badWorkspace);
+        throw new Error(ErrorMessages.badWorkspace);
+    }
     logger.logInfo(`Creating file at ${filePath.fsPath}`);
     let FullDir = '';
     let filename = template[1].fileName;
@@ -162,23 +173,41 @@ export async function createFile(filePath: Uri, template: usrSelection) {
         ? template[1].extensionOverride
         : template[0].extension;
 
-    let localePath = path.normalize(workspace.asRelativePath(filePath));
-    let externalFilePath = path.normalize(
-        filePath.fsPath.replace(localePath, '')
-    );
+    // The dir where the file will be created, where the workspace is located
+    let externalFilePath: string = wsFolders.filter((folder) => {
+        return filePath.fsPath.startsWith(folder.uri.fsPath);
+    })[0].uri.fsPath;
+    externalFilePath = path.normalize(externalFilePath);
+    if (externalFilePath === '.') {
+        externalFilePath = '';
+    }
+    logger.logInfo(`External file path: ${externalFilePath}`);
+
+    // The dir where the file will be created, inside the workspace
+    let localePath = filePath.fsPath.replace(externalFilePath, '');
+    localePath = path.normalize(localePath);
+    if (localePath === '.') {
+        localePath = '';
+    }
+    logger.logInfo(`Locale file path: ${localePath}`);
+
+    logger.logInfo(`File path: ${filePath.fsPath}`);
+    logger.logInfo(`Current workspace: ${externalFilePath}`);
 
     let confirmedDir = await window.showInputBox({
         ignoreFocusOut: true,
         placeHolder: 'Enter your file name, and confirm the directory',
         title: 'Enter your file name',
-        value: localePath + path.sep + filename + '.' + fileExtension,
+        value: path.join(localePath, filename + '.' + fileExtension),
         valueSelection: [
-            localePath.length + 1,
-            localePath.length + filename.length + 2,
+            localePath.length === 0 ? 0 : localePath.length + 1,
+            localePath.length +
+                filename.length +
+                (localePath.length > 0 ? 1 : 0),
         ],
         validateInput: (input) => {
             // Check for invalid characters in a path
-            const regex = /[<>:"|?*\x00-\x1F]/g;
+            const regex = /[<>"|?:*\x00-\x1F]/g;
             const invalidChars = input.match(regex);
             if (invalidChars) {
                 return `The following characters are not allowed in a path: '${invalidChars.join(
@@ -208,7 +237,6 @@ export async function createFile(filePath: Uri, template: usrSelection) {
         throw new Error(ErrorMessages.cancelledByUser);
     }
     confirmedDir = path.join(externalFilePath, confirmedDir);
-    logger.logInfo(`Confirmed directory: ${confirmedDir}`);
     FullDir = path.normalize(confirmedDir);
     let fileDirectory = Uri.file(FullDir);
     logger.logInfo(`Creating file at ${fileDirectory.fsPath}`);
@@ -287,24 +315,24 @@ function createSnippet(
  * @param clicker if the command was called using the context menu, this will not be undefined
  * @returns a URI with a properly set destination
  */
-export async function determinateDestination(
-    clicker: Uri | undefined
-): Promise<Uri> {
-    const wsFolders = workspace.workspaceFolders;
+// export async function determinateDestination(
+//     clicker: Uri | undefined
+// ): Promise<Uri> {
 
-    if (clicker) {
-        return clicker;
-    } else if (wsFolders === undefined) {
-        throw new Error(ErrorMessages.badWorkspace);
-    } else if (wsFolders.length === 1) {
-        return wsFolders[0].uri;
-    } else {
-        let workingFolder = await window.showWorkspaceFolderPick();
-        if (workingFolder === undefined) {
-            throw new Error(ErrorMessages.cancelledByUser);
-        }
-        return workingFolder.uri;
-    }
-}
+//     if (clicker !== undefined) {
+//         logger.logInfo(`The command was called from the context menu`);
+//         return clicker;
+//     } else if (wsFolders === undefined) {
+//         throw new Error(ErrorMessages.badWorkspace);
+//     } else if (wsFolders.length === 1) {
+//         return wsFolders[0].uri;
+//     } else {
+//         let workingFolder = await window.showWorkspaceFolderPick();
+//         if (workingFolder === undefined) {
+//             throw new Error(ErrorMessages.cancelledByUser);
+//         }
+//         return workingFolder.uri;
+//     }
+// }
 
 export type usrSelection = [Language, Template];
