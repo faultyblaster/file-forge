@@ -2,12 +2,18 @@
 
 All notable changes to the "templator" extension will be documented in this file.
 
-## [Unreleased] All the versions below are unreleased versions
+## [1.0.1] - 2025-03-13
 
-## [0.1.0] - 2025-03-13
+- Fixed gif links in the readme file, ts and cs gifs were swapped
+- Modified 1 template for typescript
+
+## [1.0.0] - 2025-03-13
 
 - Extension published with the new name `file-forge`!!
 - Modified the readme file to reflect the new name
+- Accidentally published the extension with the version 1.0.0, so, I guess this is the first official release of the extension
+
+## [Unreleased] All the versions below are unreleased versions
 
 ## [0.0.6] - 2025-03-13
 

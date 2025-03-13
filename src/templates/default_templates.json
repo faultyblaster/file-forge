@@ -219,7 +219,7 @@
                     "description": "Simple index file",
                     "fileName": "index",
                     "snippet": [
-                        " // Add your imports or exports here",
+                        " // You can add your imports or exports here",
                         " // example:",
                         " // export * from './${TM_FILENAME_BASE/^(.)(.*)/${1:/upcase}${2}/}';",
                         " // import { ${TM_FILENAME_BASE/^(.)(.*)/${1:/upcase}${2}/} } from './${TM_FILENAME_BASE/^(.)(.*)/${1:/upcase}${2}/}';"
@@ -267,7 +267,7 @@
                     "fileName": "class",
                     "snippet": [
                         "class ${TM_FILENAME_BASE/^(.)(.*)/${1:/upcase}${2}/} {",
-                        "\t$0",
+                        "\t${0:// Add your code here}",
                         "}"
                     ]
                 },

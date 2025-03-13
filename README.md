@@ -11,6 +11,10 @@
 
 <!-- Extension store: https://marketplace.visualstudio.com/items?itemName=FaultyBlaster.file-forge -->
 
+> Written with <3 by [FaultyBlaster](https://github.com/faultyblaster)
+<!-- Check this extension on vscode -->
+<!-- > [![FaultyBlaster](https://avatars.githubusercontent.com/u/102546658?s=400&u=0f1a2b3c4d5e6f7g8h9i0j1k2l3m4n5o6p7q8r9s&t=4)](https:https://github.com/faultyblaster) -->
+
 <!-- Adds badges -->
 [![Version](https://img.shields.io/visual-studio-marketplace/v/FaultyBlaster.file-forge?label=version&style=flat-square)](https://marketplace.visualstudio.com/items?itemName=FaultyBlaster.file-forge)
 [![Installs](https://img.shields.io/visual-studio-marketplace/i/FaultyBlaster.file-forge?label=installs&style=flat-square)](https://marketplace.visualstudio.com/items?itemName=FaultyBlaster.file-forge)
@@ -30,9 +34,20 @@ The following programming languages are shipped by default:
 
 ## Features
 
-You can use the command palette or the context menu, as well as the shortcuts to create your files
+You can use the command palette or the context menu, as well as the shortcuts to create your files.
 
-- Here is an example of how the extension works, creating a file from a template for typescript:  
+If you prefer to use the command palette, you can use the command `Create new file` or the shortcut `shift+alt+n` and select a language, and then select a template:
+
+<!-- Show table with command / shortcut -->
+| Command | Shortcut |
+|------------------|------------------|
+| Create new file | `shift+alt+n` |
+| Create TypeScript file | `shift+alt+t` |
+| Create C# file | `shift+alt+c` |
+| Create Python file | `shift+alt+p` |
+| Create Cpp file | `shift+alt+o` |
+
+### TypeScript
 
 Some of the available templates for typescript:
 
@@ -44,7 +59,9 @@ Some of the available templates for typescript:
 - Hello world `<= this one is on me, don't have to say thanks`  
 
 <!-- Show gif for ts -->
-![ts](https://raw.githubusercontent.com/faultyblaster/file-forge/master/showcase/cs.gif)
+![ts](https://raw.githubusercontent.com/faultyblaster/file-forge/master/showcase/ts.gif)
+
+### CSharp
 
 - Here is another example of how the extension works, creating a file from a template for C#:  
 For C#, you can create files with the following templates:
@@ -57,9 +74,11 @@ For C#, you can create files with the following templates:
 - Global using
 
 <!-- Show gif for cs -->
-![cs](https://raw.githubusercontent.com/faultyblaster/file-forge/master/showcase/ts.gif)
+![cs](https://raw.githubusercontent.com/faultyblaster/file-forge/master/showcase/cs.gif)
 
-- And last, but not least, here is another example of how the extension works, creating a file from a template for python:  
+### Python
+
+And last, but not least, here is another example of how the extension works, creating a file from a template for python:  
 
 <!-- Show gif for py -->
 ![py](https://raw.githubusercontent.com/faultyblaster/file-forge/master/showcase/py.gif)
@@ -70,28 +89,21 @@ Python templates:
 - Requirements file
 - Script
 
-> **Note:** More templates will be added as the extension grows, if you want to contribute with a template, please, open a issue on the github [issue tab](https://github.com/faultyblaster/templator/issues) and we can discuss it, or you can create a pull request with the template you want to add.
-
-## How to
-
-Just right click on a folder on the explorer, select the template you want, and that's it, you can also run the command: `Create new file` or the shortcut `shift+alt+n` and select the template you want, and that's it!
-
 ### Automatic context menu activation
 
 The extension will automatically activate the context menu when a file is created for selected languages (cs, py, ts, cpp), this will allow you to create files much faster, and easier.
 
-## Requirements
+### Custom templates
 
-No requirements to install, but the use of the extension for x languages assumes that x language is properly installed in the current system.
+Currently, the extension does not support custom templates, but it is planned to be added in the near future, so stay tuned!
 
-<!-- ## You can create your own templates
+## Installation
 
-Simply add as many languages as you want
- -->
+Install the extension from the [marketplace](https://marketplace.visualstudio.com/items?itemName=FaultyBlaster.file-forge) or by searching for `File Forge` in the extensions tab of your vscode.  
 
-## Known Issues
+### Requirements
 
-Bugs and errors will be publicly available on [this extension's github page](https://github.com/faultyblaster/templator), bugs, specifically, will be available (for tracking and reporting) at [the issue tab](https://github.com/faultyblaster/templator/issues) on the same repo.
+No requirements to install, but the use of the extension for x language assumes that x language is properly installed in the current system.
 
 ## Release Notes
 
@@ -100,11 +112,6 @@ Only big updates and new features will be listed here, for detailed information 
 ## License
 
 The code is under the [MIT license](/LICENSE), however, some of the art may be copyrighted or given exclusive permission, such cases will be explicitly communicated on those files locations.
-
-## Special notes
-
-Thanks for using this extension!  
-Feedback is welcome! If you have suggestions, bug reports, trypo <!-- This typo is intentional --> reports, or any other comment that can make the extension better, please, don't hesitate on creating a issue on the github [issue tab](https://github.com/faultyblaster/templator/issues).
 
 ## Thanks to
 
@@ -115,3 +122,7 @@ Feedback is welcome! If you have suggestions, bug reports, trypo <!-- This typo 
 > This extension is not affiliated with any of the above mentioned websites, and the use of their resources is under their respective licenses.
 
 **Enjoy!**
+
+---
+
+> This is a side project, and I am not a professional developer, I am doing this in my spare time, if you like the extension, please consider supporting me by giving a star to [the repository](https://github.com/faultyblaster/file-forge) or rating [the extension](https://marketplace.visualstudio.com/items?itemName=FaultyBlaster.file-forge) on the marketplace.
