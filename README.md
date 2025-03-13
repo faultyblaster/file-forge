@@ -9,6 +9,15 @@
 <!-- cs.gif: '/media/showcase/cs.gif' -->
 <!-- py.gif: '/media/showcase/py.gif' -->
 
+<!-- Extension store: https://marketplace.visualstudio.com/items?itemName=FaultyBlaster.file-forge -->
+
+<!-- Adds badges -->
+[![Version](https://img.shields.io/visual-studio-marketplace/v/FaultyBlaster.file-forge?label=version&style=flat-square)](https://marketplace.visualstudio.com/items?itemName=FaultyBlaster.file-forge)
+[![Installs](https://img.shields.io/visual-studio-marketplace/i/FaultyBlaster.file-forge?label=installs&style=flat-square)](https://marketplace.visualstudio.com/items?itemName=FaultyBlaster.file-forge)
+[![Rating](https://img.shields.io/visual-studio-marketplace/r/FaultyBlaster.file-forge?label=rating&style=flat-square)](https://marketplace.visualstudio.com/items?itemName=FaultyBlaster.file-forge)
+[![License](https://img.shields.io/github/license/faultyblaster/file-forge?label=license&style=flat-square)](github.com/faultyblaster/file-forge/blob/master/LICENSE)
+[![Contributors](https://img.shields.io/github/contributors/faultyblaster/file-forge?label=contributors&style=flat-square)](github.com/faultyblaster/file-forge/graphs/contributors)
+
 Create files from templates with a couple clicks or with commands!
 
 The following programming languages are shipped by default:
@@ -18,6 +27,48 @@ The following programming languages are shipped by default:
 - TypeScript
 - Cpp
 - Other (json, csv)
+
+## Features
+
+You can use the command palette or the context menu, as well as the shortcuts to create your files
+
+- Here is an example of how the extension works, creating a file from a template for typescript:  
+
+Some of the available templates for typescript:
+
+- Index file
+- Class
+- Interface
+- Enum
+- Function
+- Hello world `<= this one is on me, don't have to say thanks`  
+
+<!-- Show gif for ts -->
+![ts](https://raw.githubusercontent.com/faultyblaster/file-forge/master/showcase/cs.gif)
+
+- Here is another example of how the extension works, creating a file from a template for C#:  
+For C#, you can create files with the following templates:
+
+- Class
+- Interface
+- Struct
+- Enum
+- Record
+- Global using
+
+<!-- Show gif for cs -->
+![cs](https://raw.githubusercontent.com/faultyblaster/file-forge/master/showcase/ts.gif)
+
+- And last, but not least, here is another example of how the extension works, creating a file from a template for python:  
+
+<!-- Show gif for py -->
+![py](https://raw.githubusercontent.com/faultyblaster/file-forge/master/showcase/py.gif)
+
+Python templates:
+
+- Main
+- Requirements file
+- Script
 
 > **Note:** More templates will be added as the extension grows, if you want to contribute with a template, please, open a issue on the github [issue tab](https://github.com/faultyblaster/templator/issues) and we can discuss it, or you can create a pull request with the template you want to add.
 

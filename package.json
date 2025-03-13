@@ -2,7 +2,7 @@
     "name": "file-forge",
     "displayName": "File Forge",
     "description": "Easy file creation with templates, type less, code more.",
-    "version": "0.0.6",
+    "version": "1.0.0",
     "engines": {
         "vscode": "^1.97.0"
     },

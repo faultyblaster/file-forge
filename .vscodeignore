@@ -12,5 +12,5 @@ vsc-extension-quickstart.md
 **/*.map
 **/*.ts
 **/.vscode-test.*
-/media/*
-!/media/showcase
+!/media/**
+showcase/**
